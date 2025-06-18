@@ -75,8 +75,8 @@ const PartnerSlider = () => {
 
   return (
     <section className="py-12 px-4 sm:px-6 lg:px-8 bg-white text-center">
-      <p className="text-xl font-semibold text-teal-600">In Association With</p>
-      <h2 className="text-4xl md:text-5xl font-bold text-green-500 italic mb-10">
+      <p className="text-xl font-semibold text-violet-600">In Association With</p>
+      <h2 className="text-4xl md:text-5xl font-bold text-slate-400 italic mb-10">
         most trusted experts
       </h2>
 
