@@ -1,5 +1,5 @@
 import React from "react";
-import b1 from "../../assets/b1.webp"
+import b1 from "../../assets/b1.webp";
 const CareBeyondCoverage = () => {
   return (
     <section className="bg-white px-4 py-12 md:py-20">
@@ -7,21 +7,25 @@ const CareBeyondCoverage = () => {
         {/* Text Section */}
         <div className="w-full md:w-1/2 relative  text-center md:text-left">
           {/* Background Text */}
-          <div className=" absolute -top-12 left-1/2 md:left-0 transform -translate-x-1/2 md:translate-x-0 text-[40px] sm:text-[60px] md:text-[72px] font-extrabold italic text-[#8CC63E30] leading-tight z-0 opacity-90">
+          {/* <div className=" absolute -top-12 left-1/2 md:left-0 transform -translate-x-1/2 md:translate-x-0 text-[40px] sm:text-[60px] md:text-[72px] font-extrabold italic text-[#8CC63E30] leading-tight z-0 opacity-90"> */}
+          <div
+            className="absolute -top-12 left-1/2 md:left-0 transform -translate-x-1/2 md:translate-x-0 text-[40px] sm:text-[60px] md:text-[72px] font-extrabold italic  leading-tight  text-transparent bg-gradient-to-r from-slate-600 to-violet-600 bg-clip-text opacity-20
+"
+          >
             <div>Care Beyond</div>
             <div>Coverage</div>
           </div>
 
           {/* Foreground Text */}
           <div className="relative  mt-8 text-center ">
-            <h2 className="text-[#1EA1A9] text-2xl sm:text-3xl font-bold leading-tight">
+            <h2 className="text-violet-500 text-2xl sm:text-3xl font-bold leading-tight">
               <span className="d-block">
                 {" "}
                 Coverage That Covers <br /> You.
               </span>
             </h2>
 
-            <h3 className="mt-4 text-[#8bc34a] text-2xl sm:text-3xl font-bold italic leading-snug mb-8">
+            <h3 className="mt-4 text-fuchsia-700 text-2xl sm:text-3xl font-bold italic leading-snug mb-8">
               real stories.
               <br />
               real protection.

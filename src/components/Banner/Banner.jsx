@@ -7,7 +7,7 @@ import HealthPlanCards from "../Subscribe/Subscribe"; // Assuming HealthPlanCard
 
 const Banner = () => {
   return (
-    <div className="bg-[#1DA7AA]  text-white overflow-hidden">
+  <div className="relative bg-gradient-to-r from-slate-600 to-slate-800 text-white  overflow-hidden">
       {/* Hero Section */}
       <div className="relative w-full px-6 py-16 lg:py-24">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:items-start">
@@ -16,7 +16,7 @@ const Banner = () => {
             <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
               Our Plans, Your <br /> Peace of Mind
             </h1>
-            <h2 className="text-accent text-2xl lg:text-3xl text-[#FFCE93] font-bold italic mt-4">
+            <h2 className="text-accent text-2xl lg:text-3xl text-violet-400 font-bold italic mt-4">
               choose what fits you best
             </h2>
             <p className="mt-6 text-base lg:text-lg opacity-90">
@@ -27,7 +27,7 @@ const Banner = () => {
 
             <a
               href="/premium"
-              className="mt-6 inline-flex items-center gap-2 text-sm sm:text-base font-semibold tracking-wide underline-offset-4 hover:text-[#FFE184] hover:underline"
+              className="mt-6 inline-flex items-center gap-2 text-sm sm:text-base font-semibold tracking-wide underline-offset-4 hover:text-violet-400  hover:underline"
             >
               Start Exploring{" "}
               <span className="inline-block">
