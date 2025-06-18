@@ -1,6 +1,10 @@
 import React from "react";
-import logo from "../../assets/logo.webp";
-import { Check } from "lucide-react";
+
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useLocation, useNavigate } from "react-router-dom";
+import { FaCheck } from "react-icons/fa";
+
 const SelfInformations = () => {
   const steps = [
     "Self Information",
@@ -10,27 +14,61 @@ const SelfInformations = () => {
     "Payment",
   ];
   const stepPaths = ["/self", "/member1", "/member2", "/member3", "/payment"];
+  const location = useLocation();
+  const navigate = useNavigate();
   const currentStepIndex = stepPaths.indexOf(location.pathname);
+
+  const formik = useFormik({
+    initialValues: {
+      selfName: "",
+      fatherHusbandName: "",
+      email: "",
+      phone: "",
+      dob: "",
+      gender: "",
+      panCard: "",
+      aadharCard: "",
+      address1: "",
+      address2: "",
+      city: "",
+      state: "",
+      pincode: "",
+      country: "india",
+    },
+    validationSchema: Yup.object({
+      selfName: Yup.string().required("This field is required"),
+      fatherHusbandName: Yup.string().required("This field is required"),
+      email: Yup.string()
+        .email("Invalid email")
+        .required("This field is required"),
+      phone: Yup.string().required("This field is required"),
+      dob: Yup.string().required("This field is required"),
+      gender: Yup.string().required("This field is required"),
+      panCard: Yup.string().required("This field is required"),
+     aadharCard: Yup.string()
+  .matches(/^[0-9]{12}$/, "Kindly enter a valid 12-digit Aadhar Card Number")
+  .required("This field is required"),
+      address1: Yup.string().required("This field is required"),
+      address2: Yup.string().required("This field is required"),
+      city: Yup.string().required("This field is required"),
+      state: Yup.string().required("This field is required"),
+      pincode: Yup.string().required("This field is required"),
+      country: Yup.string().required("This field is required"),
+    }),
+    onSubmit: (values) => {
+      console.log(values); // You can store data in context/localStorage here
+      navigate("/member1");
+    },
+  });
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-200 to-emerald-400 flex items-center justify-center p-4 font-inter">
+    <div className="min-h-screen bg-[#1EA1A9] flex items-center justify-center p-4 font-inter">
       <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 max-w-4xl w-full mx-auto my-8">
-        <div className="flex flex-col items-center mb-6">
-          <img
-            src={logo}
-            alt="axen-care"
-            className="w-32 object-contain mb-2"
-          />
-          <h3 className="text-xl font-semibold text-gray-800">
-            Axen Health Shield
-          </h3>
-        </div>
+      
 
-        {/* Stepper / Progress Bar */}
-
-       <div className="flex justify-between items-center mb-8 sm:mb-10 relative">
-          {/* Line behind steps */}
+        {/* Stepper */}
+        <div className="flex justify-between items-center mb-8 sm:mb-10 relative">
           <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 -z-10 mx-4"></div>
-
           {steps.map((step, index) => {
             const isCompleted = index < currentStepIndex;
             const isActive = index === currentStepIndex;
@@ -39,27 +77,27 @@ const SelfInformations = () => {
               <div key={index} className="flex flex-col items-center flex-1">
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300
-                ${
-                  isCompleted
-                    ? "bg-[#1EA1A9] text-white border-2 border-[#1EA1A9]"
-                    : ""
-                }
-                ${isActive ? "border-2 border-green-600 text-green-700" : ""}
-                ${
-                  !isCompleted && !isActive
-                    ? "bg-transparent border border-gray-300 text-gray-400"
-                    : ""
-                }
-              `}
+                  ${
+                    isCompleted
+                      ? "bg-[#1EA1A9] text-white border-2 border-[#1EA1A9]"
+                      : ""
+                  }
+                  ${isActive ? "border-2 border-green-600 text-green-700" : ""}
+                  ${
+                    !isCompleted && !isActive
+                      ? "bg-transparent border border-gray-300 text-gray-400"
+                      : ""
+                  }
+                `}
                 >
-                  {isCompleted ? <Check size={16} /> : index + 1}
+                  {isCompleted ? <FaCheck size={16} /> : index + 1}
                 </div>
                 <span
-                  className={`mt-2 text-center text-xs sm:text-sm whitespace-nowrap transition-colors duration-300
-                ${isCompleted ? "text-[#1EA1A9] font-medium" : ""}
-                ${isActive ? "text-green-700 font-semibold" : ""}
-                ${!isCompleted && !isActive ? "text-gray-500" : ""}
-              `}
+                  className={`mt-2 text-center text-xs sm:text-sm whitespace-nowrap
+                  ${isCompleted ? "text-[#1EA1A9] font-medium" : ""}
+                  ${isActive ? "text-green-700 font-semibold" : ""}
+                  ${!isCompleted && !isActive ? "text-gray-500" : ""}
+                `}
                 >
                   {step}
                 </span>
@@ -68,267 +106,301 @@ const SelfInformations = () => {
           })}
         </div>
 
-        {/* Form Fields */}
-        <form className="space-y-6">
-          {/* Self Name / Father/Husband Name */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+        {/* Form Start */}
+        <form className="space-y-6" onSubmit={formik.handleSubmit}>
+          {/* Row 1 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label
-                htmlFor="self-name"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
+              <label className="block text-md font-medium text-[#1EA1A9] mb-1">
                 Self Name <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
-                id="self-name"
-                name="self-name"
-                placeholder="Full Name"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200"
-                required
+                name="selfName"
+                onChange={formik.handleChange}
+                value={formik.values.selfName}
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
               />
+              {formik.touched.selfName && formik.errors.selfName && (
+                <p className="text-red-500 text-xs mt-1">
+                  {formik.errors.selfName}
+                </p>
+              )}
             </div>
+
             <div>
-              <label
-                htmlFor="father-husband-name"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
+              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                 Father/Husband Name <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
-                id="father-husband-name"
-                name="father-husband-name"
-                placeholder="Father/Husband Name"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200"
-                required
+                name="fatherHusbandName"
+                onChange={formik.handleChange}
+                value={formik.values.fatherHusbandName}
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
               />
+              {formik.touched.fatherHusbandName &&
+                formik.errors.fatherHusbandName && (
+                  <p className="text-red-500 text-xs mt-1">
+                    {formik.errors.fatherHusbandName}
+                  </p>
+                )}
             </div>
           </div>
 
-          {/* Email / Phone/Mobile */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+          {/* Row 2 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label
-                htmlFor="email"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
+              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                 Email <span className="text-red-500">*</span>
               </label>
               <input
                 type="email"
-                id="email"
                 name="email"
-                placeholder="Email Address"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200"
-                required
+                onChange={formik.handleChange}
+                value={formik.values.email}
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
               />
+              {formik.touched.email && formik.errors.email && (
+                <p className="text-red-500 text-xs mt-1">
+                  {formik.errors.email}
+                </p>
+              )}
             </div>
+
             <div>
-              <label
-                htmlFor="phone"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
+              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                 Phone/Mobile <span className="text-red-500">*</span>
               </label>
               <input
                 type="tel"
-                id="phone"
                 name="phone"
-                placeholder="Mobile Number"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200"
-                required
+                onChange={formik.handleChange}
+                value={formik.values.phone}
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
               />
+              {formik.touched.phone && formik.errors.phone && (
+                <p className="text-red-500 text-xs mt-1">
+                  {formik.errors.phone}
+                </p>
+              )}
             </div>
           </div>
-
-          {/* Date Of Birth / Gender */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+          {/* Date of Birth / Gender */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Date of Birth */}
             <div>
-              <label
-                htmlFor="dob"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
-                Date Of Birth <span className="text-red-500">*</span>
+              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
+                Date of Birth <span className="text-red-500">*</span>
               </label>
               <input
                 type="date"
-                id="dob"
+                id="date-picker"
                 name="dob"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200"
-                required
+                placeholder=" "
+                onChange={formik.handleChange}
+                value={formik.values.dob}
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
               />
+              {formik.touched.dob && formik.errors.dob && (
+                <p className="text-red-500 text-xs mt-1">{formik.errors.dob}</p>
+              )}
             </div>
+
+            {/* Gender */}
             <div>
-              <label
-                htmlFor="gender"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
+              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                 Gender <span className="text-red-500">*</span>
               </label>
               <select
-                id="gender"
                 name="gender"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent appearance-none transition duration-200"
-                required
+                onChange={formik.handleChange}
+                value={formik.values.gender}
+               className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
               >
                 <option value="">- Select -</option>
                 <option value="male">Male</option>
                 <option value="female">Female</option>
                 <option value="other">Other</option>
               </select>
+              {formik.touched.gender && formik.errors.gender && (
+                <p className="text-red-500 text-xs mt-1">
+                  {formik.errors.gender}
+                </p>
+              )}
             </div>
           </div>
 
-          {/* Pan Card / Aadhar Card */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+          
+
+          {/* PAN and Aadhar */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label
-                htmlFor="pan-card"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
-                Pan Card <span className="text-red-500">*</span>
+              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
+                PAN Card Number <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
-                id="pan-card"
-                name="pan-card"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200"
-                required
+                name="panCard"
+                onChange={formik.handleChange}
+                value={formik.values.panCard}
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
               />
+              {formik.touched.panCard && formik.errors.panCard && (
+                <p className="text-red-500 text-xs mt-1">
+                  {formik.errors.panCard}
+                </p>
+              )}
             </div>
+
             <div>
-              <label
-                htmlFor="aadhar-card"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
-                Aadhar Card <span className="text-red-500">*</span>
+              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
+                Aadhar Card Number <span className="text-red-500">*</span>
               </label>
               <input
-                type="text"
-                id="aadhar-card"
-                name="aadhar-card"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200"
-                required
+                type="number"
+                name="aadharCard"
+                onChange={formik.handleChange}
+                value={formik.values.aadharCard}
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
               />
+              {formik.touched.aadharCard && formik.errors.aadharCard && (
+                <p className="text-red-500 text-xs mt-1">
+                  {formik.errors.aadharCard}
+                </p>
+              )}
             </div>
           </div>
 
-          {/* Address Line 1 / Address Line 2 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+          {/* Address Lines */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label
-                htmlFor="address-line1"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
+              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                 Address Line 1 <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
-                id="address-line1"
-                name="address-line1"
-                placeholder="Address Line 1"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200"
-                required
+                name="address1"
+                onChange={formik.handleChange}
+                value={formik.values.address1}
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
               />
+              {formik.touched.address1 && formik.errors.address1 && (
+                <p className="text-red-500 text-xs mt-1">
+                  {formik.errors.address1}
+                </p>
+              )}
             </div>
+
             <div>
-              <label
-                htmlFor="address-line2"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
+              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                 Address Line 2
               </label>
               <input
                 type="text"
-                id="address-line2"
-                name="address-line2"
-                placeholder="Address Line 2"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200"
+                name="address2"
+                onChange={formik.handleChange}
+                value={formik.values.address2}
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
               />
+              {formik.touched.address1 && formik.errors.address2 && (
+                <p className="text-red-500 text-xs mt-1">
+                  {formik.errors.address2}
+                </p>
+              )}
             </div>
           </div>
 
-          {/* City / State */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+          {/* City and State */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label
-                htmlFor="city"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
+              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                 City <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
-                id="city"
                 name="city"
-                placeholder="City"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200"
-                required
+                onChange={formik.handleChange}
+                value={formik.values.city}
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
               />
+              {formik.touched.city && formik.errors.city && (
+                <p className="text-red-500 text-xs mt-1">
+                  {formik.errors.city}
+                </p>
+              )}
             </div>
+
             <div>
-              <label
-                htmlFor="state"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
+              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                 State <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
-                id="state"
                 name="state"
-                placeholder="State"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200"
-                required
+                onChange={formik.handleChange}
+                value={formik.values.state}
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
               />
+              {formik.touched.state && formik.errors.state && (
+                <p className="text-red-500 text-xs mt-1">
+                  {formik.errors.state}
+                </p>
+              )}
             </div>
           </div>
 
-          {/* PinCode / Country */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+          {/* Pincode and Country */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label
-                htmlFor="pincode"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
-                PinCode <span className="text-red-500">*</span>
+              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
+                Pincode <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
-                id="pincode"
                 name="pincode"
-                placeholder="Zip"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent transition duration-200"
-                required
+                onChange={formik.handleChange}
+                value={formik.values.pincode}
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
               />
+              {formik.touched.pincode && formik.errors.pincode && (
+                <p className="text-red-500 text-xs mt-1">
+                  {formik.errors.pincode}
+                </p>
+              )}
             </div>
+
             <div>
-              <label
-                htmlFor="country"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
+              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                 Country <span className="text-red-500">*</span>
               </label>
               <select
-                id="country"
                 name="country"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-transparent appearance-none transition duration-200"
-                required
+                onChange={formik.handleChange}
+                value={formik.values.country}
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
               >
+                <option value="">Select Country</option>
                 <option value="india">India</option>
-                {/* Add more countries as needed */}
+                <option value="other">Other</option>
               </select>
+              {formik.touched.country && formik.errors.country && (
+                <p className="text-red-500 text-xs mt-1">
+                  {formik.errors.country}
+                </p>
+              )}
             </div>
           </div>
 
-          {/* Next Button */}
+          {/* Repeat same pattern for each field using formik.getFieldProps or handleChange */}
+
+          {/* Submit Button */}
           <div className="flex justify-end pt-4">
             <button
               type="submit"
               className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105"
             >
-              <a href="/member1">Next</a>
+              Next
             </button>
           </div>
         </form>
