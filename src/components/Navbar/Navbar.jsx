@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo.webp";
+// import logo from "../../assets/logo.webp";
+import logo from "../../assets/logo.png"; // Adjust the path as necessary
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -69,20 +70,27 @@ const Navbar = () => {
   };
 
   return (
-    <header className="bg-white p-4 shadow-sm font-sans relative z-10">
-      <nav className="container mx-auto flex items-center justify-between flex-wrap">
+    <header className="bg-white shadow-sm font-sans relative z-10">
+      <nav className="container mx-auto flex items-center justify-evenly flex-wrap">
         {/* Logo */}
-        <div className="flex items-center flex-shrink-0 text-gray-800 mr-6">
-          <Link to="/" className="flex items-center">
-            <img src={logo} alt="Axen-care" className="w-52 h-auto" />
-          </Link>
-        </div>
+      <div className="flex items-center flex-shrink-0 text-gray-800 mr-6">
+  <Link to="/" className="flex items-center space-x-2">
+    {/* Logo */}
+    <img src={logo} alt="Axen-care" className="w-20 h-auto" />
+
+    {/* Brand Text */}
+    <div className="flex items-baseline space-x-1">
+      <span className="text-4xl font-bold text-slate-800">Megma</span>
+      <span className="text-4xl font-bold text-violet-800">OPD</span>
+    </div>
+  </Link>
+</div>
 
         {/* Mobile Menu Toggle */}
         <div className="block md:hidden">
           <button
             onClick={toggleMenu}
-            className="flex items-center px-3 py-2 border rounded text-teal-500 border-teal-400 hover:bg-teal-500 hover:text-white"
+            className="flex items-center px-3 py-2 border rounded text-slate-600 border-slate-400 hover:bg-slate-700 hover:text-white"
           >
             <svg className="h-3 w-3 fill-current" viewBox="0 0 20 20">
               <path d="M0 3h20v2H0zM0 9h20v2H0zM0 15h20v2H0z" />
@@ -91,12 +99,22 @@ const Navbar = () => {
         </div>
 
         {/* Menu */}
-        <div className={`w-full block flex-grow md:flex md:items-center md:w-auto ${isMenuOpen ? "block" : "hidden"}`}>
+        <div
+          className={`w-full block flex-grow md:flex md:items-center md:w-auto ${
+            isMenuOpen ? "block" : "hidden"
+          }`}
+        >
           <div className="text-sm text-center md:flex-grow">
-            <Link to="/" className="block font-bold text-lg mt-4 md:inline-block md:mt-0 text-[#198d94] mr-4 p-2">
+            <Link
+              to="/"
+              className="block font-bold text-lg mt-4 md:inline-block md:mt-0 text-slate-600 mr-4 p-2"
+            >
               Home
             </Link>
-            <Link to="/about" className="block font-bold text-lg mt-4 md:inline-block md:mt-0 text-[#198d94] mr-4 p-2">
+            <Link
+              to="/about"
+              className="block font-bold text-lg mt-4 md:inline-block md:mt-0 text-slate-600 mr-4 p-2"
+            >
               About Us
             </Link>
 
@@ -104,16 +122,23 @@ const Navbar = () => {
             <div className="relative inline-block">
               <button
                 onClick={togglePlans}
-                className="mt-4 font-bold text-[#198d94] mr-4 px-3 py-2 flex items-center gap-1"
+                className="mt-4 font-bold text-slate-600 mr-4 px-3 py-2 flex items-center gap-1"
               >
                 <span className="text-lg">Plans</span>
                 <svg
-                  className={`h-4 w-4 transition-transform ${isPlansOpen ? "rotate-180" : ""}`}
+                  className={`h-4 w-4 transition-transform ${
+                    isPlansOpen ? "rotate-180" : ""
+                  }`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path d="M19 9l-7 7-7-7" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  <path
+                    d="M19 9l-7 7-7-7"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </button>
 
@@ -123,18 +148,27 @@ const Navbar = () => {
                 }`}
               >
                 <div className="py-1">
-                  <Link to="/premium" className="block px-4 py-2 text-[#198d94] font-semibold hover:bg-gray-100">
+                  <Link
+                    to="/premium"
+                    className="block px-4 py-2 text-slate-500 font-semibold hover:bg-gray-100"
+                  >
                     Axen Premium Care
                   </Link>
                   <hr />
-                  <Link to="/axenhealthshield" className="block px-4 py-2 text-[#198d94] font-semibold hover:bg-gray-100">
+                  <Link
+                    to="/axenhealthshield"
+                    className="block px-4 py-2 text-slate-500 font-semibold hover:bg-gray-100"
+                  >
                     Axen Health Shield
                   </Link>
                 </div>
               </div>
             </div>
 
-            <Link to="/contact" className="block font-bold text-lg mt-4 md:inline-block md:mt-0 text-[#198d94] mr-4 p-2">
+            <Link
+              to="/contact"
+              className="block font-bold text-lg mt-4 md:inline-block md:mt-0 text-slate-600 mr-4 p-2"
+            >
               Contact us
             </Link>
           </div>
@@ -143,7 +177,7 @@ const Navbar = () => {
           <div className="p-6">
             <button
               onClick={() => setShowModal(true)}
-              className="bg-[#1EA1A9] text-white text-md font-medium rounded-lg px-6 py-4 hover:bg-[#198d94]"
+              className="bg-gradient-to-r from-slate-600 to-slate-800 text-white text-md font-medium rounded-lg px-6 py-4 hover:from-slate-500 hover:to-slate-700 transition-all duration-300"
             >
               Request a Call Back
             </button>
@@ -162,7 +196,9 @@ const Navbar = () => {
                   <form className="space-y-4" onSubmit={handleSubmit}>
                     {/* Name */}
                     <div className="relative">
-                      <label className="block mb-1 text-sm font-medium">Name</label>
+                      <label className="block mb-1 text-sm font-medium">
+                        Name
+                      </label>
                       <input
                         type="text"
                         name="name"
@@ -171,13 +207,21 @@ const Navbar = () => {
                         className="w-full p-2.5 border rounded-lg text-sm"
                         placeholder="Enter your name"
                       />
-                      {valid.name && <span className="absolute top-9 right-3 text-green-600 font-bold">✓</span>}
-                      {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
+                      {valid.name && (
+                        <span className="absolute top-9 right-3 text-green-600 font-bold">
+                          ✓
+                        </span>
+                      )}
+                      {errors.name && (
+                        <p className="text-red-500 text-sm">{errors.name}</p>
+                      )}
                     </div>
 
                     {/* Email */}
                     <div className="relative">
-                      <label className="block mb-1 text-sm font-medium">Email</label>
+                      <label className="block mb-1 text-sm font-medium">
+                        Email
+                      </label>
                       <input
                         type="email"
                         name="email"
@@ -186,13 +230,21 @@ const Navbar = () => {
                         className="w-full p-2.5 border rounded-lg text-sm"
                         placeholder="you@example.com"
                       />
-                      {valid.email && <span className="absolute top-9 right-3 text-green-600 font-bold">✓</span>}
-                      {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
+                      {valid.email && (
+                        <span className="absolute top-9 right-3 text-green-600 font-bold">
+                          ✓
+                        </span>
+                      )}
+                      {errors.email && (
+                        <p className="text-red-500 text-sm">{errors.email}</p>
+                      )}
                     </div>
 
                     {/* Phone */}
                     <div className="relative">
-                      <label className="block mb-1 text-sm font-medium">Phone Number</label>
+                      <label className="block mb-1 text-sm font-medium">
+                        Phone Number
+                      </label>
                       <input
                         type="tel"
                         name="phone"
@@ -201,13 +253,21 @@ const Navbar = () => {
                         className="w-full p-2.5 border rounded-lg text-sm"
                         placeholder="+91 1234567890"
                       />
-                      {valid.phone && <span className="absolute top-9 right-3 text-green-600 font-bold">✓</span>}
-                      {errors.phone && <p className="text-red-500 text-sm">{errors.phone}</p>}
+                      {valid.phone && (
+                        <span className="absolute top-9 right-3 text-green-600 font-bold">
+                          ✓
+                        </span>
+                      )}
+                      {errors.phone && (
+                        <p className="text-red-500 text-sm">{errors.phone}</p>
+                      )}
                     </div>
 
                     {/* Plan */}
                     <div className="relative">
-                      <label className="block mb-1 text-sm font-medium">Select Plan</label>
+                      <label className="block mb-1 text-sm font-medium">
+                        Select Plan
+                      </label>
                       <select
                         name="plan"
                         value={formData.plan}
@@ -218,13 +278,19 @@ const Navbar = () => {
                         <option value="shield">Axen Health Shield</option>
                         <option value="premium">Axen Health Premium</option>
                       </select>
-                      {valid.plan && <span className="absolute top-9 right-3 text-green-600 font-bold">✓</span>}
-                      {errors.plan && <p className="text-red-500 text-sm">{errors.plan}</p>}
+                      {valid.plan && (
+                        <span className="absolute top-9 right-3 text-green-600 font-bold">
+                          ✓
+                        </span>
+                      )}
+                      {errors.plan && (
+                        <p className="text-red-500 text-sm">{errors.plan}</p>
+                      )}
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full bg-[#1EA1A9] text-white py-2.5 rounded-lg hover:bg-[#198d94] text-sm font-medium"
+                      className="w-full bg-violet-500 text-white py-2.5 rounded-lg hover:bg-slate-500 text-sm font-medium"
                     >
                       Submit
                     </button>
