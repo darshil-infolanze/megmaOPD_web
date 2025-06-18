@@ -1,4 +1,3 @@
-
 import { Check } from "lucide-react";
 import React from "react";
 
@@ -8,33 +7,38 @@ const Members1 = () => {
   const navigate = useNavigate();
 
   const location = useLocation();
-  
-    const steps = [
-      "Self Information",
-      "Member 1",
-      "Member 2",
-      "Member 3",
-      "Payment",
-    ];
-    const stepPaths = ["/self", "/member1", "/member2", "/member3", "/payment"];
-    const currentStepIndex = stepPaths.indexOf(location.pathname);
+
+  const steps = [
+    "Self Information",
+    "Member 1",
+    "Member 2",
+    "Member 3",
+    "Payment",
+  ];
+  const stepPaths = ["/self", "/member1", "/member2", "/member3", "/payment"];
+  const currentStepIndex = stepPaths.indexOf(location.pathname);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // localStorage.setItem("selfInfo", JSON.stringify(formData));
+  };
+  console.log("Members1 loaded");
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-200 to-emerald-400 flex items-center justify-center p-4 font-inter">
+    <div className="min-h-screen bg-[#1EA1A9] flex items-center justify-center p-4 font-inter">
       <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 max-w-4xl w-full mx-auto my-8">
         {/* Stepper / Progress Bar */}
         <div className="flex justify-between items-center mb-8 sm:mb-10 relative">
-            {/* Line behind steps */}
-            <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 -z-10 mx-4"></div>
+          {/* Line behind steps */}
+          <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 -z-10 mx-4"></div>
 
-            {steps.map((step, index) => {
-              const isCompleted = index < currentStepIndex;
-              const isActive = index === currentStepIndex;
+          {steps.map((step, index) => {
+            const isCompleted = index < currentStepIndex;
+            const isActive = index === currentStepIndex;
 
-              return (
-                <div key={index} className="flex flex-col items-center flex-1">
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300
+            return (
+              <div key={index} className="flex flex-col items-center flex-1">
+                <div
+                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300
                 ${
                   isCompleted
                     ? "bg-[#1EA1A9] text-white border-2 border-[#1EA1A9]"
@@ -47,32 +51,29 @@ const Members1 = () => {
                     : ""
                 }
               `}
-                  >
-                    {isCompleted ? <Check size={16} /> : index + 1}
-                  </div>
-                  <span
-                    className={`mt-2 text-center text-xs sm:text-sm whitespace-nowrap transition-colors duration-300
+                >
+                  {isCompleted ? <Check size={16} /> : index + 1}
+                </div>
+                <span
+                  className={`mt-2 text-center text-xs sm:text-sm whitespace-nowrap transition-colors duration-300
                 ${isCompleted ? "text-[#1EA1A9] font-medium" : ""}
                 ${isActive ? "text-green-700 font-semibold" : ""}
                 ${!isCompleted && !isActive ? "text-gray-500" : ""}
               `}
-                  >
-                    {step}
-                  </span>
-                </div>
-              );
-            })}
-          </div>
+                >
+                  {step}
+                </span>
+              </div>
+            );
+          })}
+        </div>
 
         {/* Form Fields */}
-        <form className="space-y-6">
+        <form className="space-y-6" onSubmit={handleSubmit}>
           {/* Member 1 Name / Relation */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
             <div>
-              <label
-                htmlFor="member1-name"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
+           <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                 Member 1
               </label>
               <input
@@ -84,10 +85,7 @@ const Members1 = () => {
               />
             </div>
             <div>
-              <label
-                htmlFor="relation"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
+             <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                 Relation
               </label>
               <select
@@ -108,10 +106,7 @@ const Members1 = () => {
           {/* Email / Phone/Mobile */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
             <div>
-              <label
-                htmlFor="email"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
+          <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                 Email
               </label>
               <input
@@ -123,10 +118,7 @@ const Members1 = () => {
               />
             </div>
             <div>
-              <label
-                htmlFor="phone"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
+         <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                 Phone/Mobile
               </label>
               <input
@@ -142,11 +134,7 @@ const Members1 = () => {
           {/* DOB / Gender */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
             <div>
-              <label
-                htmlFor="dob"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
-                DOB
+             <label className="block text-sm font-medium text-[#1EA1A9] mb-1">DOB
               </label>
               <input
                 type="date"
@@ -156,10 +144,7 @@ const Members1 = () => {
               />
             </div>
             <div>
-              <label
-                htmlFor="gender"
-                className="block text-gray-700 text-sm font-medium mb-1"
-              >
+            <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                 Gender
               </label>
               <select

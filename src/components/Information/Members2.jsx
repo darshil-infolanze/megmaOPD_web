@@ -17,7 +17,7 @@ const Members2 = () => {
   const currentStepIndex = stepPaths.indexOf(location.pathname);
   return (
     <div>
-      <div className="min-h-screen bg-gradient-to-br from-teal-200 to-emerald-400 flex items-center justify-center p-4 font-inter">
+      <div className="min-h-screen bg-[#1EA1A9] flex items-center justify-center p-4 font-inter">
         <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 max-w-4xl w-full mx-auto my-8">
           {/* Stepper / Progress Bar */}
           <div className="flex justify-between items-center mb-8 sm:mb-10 relative">
@@ -66,10 +66,7 @@ const Members2 = () => {
             {/* Member 1 Name / Relation */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
               <div>
-                <label
-                  htmlFor="member2-name"
-                  className="block text-gray-700 text-sm font-medium mb-1"
-                >
+                <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                   Member 2
                 </label>
                 <input
@@ -81,10 +78,7 @@ const Members2 = () => {
                 />
               </div>
               <div>
-                <label
-                  htmlFor="relation"
-                  className="block text-gray-700 text-sm font-medium mb-1"
-                >
+               <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                   Relation
                 </label>
                 <select
@@ -105,10 +99,7 @@ const Members2 = () => {
             {/* Email / Phone/Mobile */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
               <div>
-                <label
-                  htmlFor="email"
-                  className="block text-gray-700 text-sm font-medium mb-1"
-                >
+                 <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                   Email
                 </label>
                 <input
@@ -120,10 +111,7 @@ const Members2 = () => {
                 />
               </div>
               <div>
-                <label
-                  htmlFor="phone"
-                  className="block text-gray-700 text-sm font-medium mb-1"
-                >
+              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                   Phone/Mobile
                 </label>
                 <input
@@ -139,10 +127,7 @@ const Members2 = () => {
             {/* DOB / Gender */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
               <div>
-                <label
-                  htmlFor="dob"
-                  className="block text-gray-700 text-sm font-medium mb-1"
-                >
+                <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                   DOB
                 </label>
                 <input
@@ -153,10 +138,7 @@ const Members2 = () => {
                 />
               </div>
               <div>
-                <label
-                  htmlFor="gender"
-                  className="block text-gray-700 text-sm font-medium mb-1"
-                >
+                 <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
                   Gender
                 </label>
                 <select
