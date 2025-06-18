@@ -30,10 +30,10 @@ const AxenCareFooter = () => {
             <div className="flex items-center">
               <IoMail className="text-violet-600" />
               <a
-                href="mailto:hello@axencare.in"
+                href="mailto:hello@megmaopd.in"
                 className="ml-2 hover:underline text-violet-700 font-medium"
               >
-                hello@axencare.in
+                hello@megmaopd.in
               </a>
             </div>
             <div className="flex items-center">
