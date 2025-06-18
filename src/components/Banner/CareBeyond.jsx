@@ -5,7 +5,7 @@ const CareBeyondCoverage = () => {
     <section className="bg-white px-4 py-12 md:py-20">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-10 relative">
         {/* Text Section */}
-        <div className="w-full md:w-1/2 relative z-10 text-center md:text-left">
+        <div className="w-full md:w-1/2 relative  text-center md:text-left">
           {/* Background Text */}
           <div className=" absolute -top-12 left-1/2 md:left-0 transform -translate-x-1/2 md:translate-x-0 text-[40px] sm:text-[60px] md:text-[72px] font-extrabold italic text-[#8CC63E30] leading-tight z-0 opacity-90">
             <div>Care Beyond</div>
@@ -13,7 +13,7 @@ const CareBeyondCoverage = () => {
           </div>
 
           {/* Foreground Text */}
-          <div className="relative z-10 mt-8 text-center ">
+          <div className="relative  mt-8 text-center ">
             <h2 className="text-[#1EA1A9] text-2xl sm:text-3xl font-bold leading-tight">
               <span className="d-block">
                 {" "}
@@ -21,7 +21,7 @@ const CareBeyondCoverage = () => {
               </span>
             </h2>
 
-            <h3 className="mt-4 text-[#8bc34a] text-2xl sm:text-3xl font-bold italic leading-snug">
+            <h3 className="mt-4 text-[#8bc34a] text-2xl sm:text-3xl font-bold italic leading-snug mb-8">
               real stories.
               <br />
               real protection.
