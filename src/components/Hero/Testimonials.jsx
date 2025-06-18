@@ -8,7 +8,7 @@ import img3 from "../../assets/img3.webp";
 import img4 from "../../assets/img4.webp";
 import img5 from "../../assets/img5.webp";
 import img6 from "../../assets/img6.webp";
-import img7 from "../../assets/img7.webp"
+import img7 from "../../assets/img7.webp";
 import { ImQuotesLeft } from "react-icons/im";
 
 // Sample Testimonial Data (you can expand this array)
@@ -62,7 +62,7 @@ const testimonials = [
     rating: 5,
     image: img6, // Placeholder image URL
   },
-   {
+  {
     id: 7,
     quote:
       "I was traveling for work when I developed a painful eye infection. Instead of scrambling to find a clinic in an unfamiliar city, I just contacted my personal health manager. Within an hour, I had a teleconsultation and a prescription sent to a nearby pharmacy.",
@@ -144,13 +144,15 @@ const TestimonialSlider = () => {
   };
 
   return (
-    <section className="bg-[#8CC63E1F] py-16 px-4 sm:px-6 lg:px-8 font-sans">
+    <section
+      className="bg-gradient-to-r from-slate-300 to-violet-300 py-16 px-4 sm:px-6 lg:px-8 font-sans"
+    >
       <div className="max-w-7xl mx-auto text-center">
-        <p className="text-lg font-bold text-[#8CC63E]  tracking-wider">
-          Axen Care
+        <p className="text-lg font-bold text-slate-700  tracking-wider">
+          Megma OPD
         </p>
-        <h2 className="text-4xl md:text-5xl font-extrabold text-[#1EA1A9] leading-tight mt-2 mb-6">
-          What Our Clients Say 
+        <h2 className="text-4xl md:text-5xl font-extrabold text-violet-400 leading-tight mt-2 mb-6">
+          What Our Clients Say
         </h2>
         <p className="max-w-3xl mx-auto text-gray-700 text-lg mb-12">
           Read how Axen Care is transforming healthcare experiences for
@@ -167,7 +169,7 @@ const TestimonialSlider = () => {
                 className="relative bg-white p-6 rounded-lg shadow-md flex flex-col items-center h-full"
               >
                 {/* Quote Icon */}
-        
+
                 <ImQuotesLeft className="absolute -top-4 -left-4 w-12 h-12 text-[#58BFCA] opacity-70" />
 
                 {renderStars(testimonial.rating)}
