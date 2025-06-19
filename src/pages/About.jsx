@@ -14,12 +14,12 @@ import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 import Banner2 from "../components/Banner/Banner2";
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
-  <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl border border-black flex flex-col items-center text-center transition-shadow duration-300">
+  <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl border border-fuchsia-300 flex flex-col items-center text-center transition-shadow duration-300">
     <div className="p-3 rounded-full mb-4">
-      <Icon className="w-8 h-8 text-[#1EA1A9]" />
+      <Icon className="w-8 h-8 text-violet-600" />
     </div>
-    <h3 className="text-xl font-semibold text-[#8CC63E] mb-2">{title}</h3>
-    <p className="text-gray-600 leading-relaxed">{description}</p>
+    <h3 className="text-xl font-semibold text-fuchsia-500 mb-2">{title}</h3>
+    <p className="text-slate-700 leading-relaxed">{description}</p>
   </div>
 );
 
@@ -64,16 +64,16 @@ function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#1EA1A90D] font-inter">
+    <div className=" bg-gradient-to-br from-slate-100 to-violet-100  ">
       {/* About Section */}
       <div className="p-4 sm:p-8 flex items-center justify-center">
-        <div className="max-w-6xl w-full bg-white rounded-lg shadow-xl overflow-hidden md:flex">
+        <div className="max-w-6xl w-full  rounded-lg  overflow-hidden md:flex">
           {/* Left Section */}
           <div className="flex-1 p-6 sm:p-10 lg:p-12 space-y-6 flex flex-col justify-center">
-            <h2 className="text-sm sm:text-base font-bold text-gray-700 uppercase tracking-wider">
+            <h2 className="text-sm sm:text-base font-bold text-slate-900 uppercase tracking-wider">
               YOUR COMPLETE HEALTH AND WELLNESS SUPPORT
             </h2>
-            <h1 className="text-4xl sm:text-5xl font-bold text-[#1EA1A9] leading-tight">
+            <h1 className="text-4xl sm:text-5xl font-bold text-violet-500 leading-tight">
               About Us
             </h1>
 
@@ -88,27 +88,27 @@ function App() {
               ].map((item, index) => (
                 <li
                   key={index}
-                  className="flex items-center text-gray-700 text-base sm:text-lg"
+                  className="flex items-center text-slate-900 text-base sm:text-lg"
                 >
-                  <Check className="text-green-500 w-5 h-5 mr-2 flex-shrink-0 rounded-full  p-0.5" />
-                  <span>{item}</span>
+                  <Check className="text-violet-600 w-5 h-5 mr-2 flex-shrink-0 rounded-full  p-0.5" />
+                  <span className="text-slate-700 text-lg">{item}</span>
                 </li>
               ))}
             </ul>
 
-            <button className="mt-6 px-8 py-3 bg-[#8CC63E] text-white font-bold rounded-md border-2 border-[#8CC63E] transition duration-300 ease-in-out hover:bg-transparent hover:text-[#8CC63E] hover:border-[#8CC63E]">
+            <button className="mt-6 px-8 py-3 bg-violet-500 text-white font-bold rounded-md border-2 border-violet-500 hover:bg-transparent hover:text-violet-600 transition duration-300">
               <a href="/premium">Explore Our Plans</a>
             </button>
           </div>
 
           {/* Right Section */}
-          <div className="relative flex-1 bg-gray-50 p-6 sm:p-10 lg:p-12 flex items-center justify-center overflow-hidden">
+          <div className="relative flex-1  p-6 sm:p-10 lg:p-12 flex items-center justify-center overflow-hidden">
             {/* Family Image (Placeholder) */}
             <div className="relative w-full max-w-sm">
               <img
                 src="https://axencare.in/wp-content/uploads/2025/04/Axen-Care-scaled.png"
                 alt="Happy family"
-                className="w-full h-auto rounded-xl shadow-2xl object-cover"
+                className="w-full h-auto rounded-xl  animate-float  object-cover"
                 onError={(e) => {
                   e.target.onerror = null;
                   e.target.src =
@@ -123,45 +123,43 @@ function App() {
       {/* Mission Section */}
 
       <div className="bg-gray-50 flex items-center justify-center p-4 sm:p-6 lg:p-8">
-        <div className="bg-white rounded-3xl shadow-sm sm:shadow-lg border border-[#61CE70] p-6 sm:p-8 lg:p-10 max-w-6xl w-full">
+        <div className="bg-white rounded-3xl shadow-sm sm:shadow-lg border border-fuchsia-300 p-6 sm:p-8 lg:p-10 max-w-6xl w-full">
           <div className="flex flex-col md:flex-row items-stretch justify-between gap-6">
             {/* Our Vision */}
             <div className="flex-1 flex flex-col justify-center p-4 sm:p-6 group hover:cursor-pointer">
               <div className="mb-4 sm:mb-6">
-                <FaEye className="w-10 h-10 text-[#1EA1A9]" />
+                <FaEye className="w-10 h-10 text-violet-500" />
               </div>
-              <h2 className="text-2xl sm:text-3xl font-semibold text-[#61CE70] group-hover:text-[#1EA1A9] mb-3 sm:mb-4 transition-colors duration-300">
+              <h2 className="text-2xl sm:text-3xl font-semibold text-slate-500 group-hover:text-violet-600 mb-3 sm:mb-4 transition-colors duration-300">
                 Our Vision
               </h2>
-              <p className="text-gray-600 leading-relaxed text-base sm:text-lg">
-                Our vision is to become a trusted leader in healthcare,
-                transforming the way people experience healthcare by offering
-                tailored plans that combine convenience, quality, and
-                affordability. We aspire to empower individuals and families to
-                take control of their health with confidence and ease.
+              <p className="text-slate-600 leading-relaxed text-base sm:text-lg">
+               At Magma OPD, our vision is to revolutionize outpatient care by
+              making quality medical consultations accessible and seamless for
+              every individual. We envision a future where health services are
+              just a click away, delivered with compassion and care.
               </p>
             </div>
 
             {/* Vertical Divider */}
             <div className="hidden md:flex items-center justify-center">
-              <div className="w-px h-5/6 bg-[#61CE70]"></div>
+              <div className="w-px h-5/6 bg-fuchsia-400"></div>
             </div>
 
             {/* Our Mission */}
             <div className="flex-1 flex flex-col justify-center p-4 sm:p-6 group hover:cursor-pointer">
               <div className="mb-4 sm:mb-6">
-                <FaRocket className="w-10 h-10 text-[#1EA1A9]" />
+                <FaRocket className="w-10 h-10 text-violet-500" />
               </div>
-              <h2 className="text-2xl sm:text-3xl font-semibold text-[#61CE70] group-hover:text-[#1EA1A9] mb-3 sm:mb-4 transition-colors duration-300">
+              <h2 className="text-2xl sm:text-3xl font-semibold text-slate-500 group-hover:text-violet-600 mb-3 sm:mb-4 transition-colors duration-300">
                 Our Mission
               </h2>
-              <p className="text-gray-600 leading-relaxed text-base sm:text-lg">
-                Our mission at Axen Care is to provide accessible, affordable,
-                and personalized healthcare solutions that prioritize the
-                well-being of our clients. We aim to deliver comprehensive
-                coverage, expert guidance, and continuous support to ensure a
-                healthier and happier life for every individual and family we
-                serve.
+              <p className="text-slate-600 leading-relaxed text-base sm:text-lg">
+                Magma OPD is on a mission to provide fast, affordable, and
+              reliable outpatient healthcare services. We aim to bridge the gap
+              between patients and doctors by offering easy appointment booking,
+              expert consultations, and a smooth healthcare experience across
+              all touchpoints.
               </p>
             </div>
           </div>
@@ -169,9 +167,9 @@ function App() {
       </div>
 
       {/* Why Choose Us Section */}
-      <div className="min-h-screen bg-gray-50 flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen py-20 bg-gradient-to-br from-slate-100 to-violet-100 flex flex-col items-center  px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl w-full">
-          <h1 className="text-5xl font-bold text-[#1EA1A9] relative ">
+          <h1 className="text-5xl font-bold text-violet-500 relative ">
             Why Choose Us
           </h1>
 
@@ -182,7 +180,7 @@ function App() {
                 icon={feature.icon}
                 title={feature.title}
                 description={feature.description}
-              />
+              />  
             ))}
           </div>
         </div>
@@ -193,3 +191,4 @@ function App() {
 }
 
 export default App;
+  
