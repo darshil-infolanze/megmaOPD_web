@@ -31,7 +31,7 @@ const lines = [
   "Personalized Support",
 ];
 
-const HeroSlider = () => {
+const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [currentLineIndex, setCurrentLineIndex] = useState(0);
 
@@ -52,11 +52,11 @@ const HeroSlider = () => {
   const current = images[currentIndex];
 
   return (
-    <div className="relative bg-[#1DA7AA] pb-32 overflow-hidden">
+  <div className="relative bg-gradient-to-r from-slate-600 to-slate-800 pb-32  overflow-hidden">
       {/* Curved bottom */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
         <svg
-          className="relative block w-full h-[100px]"
+          className="relative  w-full h-[100px]"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1200 100"
           preserveAspectRatio="none"
@@ -72,12 +72,12 @@ const HeroSlider = () => {
       <div className="w-full text-white py-12 px-6 sm:px-12 md:px-20 lg:px-32 flex flex-col-reverse md:flex-row items-center justify-between gap-10 relative">
         {/* Left Text */}
         <div className="max-w-xl">
-          <p className="text-sm text-[#FFE184] uppercase font-medium tracking-wide">
+          <p className="text-md text-violet-400 uppercase font-medium tracking-wide">
             Your Complete Health and Wellness Package
           </p>
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight mt-2">
             All for your family <br />
-            <span className="text-[#FFE184] animate-fadeInUp delay-200">
+            <span className="text-violet-400 animate-fadeInUp delay-200">
               {lines[currentLineIndex]}
             </span>
           </h1>
@@ -88,9 +88,9 @@ const HeroSlider = () => {
 
           <a
            href="/about"
-            className="mt-6 inline-flex items-center gap-2 text-sm sm:text-base font-semibold tracking-wide underline-offset-4 hover:text-[#FFE184] hover:underline"
+            className="mt-6  text-lg inline-flex items-center gap-2  font-semibold tracking-wide underline-offset-4 hover:text-fuchsia-300 hover:underline"
           >
-            Start Exploring <ArrowRight size={18} />
+            Start Exploring <ArrowRight size={20} />
           </a>
         </div>
 
@@ -125,4 +125,4 @@ const HeroSlider = () => {
   );
 };
 
-export default HeroSlider;
+export default Hero;

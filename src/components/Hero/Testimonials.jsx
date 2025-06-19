@@ -2,13 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline"; // Icons for slider navigation
 import { StarIcon } from "@heroicons/react/20/solid"; // Solid star icon for ratings
-import img1 from "../../assets/img1.webp";
-import img2 from "../../assets/img2.webp";
-import img3 from "../../assets/img3.webp";
-import img4 from "../../assets/img4.webp";
-import img5 from "../../assets/img5.webp";
-import img6 from "../../assets/img6.webp";
-import img7 from "../../assets/img7.webp";
+
 import { ImQuotesLeft } from "react-icons/im";
 
 // Sample Testimonial Data (you can expand this array)
@@ -19,7 +13,7 @@ const testimonials = [
       "When my mother had a sudden blood pressure spike, I used Axen's WhatsApp support to get advice. They not only arranged a quick consultation but also recommended a nearby diagnostic lab with a discount. It felt like having a doctor in the family.",
     author: "Alka Tiwari",
     rating: 4, // out of 5
-    image: img1, // Placeholder image URL
+    image: "https://kzmihgv5nc3c9ojk5cne.lite.vusercontent.net/placeholder.svg?height=40&width=40", // Placeholder image URL
   },
   {
     id: 2,
@@ -27,7 +21,7 @@ const testimonials = [
       "I've used health plans before, but they all felt transactional. Axen is different. They follow up. They check in. My health manager even reminded me when I missed my second check-up. It's that kind of accountability that makes me trust them deeply.",
     author: "Vinod Agarwal",
     rating: 5,
-    image: img2, // Placeholder image URL
+        image: "https://kzmihgv5nc3c9ojk5cne.lite.vusercontent.net/placeholder.svg?height=40&width=40", // Placeholder image URL
   },
   {
     id: 3,
@@ -35,7 +29,7 @@ const testimonials = [
       "With Axen, I don't have to chase multiple providers. Everything I need is in one place. It felt like having a doctor in the family. I was amazed at how smooth it was. I genuinely feel like I have a team looking out for me.",
     author: "Arvind K",
     rating: 5,
-    image: img3, // Placeholder image URL
+       image: "https://kzmihgv5nc3c9ojk5cne.lite.vusercontent.net/placeholder.svg?height=40&width=40", // Placeholder image URL
   },
   {
     id: 4,
@@ -43,7 +37,7 @@ const testimonials = [
       "I used to worry about juggling multiple health services, but now everything is under one roof. It’s efficient, smart, and built for today’s lifestyle.",
     author: "Nisha Thakur",
     rating: 5,
-    image: img4, // Placeholder image URL
+      image: "https://kzmihgv5nc3c9ojk5cne.lite.vusercontent.net/placeholder.svg?height=40&width=40", // Placeholder image URL
   },
   {
     id: 5,
@@ -51,7 +45,7 @@ const testimonials = [
       "I didn’t think much about health services until I signed up for Axen. Now, I genuinely feel like I have a team looking out for me",
     author: "Tushar Sharma",
     rating: 4.5,
-    image: img5, // Placeholder image URL
+       image: "https://kzmihgv5nc3c9ojk5cne.lite.vusercontent.net/placeholder.svg?height=40&width=40", // Placeholder image URL
   },
   {
     id: 6,
@@ -60,7 +54,7 @@ const testimonials = [
 
     author: "Ishaan Khanna ",
     rating: 5,
-    image: img6, // Placeholder image URL
+       image: "https://kzmihgv5nc3c9ojk5cne.lite.vusercontent.net/placeholder.svg?height=40&width=40",// Placeholder image URL
   },
   {
     id: 7,
@@ -69,7 +63,7 @@ const testimonials = [
 
     author: "Raj Bindra ",
     rating: 5,
-    image: img7, // Placeholder image URL
+       image: "https://kzmihgv5nc3c9ojk5cne.lite.vusercontent.net/placeholder.svg?height=40&width=40", // Placeholder image URL
   },
 ];
 
@@ -155,7 +149,7 @@ const TestimonialSlider = () => {
           What Our Clients Say
         </h2>
         <p className="max-w-3xl mx-auto text-gray-700 text-lg mb-12">
-          Read how Axen Care is transforming healthcare experiences for
+          Read how Megma OPD is transforming healthcare experiences for
           individuals and families. Our clients share their stories of enhanced
           well-being and peace of mind through our personalized plans and
           comprehensive benefits.
@@ -181,7 +175,7 @@ const TestimonialSlider = () => {
                   <img
                     src={testimonial.image}
                     alt={testimonial.author}
-                    className="w-16 h-16 rounded-full object-cover border-2 border-green-400 mr-4"
+                    className="w-16 h-16 rounded-full object-cover border-2 border-puchsia-400  mr-4"
                   />
                   <p className="font-semibold text-gray-800 text-lg">
                     {testimonial.author}
