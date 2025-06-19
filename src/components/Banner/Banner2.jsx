@@ -4,7 +4,7 @@ import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline"; // Using Hero
 
 const faqData = [
   {
-    question: "What is the coverage included in Megma OPD plans?",
+    question: "What is the coverage included in Magma OPD plans?",
     answer:
       "Each plan offers a range of benefits such as discounts on diagnostic tests, free health check-ups, eye and dental benefits, mental wellness support, and emergency room coverage. The extent of the coverage depends on the selected plan.",
   },
@@ -16,27 +16,27 @@ const faqData = [
   {
     question: "Are mental wellness services covered?",
     answer:
-      "Yes, many of our Megma OPD plans include coverage for mental wellness services, including therapy sessions, counseling, and psychiatric consultations. Please check your specific plan details for more information.",
+      "Yes, many of our Magma OPD plans include coverage for mental wellness services, including therapy sessions, counseling, and psychiatric consultations. Please check your specific plan details for more information.",
   },
   {
     question: "Do the plans include discounts on medicines?",
     answer:
-      "Absolutely! Several Megma OPD plans offer discounts on prescribed medicines at our network pharmacies. This is designed to help make your healthcare more affordable.",
+      "Absolutely! Several Magma OPD plans offer discounts on prescribed medicines at our network pharmacies. This is designed to help make your healthcare more affordable.",
   },
   {
     question: "What is the process to enroll in a plan?",
     answer:
-      "Enrolling in an Megma OPD plan is simple. You can visit our website, select your desired plan, fill out the online application form, and complete the payment process. Our team will then reach out to confirm your enrollment.",
+      "Enrolling in an Magma OPD plan is simple. You can visit our website, select your desired plan, fill out the online application form, and complete the payment process. Our team will then reach out to confirm your enrollment.",
   },
   {
     question: "Are there any age restrictions for the plans?",
     answer:
-      "Megma OPD plans are designed to cater to a wide range of age groups. While some plans may have specific age-related features, most are available to individuals and families of all ages. Please refer to individual plan details for any restrictions.",
+      "Magma OPD plans are designed to cater to a wide range of age groups. While some plans may have specific age-related features, most are available to individuals and families of all ages. Please refer to individual plan details for any restrictions.",
   },
   {
     question: "Can I switch between plans after enrolling?",
     answer:
-      "Yes, in most cases, you can switch between Megma OPD plans. There might be specific terms and conditions, such as a waiting period or a small administrative fee, associated with plan changes. Contact our customer service for guidance on switching plans.",
+      "Yes, in most cases, you can switch between Magma OPD plans. There might be specific terms and conditions, such as a waiting period or a small administrative fee, associated with plan changes. Contact our customer service for guidance on switching plans.",
   },
 ];
 
