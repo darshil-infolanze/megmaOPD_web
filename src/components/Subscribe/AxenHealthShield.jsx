@@ -1,83 +1,113 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import family from "../../assets/family.png";
 import { FaCheck } from "react-icons/fa6";
 import FeaturesSection from "../primium/FeaturesSection";
-
+import { useNavigate } from "react-router-dom";
+import { Users } from "lucide-react";
 const AxenHealthShield = () => {
+  const navigate = useNavigate();
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
+
+  const handleSelectPlan = (plan) => {
+    localStorage.setItem("selectedPlan", JSON.stringify(plan));
+    navigate("/selfinformation");
+  };
   return (
     <>
-      <section className="bg-[#1EA1A90D]  min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+      <section className="bg-slate-50 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           {/* Left Section - Text and Details */}
           <div className="flex flex-col text-center md:text-left">
-            <p className="text-sm  text-gray-600 mb-2 font-semibold uppercase tracking-wide">
-              GET PROTECTED TODAY
-            </p>
-            <h1 className="text-4xl sm:text-5xl text-capitalize font-sans font-bold text-[#505050] mb-6 leading-tight">
-         Axen Health Shield
+            <div className="mb-4">
+              <span className="text-sm font-semibold text-slate-600 uppercase tracking-wide">
+                GET PROTECTED TODAY
+              </span>
+            </div>
+            <h1 className="text-5xl font-bold text-slate-900 mb-8">
+              Magma Health Shield
             </h1>
 
-            <div className="bg-gray-50 p-4 rounded-lg inline-block self-center md:self-start mb-6">
-              <div className="flex items-center text-gray-700">
+            {/* Coverage Info */}
+
+            <div className="flex items-center space-x-4 mb-8">
+              <div className="bg-white border border-violet-200 rounded-lg p-4 flex items-center space-x-4 shadow-sm">
+                <Users className="w-8 h-8 text-violet-600" />
                 <div>
-                  <img
-                    src={family}
-                    alt="Self + Spouse + 2 Children"
-                    className="w-10"
-                  />
-                </div>
-                <div>
-                  <h3 className="text-lg mb-0 font-bold text-[#1EA1A9] ">
-                    <span>Coverage:</span>
-                  </h3>
-                  <p className=" text-md text-[#7A7A7A] font-bold">
-                    &nbsp;Self + Spouse + 2 Children
+                  <span className="block text-lg font-semibold text-violet-600">
+                    Coverage:
+                  </span>
+                  <p className="text-slate-600 font-medium">
+                    Self + Spouse + 2 Children
                   </p>
                 </div>
               </div>
             </div>
 
-            <ul className="space-y-3 mb-8 text-lg text-gray-700">
-              <li className="flex items-center">
-                <FaCheck className="h-6 w-6 text-[#7ad03a] mr-2" />
-                Unlimited Doctor Access
-              </li>
-              <li className="flex items-center">
-                <FaCheck className="h-6 w-6 text-[#7ad03a] mr-2" />
-                Annual Health Check-ups
-              </li>
-              <li className="flex items-center">
-                <FaCheck className="h-6 w-6 text-[#7ad03a] mr-2" />
-                Mental Wellness Support
-              </li>
-              <li className="flex items-center">
-                <FaCheck className="h-6 w-6 text-[#7ad03a] mr-2" />
-                Personalized Nutrition Guidance
-              </li>
-              <li className="flex items-center">
-                <FaCheck className="h-6 w-6 text-[#7ad03a] mr-2" />
-                Eye & Dental Care
-              </li>
-              <li className="flex items-center">
-                <FaCheck className="h-6 w-6 text-[#7ad03a] mr-2" />
-                Big Discounts on Health Essentials
-              </li>
-            </ul>
+            {/* Benefits List */}
+            <div className="space-y-4 mb-8">
+              <div className="flex items-center space-x-3">
+                <FaCheck className="w-5 h-5 text-violet-600" />
+                <span className="text-slate-700 text-lg">
+                  Unlimited Doctor Access
+                </span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <FaCheck className="w-5 h-5 text-violet-600" />
+                <span className="text-slate-700 text-lg">
+                  Annual Health Check-ups
+                </span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <FaCheck className="w-5 h-5 text-violet-600" />
+                <span className="text-slate-700 text-lg">
+                  Mental Wellness Support
+                </span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <FaCheck className="w-5 h-5 text-violet-600" />
+                <span className="text-slate-700 text-lg">
+                  Personalized Nutrition Guidance
+                </span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <FaCheck className="w-5 h-5 text-violet-600" />
+                <span className="text-slate-700 text-lg">
+                  Eye & Dental Care
+                </span>
+              </div>
+              <div className="flex items-center space-x-3">
+                <FaCheck className="w-5 h-5 text-violet-600" />
+                <span className="text-slate-700 text-lg">
+                  Big Discounts on Health Essentials
+                </span>
+              </div>
+            </div>
 
-            <p className="text-4xl font-bold text-[#1EA1A9] mb-8">
-              ₹49,999{" "}
-              <span className="text-3xl font-bold text-[#1EA1A9]">
-                (Incl. GST)
+            {/* Pricing */}
+            <div className="mb-8">
+              <span className="text-4xl font-bold text-violet-600">
+                ₹49,999
               </span>
-            </p>
+              <span className="text-lg text-slate-600 ml-2">(Incl. GST)</span>
+            </div>
 
+            {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-              <button className="bg-[#1EA1A9] hover:bg-[#7ad03a] rounded text-white font-bold py-3 px-8  shadow-lg transition duration-300 ease-in-out">
+              <button
+                className="bg-violet-600 hover:bg-slate-600 rounded text-white font-bold py-3 px-8  shadow-lg transition duration-300 ease-in-out"
+                onClick={() =>
+                  handleSelectPlan({
+                    name: "Magma Health Shield",
+                    price: 49999,
+                  })
+                }
+              >
                 Buy Now
               </button>
 
-              <button className="bg-[#7ad03a] text-white border rounded border-[#7ad03a] font-bold py-3 px-8 transition duration-300 ease-in-out hover:bg-transparent hover:text-[#7ad03a]">
+              <button className="bg-slate-600 text-white border rounded border-slate-600 font-bold py-3 px-8 transition duration-300 ease-in-out hover:bg-transparent hover:text-slate-500">
                 Download Plan Details
               </button>
             </div>
@@ -92,7 +122,7 @@ const AxenHealthShield = () => {
                 <img
                   src="https://axencare.in/wp-content/uploads/2025/05/Axen-Health-Shield1.png" // Placeholder image, replace with your actual family image
                   alt="Axen Health Shield1"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover animate-float rounded-full "
                 />
               </div>
             </div>
