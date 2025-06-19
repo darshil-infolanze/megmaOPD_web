@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -16,6 +16,9 @@ const SelfInformations = () => {
   const stepPaths = ["/self", "/member1", "/member2", "/member3", "/payment"];
   const location = useLocation();
   const navigate = useNavigate();
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   const currentStepIndex = stepPaths.indexOf(location.pathname);
 
   const formik = useFormik({
@@ -45,9 +48,12 @@ const SelfInformations = () => {
       dob: Yup.string().required("This field is required"),
       gender: Yup.string().required("This field is required"),
       panCard: Yup.string().required("This field is required"),
-     aadharCard: Yup.string()
-  .matches(/^[0-9]{12}$/, "Kindly enter a valid 12-digit Aadhar Card Number")
-  .required("This field is required"),
+      aadharCard: Yup.string()
+        .matches(
+          /^[0-9]{12}$/,
+          "Kindly enter a valid 12-digit Aadhar Card Number"
+        )
+        .required("This field is required"),
       address1: Yup.string().required("This field is required"),
       address2: Yup.string().required("This field is required"),
       city: Yup.string().required("This field is required"),
@@ -55,17 +61,17 @@ const SelfInformations = () => {
       pincode: Yup.string().required("This field is required"),
       country: Yup.string().required("This field is required"),
     }),
-    onSubmit: (values) => {
-      console.log(values); // You can store data in context/localStorage here
+
+    onSubmit: async (values) => {
+      console.log("Self Info Submitted:", JSON.stringify(values, null, 2));
+      localStorage.setItem("Self Info", JSON.stringify(values));
       navigate("/member1");
     },
   });
 
   return (
-    <div className="min-h-screen bg-[#1EA1A9] flex items-center justify-center p-4 font-inter">
+    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-violet-500 to-slate-600 flex items-center justify-center p-4 font-inter ">
       <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 max-w-4xl w-full mx-auto my-8">
-      
-
         {/* Stepper */}
         <div className="flex justify-between items-center mb-8 sm:mb-10 relative">
           <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 -z-10 mx-4"></div>
@@ -77,27 +83,31 @@ const SelfInformations = () => {
               <div key={index} className="flex flex-col items-center flex-1">
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300
-                  ${
-                    isCompleted
-                      ? "bg-[#1EA1A9] text-white border-2 border-[#1EA1A9]"
-                      : ""
-                  }
-                  ${isActive ? "border-2 border-green-600 text-green-700" : ""}
-                  ${
-                    !isCompleted && !isActive
-                      ? "bg-transparent border border-gray-300 text-gray-400"
-                      : ""
-                  }
-                `}
+            ${
+              isCompleted
+                ? "bg-emerald-500 text-white border-2 border-emerald-500"
+                : ""
+            }
+            ${
+              isActive
+                ? "bg-white border-2 border-violet-700 text-violet-700"
+                : ""
+            }
+            ${
+              !isCompleted && !isActive
+                ? "bg-slate-200 border border-slate-300 text-slate-400"
+                : ""
+            }
+          `}
                 >
                   {isCompleted ? <FaCheck size={16} /> : index + 1}
                 </div>
                 <span
                   className={`mt-2 text-center text-xs sm:text-sm whitespace-nowrap
-                  ${isCompleted ? "text-[#1EA1A9] font-medium" : ""}
-                  ${isActive ? "text-green-700 font-semibold" : ""}
-                  ${!isCompleted && !isActive ? "text-gray-500" : ""}
-                `}
+            ${isCompleted ? "text-emerald-600 font-medium" : ""}
+            ${isActive ? "text-violet-800 font-semibold" : ""}
+            ${!isCompleted && !isActive ? "text-slate-500" : ""}
+          `}
                 >
                   {step}
                 </span>
@@ -111,7 +121,7 @@ const SelfInformations = () => {
           {/* Row 1 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-md font-medium text-[#1EA1A9] mb-1">
+              <label className="block text-md font-medium text-violet-800 mb-1">
                 Self Name <span className="text-red-500">*</span>
               </label>
               <input
@@ -119,7 +129,7 @@ const SelfInformations = () => {
                 name="selfName"
                 onChange={formik.handleChange}
                 value={formik.values.selfName}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
               />
               {formik.touched.selfName && formik.errors.selfName && (
                 <p className="text-red-500 text-xs mt-1">
@@ -129,7 +139,7 @@ const SelfInformations = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
+              <label className="block text-md font-medium text-violet-800 mb-1">
                 Father/Husband Name <span className="text-red-500">*</span>
               </label>
               <input
@@ -137,7 +147,7 @@ const SelfInformations = () => {
                 name="fatherHusbandName"
                 onChange={formik.handleChange}
                 value={formik.values.fatherHusbandName}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
               />
               {formik.touched.fatherHusbandName &&
                 formik.errors.fatherHusbandName && (
@@ -151,7 +161,7 @@ const SelfInformations = () => {
           {/* Row 2 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
+              <label className="block text-md font-medium text-violet-800 mb-1">
                 Email <span className="text-red-500">*</span>
               </label>
               <input
@@ -159,7 +169,7 @@ const SelfInformations = () => {
                 name="email"
                 onChange={formik.handleChange}
                 value={formik.values.email}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
               />
               {formik.touched.email && formik.errors.email && (
                 <p className="text-red-500 text-xs mt-1">
@@ -169,7 +179,7 @@ const SelfInformations = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
+              <label className="block text-md font-medium text-violet-800 mb-1">
                 Phone/Mobile <span className="text-red-500">*</span>
               </label>
               <input
@@ -177,7 +187,7 @@ const SelfInformations = () => {
                 name="phone"
                 onChange={formik.handleChange}
                 value={formik.values.phone}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
               />
               {formik.touched.phone && formik.errors.phone && (
                 <p className="text-red-500 text-xs mt-1">
@@ -190,7 +200,7 @@ const SelfInformations = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Date of Birth */}
             <div>
-              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
+              <label className="block text-md font-medium text-violet-800 mb-1">
                 Date of Birth <span className="text-red-500">*</span>
               </label>
               <input
@@ -200,7 +210,7 @@ const SelfInformations = () => {
                 placeholder=" "
                 onChange={formik.handleChange}
                 value={formik.values.dob}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
+                className="peer w-full h-11 px-3 pt-5 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
               />
               {formik.touched.dob && formik.errors.dob && (
                 <p className="text-red-500 text-xs mt-1">{formik.errors.dob}</p>
@@ -209,20 +219,33 @@ const SelfInformations = () => {
 
             {/* Gender */}
             <div>
-              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
+              <label className="block text-md font-medium text-violet-800 mb-1">
                 Gender <span className="text-red-500">*</span>
               </label>
-              <select
-                name="gender"
-                onChange={formik.handleChange}
-                value={formik.values.gender}
-               className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
-              >
-                <option value="">- Select -</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </select>
+              <div className="flex items-center gap-6 mt-4">
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    checked={formik.values.gender === "male"}
+                    onChange={formik.handleChange}
+                    className="text-violet-600 focus:ring-violet-500 border-gray-300"
+                  />
+                  <span className="ml-2 text-sm text-violet-800">Male</span>
+                </label>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    checked={formik.values.gender === "female"}
+                    onChange={formik.handleChange}
+                    className="text-violet-600 focus:ring-violet-500 border-gray-300"
+                  />
+                  <span className="ml-2 text-sm text-violet-800">Female</span>
+                </label>
+              </div>
               {formik.touched.gender && formik.errors.gender && (
                 <p className="text-red-500 text-xs mt-1">
                   {formik.errors.gender}
@@ -230,13 +253,10 @@ const SelfInformations = () => {
               )}
             </div>
           </div>
-
-          
-
           {/* PAN and Aadhar */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
+              <label className="block text-md font-medium text-violet-800 mb-1">
                 PAN Card Number <span className="text-red-500">*</span>
               </label>
               <input
@@ -244,7 +264,7 @@ const SelfInformations = () => {
                 name="panCard"
                 onChange={formik.handleChange}
                 value={formik.values.panCard}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
               />
               {formik.touched.panCard && formik.errors.panCard && (
                 <p className="text-red-500 text-xs mt-1">
@@ -254,7 +274,7 @@ const SelfInformations = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
+              <label className="block text-md font-medium text-violet-800 mb-1">
                 Aadhar Card Number <span className="text-red-500">*</span>
               </label>
               <input
@@ -262,7 +282,7 @@ const SelfInformations = () => {
                 name="aadharCard"
                 onChange={formik.handleChange}
                 value={formik.values.aadharCard}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
               />
               {formik.touched.aadharCard && formik.errors.aadharCard && (
                 <p className="text-red-500 text-xs mt-1">
@@ -275,7 +295,7 @@ const SelfInformations = () => {
           {/* Address Lines */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
+              <label className="block text-md font-medium text-violet-800 mb-1">
                 Address Line 1 <span className="text-red-500">*</span>
               </label>
               <input
@@ -283,7 +303,7 @@ const SelfInformations = () => {
                 name="address1"
                 onChange={formik.handleChange}
                 value={formik.values.address1}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
               />
               {formik.touched.address1 && formik.errors.address1 && (
                 <p className="text-red-500 text-xs mt-1">
@@ -293,7 +313,7 @@ const SelfInformations = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
+              <label className="block text-md font-medium text-violet-800 mb-1">
                 Address Line 2
               </label>
               <input
@@ -301,7 +321,7 @@ const SelfInformations = () => {
                 name="address2"
                 onChange={formik.handleChange}
                 value={formik.values.address2}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
               />
               {formik.touched.address1 && formik.errors.address2 && (
                 <p className="text-red-500 text-xs mt-1">
@@ -314,7 +334,7 @@ const SelfInformations = () => {
           {/* City and State */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
+              <label className="block text-md font-medium text-violet-800 mb-1">
                 City <span className="text-red-500">*</span>
               </label>
               <input
@@ -322,7 +342,7 @@ const SelfInformations = () => {
                 name="city"
                 onChange={formik.handleChange}
                 value={formik.values.city}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
               />
               {formik.touched.city && formik.errors.city && (
                 <p className="text-red-500 text-xs mt-1">
@@ -332,7 +352,7 @@ const SelfInformations = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
+              <label className="block text-md font-medium text-violet-800 mb-1">
                 State <span className="text-red-500">*</span>
               </label>
               <input
@@ -340,7 +360,7 @@ const SelfInformations = () => {
                 name="state"
                 onChange={formik.handleChange}
                 value={formik.values.state}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
               />
               {formik.touched.state && formik.errors.state && (
                 <p className="text-red-500 text-xs mt-1">
@@ -353,7 +373,7 @@ const SelfInformations = () => {
           {/* Pincode and Country */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
+              <label className="block text-md font-medium text-violet-800 mb-1">
                 Pincode <span className="text-red-500">*</span>
               </label>
               <input
@@ -361,7 +381,7 @@ const SelfInformations = () => {
                 name="pincode"
                 onChange={formik.handleChange}
                 value={formik.values.pincode}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
               />
               {formik.touched.pincode && formik.errors.pincode && (
                 <p className="text-red-500 text-xs mt-1">
@@ -371,14 +391,14 @@ const SelfInformations = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-[#1EA1A9] mb-1">
+              <label className="block text-md font-medium text-violet-800 mb-1">
                 Country <span className="text-red-500">*</span>
               </label>
               <select
                 name="country"
                 onChange={formik.handleChange}
                 value={formik.values.country}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-1 focus:ring-[#1EA1A9]"
+                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
               >
                 <option value="">Select Country</option>
                 <option value="india">India</option>
@@ -391,8 +411,6 @@ const SelfInformations = () => {
               )}
             </div>
           </div>
-
-          {/* Repeat same pattern for each field using formik.getFieldProps or handleChange */}
 
           {/* Submit Button */}
           <div className="flex justify-end pt-4">
