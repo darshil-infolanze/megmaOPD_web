@@ -1,6 +1,6 @@
 import React from "react";
 import FeatureCard from "./FeatureCard"; // path depends on your folder structure
-import bgimage from "../../assets/bg-gradient.webp";
+
 const FeaturesSection = () => {
   const features = [
     {
@@ -87,15 +87,18 @@ const FeaturesSection = () => {
 
   return (
     <section
-      className="py-16 px-4 sm:px-6 lg:px-8 bg-no-repeat bg-cover bg-left"
-      style={{ backgroundImage: `url(${bgimage})` }}
+      className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      style={{
+        background:
+          "linear-gradient(85deg, rgba(226,232,240,1) 0%, rgba(241,245,249,1) 50%, rgba(196,181,253,1) 100%)",
+      }}
     >
       <div className="max-w-7xl mx-auto px-4 py-6">
         {/* Heading */}
-        <h2 className="text-3xl md:text-5xl font-bold text-[#1ea1a9]">
+        <h2 className="text-3xl md:text-5xl font-bold text-slate-600">
           Your Complete
         </h2>
-        <p className="text-xl md:text-2xl lowercase font-extrabold italic text-[#8CC63E] mt-2">
+        <p className="text-xl md:text-2xl lowercase font-extrabold italic text-violet-600 mt-2">
           health and wellness package
         </p>
 
@@ -107,7 +110,7 @@ const FeaturesSection = () => {
             viewBox="0 0 300 30"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            className="text-[#1ea1a9]"
+            className="w-80 h-6 text-violet-600"
           >
             <path
               d="M0 10 C10 0, 20 20, 30 10 S50 0, 60 10 S80 20, 90 10 S110 0, 120 10 S140 20, 150 10 S170 0, 180 10 S200 20, 210 10 S230 0, 240 10 S260 20, 270 10 S290 0, 300 10"
