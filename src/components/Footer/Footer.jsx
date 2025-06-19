@@ -12,19 +12,20 @@ const AxenCareFooter = () => {
         <div className="col-span-1 md:col-span-1 lg:col-span-2 flex flex-col">
           <img src={logo} alt="Axen-Care" className="object-contain w-20" />
           <div className="flex items-baseline space-x-1 mt-2">
-            <span className="text-4xl font-bold text-slate-800">Megma</span>
+            <span className="text-4xl font-bold text-slate-800">Magma</span>
             <span className="text-4xl font-bold text-violet-600">OPD</span>
           </div>
           <p className="text-slate-600 text-sm leading-relaxed max-w-md pt-3">
-            We believe that healthcare should be accessible, comprehensive, and personalized.
+            We believe that healthcare should be accessible, comprehensive, and
+            personalized.
           </p>
 
           <div className="mt-8 text-slate-600 text-sm space-y-2">
             <div className="flex items-start">
               <FaLocationDot className="text-violet-600 mt-1" />
               <span className="ml-2">
-                201-Manglam Paradise Mall, Plot no 8, Manglam Place,
-                Sector 3, Rohini Delhi, 110085
+                201-Manglam Paradise Mall, Plot no 8, Manglam Place, Sector 3,
+                Rohini Delhi, 110085
               </span>
             </div>
             <div className="flex items-center">
@@ -50,37 +51,53 @@ const AxenCareFooter = () => {
 
         {/* Quick Links */}
         <div className="col-span-1 md:col-span-1">
-          <h3 className="text-lg font-semibold text-slate-800 mb-4">Quick Links</h3>
+          <h3 className="text-lg font-semibold text-slate-800 mb-4">
+            Quick Links
+          </h3>
           <ul className="space-y-2 text-sm">
-            {["About", "Plans", "Contact"].map((label) => (
-              <li key={label}>
-                <a
-                  href={`/${label.toLowerCase()}`}
-                  className="text-slate-700 hover:text-violet-700 font-semibold transition-colors duration-200"
-                >
-                  {label}
-                </a>
-              </li>
-            ))}
+            <li>
+              <a
+                href="/about"
+                className="text-slate-700 hover:text-violet-700 font-semibold transition-colors"
+              >
+                About
+              </a>
+            </li>
+            <li>
+              <a
+                href="/premium"
+                className="text-slate-700 hover:text-violet-700 font-semibold transition-colors"
+              >
+                plans
+              </a>
+            </li>
+            <li>
+              <a
+                href="/contact"
+                className="text-slate-700 hover:text-violet-700 font-semibold transition-colors"
+              >
+                Contact
+              </a>
+            </li>
           </ul>
 
           {/* Social Media */}
           <div className="flex space-x-3 mt-6">
             <a
               href="#"
-              className="w-8 h-8 flex items-center justify-center bg-blue-600 text-white rounded-full hover:bg-blue-700"
+              className="w-8 h-8 flex items-center justify-center bg-blue-600 text-white  hover:bg-blue-700"
             >
               <FaFacebook />
             </a>
             <a
               href="#"
-              className="w-8 h-8 flex items-center justify-center bg-blue-400 text-white rounded-full hover:bg-blue-500"
+              className="w-8 h-8 flex items-center justify-center bg-blue-400 text-white  hover:bg-blue-500"
             >
               <FaTwitter />
             </a>
             <a
               href="#"
-              className="w-8 h-8 flex items-center justify-center bg-red-600 text-white rounded-full hover:bg-red-700"
+              className="w-8 h-8 flex items-center justify-center bg-red-600 text-white  hover:bg-red-700"
             >
               <FaYoutube />
             </a>
@@ -89,7 +106,9 @@ const AxenCareFooter = () => {
 
         {/* Services */}
         <div className="col-span-1 md:col-span-1">
-          <h3 className="text-lg font-semibold text-slate-800 mb-4">Our Services</h3>
+          <h3 className="text-lg font-semibold text-slate-800 mb-4">
+            Our Services
+          </h3>
           <ul className="space-y-2 text-sm">
             {[
               { label: "Privacy Policy", path: "privacy" },
