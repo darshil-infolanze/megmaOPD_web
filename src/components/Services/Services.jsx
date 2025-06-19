@@ -17,13 +17,13 @@ const FeatureCard = ({ icon, title, description }) => {
 
     <div className="group p-6 border-2 border-dashed border-gray-300 rounded-lg flex flex-col items-start text-left h-full transition-shadow duration-300 hover:shadow-xl">
       {/* Icon */}
-      <div className="text-[#8CC63E] group-hover:text-[#1EA1A9] mb-4 transition-colors duration-300 group-hover:animate-fadeInUp delay-200">
+      <div className="text-slate-500 group-hover:text-violet-600 mb-4 transition-colors duration-300 group-hover:animate-fadeInUp delay-200">
         {icon}
       </div>
 
       {/* Title */}
       <h3
-        className="text-lg font-semibold text-[#1EA1A9] mb-2 leading-tight"
+        className="text-lg font-semibold text-violet-600 mb-2 leading-tight"
         style={{ fontFamily: '"Montserrat", Sans-serif' }}
       >
         {title}
