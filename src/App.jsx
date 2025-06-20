@@ -1,5 +1,3 @@
-
-
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
@@ -15,7 +13,6 @@ import AboutUs from "./pages/About";
 import ServicesPage from "./pages/ServicesPage";
 import Contact from "./pages/Contact";
 import OurTeam from "./pages/OurTeam";
-import AxenCareCopyright from "./components/Footer/CopyRight";
 import TestimonialSlider from "./components/Hero/Testimonials";
 import PartnerSlider from "./components/Services/PartnerSlider";
 import CareBeyondCoverage from "./components/Banner/CareBeyond";
@@ -75,7 +72,6 @@ const App = () => {
         </Routes>
       </div>
       <Footer />
-      <AxenCareCopyright />
     </div>
   );
 };
