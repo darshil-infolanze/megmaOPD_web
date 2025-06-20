@@ -10,7 +10,7 @@ const testimonials = [
   {
     id: 1,
     quote:
-      "When my mother had a sudden blood pressure spike, I used Axen's WhatsApp support to get advice. They not only arranged a quick consultation but also recommended a nearby diagnostic lab with a discount. It felt like having a doctor in the family.",
+      "When my mother had a sudden blood pressure spike, I used Magma's WhatsApp support to get advice. They not only arranged a quick consultation but also recommended a nearby diagnostic lab with a discount. It felt like having a doctor in the family.",
     author: "Alka Tiwari",
     rating: 4, // out of 5
     image: "https://kzmihgv5nc3c9ojk5cne.lite.vusercontent.net/placeholder.svg?height=40&width=40", // Placeholder image URL
@@ -18,7 +18,7 @@ const testimonials = [
   {
     id: 2,
     quote:
-      "I've used health plans before, but they all felt transactional. Axen is different. They follow up. They check in. My health manager even reminded me when I missed my second check-up. It's that kind of accountability that makes me trust them deeply.",
+      "I've used health plans before, but they all felt transactional. Magma is different. They follow up. They check in. My health manager even reminded me when I missed my second check-up. It's that kind of accountability that makes me trust them deeply.",
     author: "Vinod Agarwal",
     rating: 5,
         image: "https://kzmihgv5nc3c9ojk5cne.lite.vusercontent.net/placeholder.svg?height=40&width=40", // Placeholder image URL
@@ -26,7 +26,7 @@ const testimonials = [
   {
     id: 3,
     quote:
-      "With Axen, I don't have to chase multiple providers. Everything I need is in one place. It felt like having a doctor in the family. I was amazed at how smooth it was. I genuinely feel like I have a team looking out for me.",
+      "With Magma, I don't have to chase multiple providers. Everything I need is in one place. It felt like having a doctor in the family. I was amazed at how smooth it was. I genuinely feel like I have a team looking out for me.",
     author: "Arvind K",
     rating: 5,
        image: "https://kzmihgv5nc3c9ojk5cne.lite.vusercontent.net/placeholder.svg?height=40&width=40", // Placeholder image URL
@@ -42,7 +42,7 @@ const testimonials = [
   {
     id: 5,
     quote:
-      "I didn’t think much about health services until I signed up for Axen. Now, I genuinely feel like I have a team looking out for me",
+      "I didn’t think much about health services until I signed up for Magma. Now, I genuinely feel like I have a team looking out for me",
     author: "Tushar Sharma",
     rating: 4.5,
        image: "https://kzmihgv5nc3c9ojk5cne.lite.vusercontent.net/placeholder.svg?height=40&width=40", // Placeholder image URL
@@ -50,7 +50,7 @@ const testimonials = [
   {
     id: 6,
     quote:
-      "It’s such a relief to have Axencare. The unlimited teleconsultations make it easy to get help whenever I need it, and I truly trust the support I get.",
+      "It’s such a relief to have Magma OPD. The unlimited teleconsultations make it easy to get help whenever I need it, and I truly trust the support I get.",
 
     author: "Ishaan Khanna ",
     rating: 5,
@@ -143,13 +143,13 @@ const TestimonialSlider = () => {
     >
       <div className="max-w-7xl mx-auto text-center">
         <p className="text-lg font-bold text-slate-700  tracking-wider">
-          Megma OPD
+          Magma OPD
         </p>
         <h2 className="text-4xl md:text-5xl font-extrabold text-violet-400 leading-tight mt-2 mb-6">
           What Our Clients Say
         </h2>
         <p className="max-w-3xl mx-auto text-gray-700 text-lg mb-12">
-          Read how Megma OPD is transforming healthcare experiences for
+          Read how Magma OPD is transforming healthcare experiences for
           individuals and families. Our clients share their stories of enhanced
           well-being and peace of mind through our personalized plans and
           comprehensive benefits.
