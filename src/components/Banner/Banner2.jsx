@@ -1,7 +1,7 @@
 // src/components/FAQSection.jsx
 import React, { useState } from "react";
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline"; // Using Heroicons for the plus/minus icons
-
+import faq from "../../assets/faq.avif";
 const faqData = [
   {
     question: "What is the coverage included in Magma OPD plans?",
@@ -62,7 +62,7 @@ const FAQSection = () => {
           {/* You can add an <img> tag here directly if you have the image, e.g.: */}
           {
             <img
-              src="https://axencare.in/wp-content/uploads/2025/04/faq.png"
+              src={faq}
               alt="FAQ illustration"
               className="relative max-w-full h-auto object-contain"
             />
@@ -108,12 +108,12 @@ const FAQSection = () => {
                   )}
                 </button>
                 {openIndex === index && (
-                  <div className="p-5 text-gray-700 bg-white border-t border-gray-200">
+                  <div className="p-5 text-slate-700 bg-white border-t border-gray-200">
                     <p>{item.answer}</p>
                   </div>
                 )}
               </div>
-            ))}
+            ))}.
           </div>
         </div>
       </div>
