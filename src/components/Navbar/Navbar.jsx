@@ -46,7 +46,7 @@ const Navbar = () => {
         {/* Logo + Hamburger */}
         <div className="flex items-center justify-between w-full md:w-auto">
           <Link to="/" className="flex items-center space-x-2">
-            <img src={logo} alt="Axen-care" className="w-20 h-auto" />
+            <img src={logo} alt="Magma-OPD" className="w-20 h-auto" />
             <div className="flex items-baseline space-x-1">
               <span className="text-4xl font-bold text-slate-800">Magma</span>
               <span className="text-4xl font-bold text-violet-800">OPD</span>
@@ -114,14 +114,14 @@ const Navbar = () => {
               >
                 <div className="py-1">
                   <Link
-                    to="/premium"
+                    to="/magmapremiumcare"
                     className="block px-4 py-2 text-slate-500 font-semibold hover:bg-gray-100"
                   >
                     Magma Premium Care
                   </Link>
                   <hr />
                   <Link
-                    to="/axenhealthshield"
+                    to="/magmahealthshield"
                     className="block px-4 py-2 text-slate-500 font-semibold hover:bg-gray-100"
                   >
                     Magma Health Shield
@@ -172,7 +172,7 @@ const Navbar = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.name}
-                        className="w-full p-2.5 border rounded-lg text-sm"
+                     className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
                         placeholder="Enter your name"
                       />
                       {formik.touched.name && formik.errors.name && (
@@ -193,7 +193,7 @@ const Navbar = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.email}
-                        className="w-full p-2.5 border rounded-lg text-sm"
+                       className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
                         placeholder="you@example.com"
                       />
                       {formik.touched.email && formik.errors.email && (
@@ -214,7 +214,7 @@ const Navbar = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.phone}
-                        className="w-full p-2.5 border rounded-lg text-sm"
+                       className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
                         placeholder="+91 1234567890"
                       />
                       {formik.touched.phone && formik.errors.phone && (
@@ -234,7 +234,7 @@ const Navbar = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.plan}
-                        className="w-full p-2.5 border rounded-lg text-sm"
+                       className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
                       >
                         <option value="">Select Plan</option>
                         <option value="shield">Magma Health Shield</option>
