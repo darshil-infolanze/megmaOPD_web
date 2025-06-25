@@ -109,26 +109,25 @@ const Footer = () => {
             <div className="flex items-start">
               <FaLocationDot className="text-violet-400 mt-1" />
               <span className="ml-2">
-                201-Manglam Paradise Mall, Manglam Place, Sector 3, Rohini,
-                Delhi, 110085
+             Basement, 5B-16, Tilak Nagar New Delhi 110018
               </span>
             </div>
             <div className="flex items-center">
               <IoMail className="text-violet-400" />
               <a
-                href="mailto:hello@megmaopd.in"
+                href="mailto:support@magmaopd.in"
                 className="ml-2 hover:text-violet-400 transition-colors"
               >
-                hello@megmaopd.in
+              support@magmaopd.in
               </a>
             </div>
             <div className="flex items-center">
               <FaPhone className="text-violet-400" />
               <a
-                href="tel:011-43658206"
+                href="tel:-8851766923"
                 className="ml-2 hover:text-violet-400 transition-colors"
               >
-                011-43658206
+               8851766923
               </a>
             </div>
           </div>
@@ -136,17 +135,16 @@ const Footer = () => {
       </div>
 
       {/* Divider Line */}
-      <div className="w-full h-1 mt-10 mb-6 bg-gradient-to-r from-slate-600 via-slate-700 to-violet-700"></div>
+      <div className="w-full h-1 mt-10 mb-6 bg-white"></div>
 
-      {/* Bottom Text & Social Icons */}
-      <div className="text-center text-sm text-gray-300 space-y-4">
-        <p>Copyright  &copy; {new Date().getFullYear()} Magma OPD. All rights reserved.</p>
-        <div className="flex justify-center gap-6 text-lg">
+      <div className="w-full max-w-screen-xl mx-auto px-4 sm:px-8 flex flex-wrap sm:flex-nowrap items-center justify-between gap-4 text-sm text-gray-300">
+        {/* Social Icons - Left */}
+        <div className="flex justify-center sm:justify-start gap-6 text-lg text-white">
           <a
             href="#"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white hover:text-violet-400 transition-colors"
+            className="hover:text-violet-400 transition-colors"
           >
             <FaFacebookF />
           </a>
@@ -154,7 +152,7 @@ const Footer = () => {
             href="#"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white hover:text-violet-400 transition-colors"
+            className="hover:text-violet-400 transition-colors"
           >
             <FaTwitter />
           </a>
@@ -162,11 +160,23 @@ const Footer = () => {
             href="#"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white hover:text-violet-400 transition-colors"
+            className="hover:text-violet-400 transition-colors"
           >
             <FaInstagram />
           </a>
         </div>
+
+        {/* Copyright Text - Right */}
+        <p className="w-full sm:w-auto text-center sm:text-right pr-16">
+          &copy; {new Date().getFullYear()}{" "}
+          <a
+            href="/about" // or your actual Magma OPD URL
+            className="text-white hover:text-violet-400 underline transition-colors"
+          >
+            Magma OPD
+          </a>
+          . All rights reserved.
+        </p>
       </div>
 
       {/* Scroll to Top Button */}
