@@ -111,7 +111,7 @@ const Submit = () => {
                 <img src={method.img} alt={method.label} className="h-6" />
               </div>
               {selected === method.id && (
-                <div className="relative mt-2 p-3 text-sm text-gray-700 bg-gray-200 rounded shadow">
+                <div className="relative mt-2 p-3 text-sm text-slate-700 bg-gray-200 rounded shadow">
                   <div className="absolute -top-2 left-6 w-4 h-4 bg-gray-200 rotate-45 transform shadow-sm"></div>
                   {method.note}
                 </div>

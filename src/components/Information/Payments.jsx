@@ -73,7 +73,7 @@ const Payments = () => {
         </div>
 
         {/* Terms Text */}
-        <div className="text-gray-700 text-sm mb-4">
+        <div className="text-slate-700 text-sm mb-4">
           <p>
             Magma OPD shall not be held responsible for any payments made outside
             of our official website or authorized payment gateways. Customers

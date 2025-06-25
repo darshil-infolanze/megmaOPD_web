@@ -44,23 +44,30 @@ const SelfInformations = () => {
       email: Yup.string()
         .email("Invalid email")
         .required("This field is required"),
-      phone: Yup.string().required("This field is required"),
+      phone: Yup.string()
+        .matches(/^[6-9]\d{9}$/, "Enter a valid 10-digit mobile number")
+        .required("This field is required"),
       dob: Yup.string().required("This field is required"),
       gender: Yup.string().required("This field is required"),
-      panCard: Yup.string().required("This field is required"),
-      aadharCard: Yup.string()
+      panCard: Yup.string()
         .matches(
-          /^[0-9]{12}$/,
-          "Kindly enter a valid 12-digit Aadhar Card Number"
+          /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/,
+          "Enter a valid PAN (e.g., ABCDE1234F)"
         )
         .required("This field is required"),
+      aadharCard: Yup.string()
+        .matches(/^[0-9]{12}$/, "Enter a valid 12-digit Aadhar Card Number")
+        .required("This field is required"),
       address1: Yup.string().required("This field is required"),
-      address2: Yup.string().required("This field is required"),
       city: Yup.string().required("This field is required"),
       state: Yup.string().required("This field is required"),
-      pincode: Yup.string().required("This field is required"),
+      pincode: Yup.string()
+        .matches(/^[1-9][0-9]{5}$/, "Enter a valid 6-digit PIN code")
+        .required("This field is required"),
       country: Yup.string().required("This field is required"),
     }),
+    validateOnBlur: true, // ✅ enable validation on blur
+    validateOnChange: true, // ✅ enable validation on change
 
     onSubmit: async (values) => {
       console.log("Self Info Submitted:", JSON.stringify(values, null, 2));
@@ -128,8 +135,10 @@ const SelfInformations = () => {
                 type="text"
                 name="selfName"
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 value={formik.values.selfName}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
+              className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+
               />
               {formik.touched.selfName && formik.errors.selfName && (
                 <p className="text-red-500 text-xs mt-1">
@@ -146,8 +155,10 @@ const SelfInformations = () => {
                 type="text"
                 name="fatherHusbandName"
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 value={formik.values.fatherHusbandName}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
+              className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+
               />
               {formik.touched.fatherHusbandName &&
                 formik.errors.fatherHusbandName && (
@@ -168,8 +179,10 @@ const SelfInformations = () => {
                 type="email"
                 name="email"
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 value={formik.values.email}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
+              className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+
               />
               {formik.touched.email && formik.errors.email && (
                 <p className="text-red-500 text-xs mt-1">
@@ -186,8 +199,10 @@ const SelfInformations = () => {
                 type="tel"
                 name="phone"
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 value={formik.values.phone}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
+              className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+
               />
               {formik.touched.phone && formik.errors.phone && (
                 <p className="text-red-500 text-xs mt-1">
@@ -209,8 +224,10 @@ const SelfInformations = () => {
                 name="dob"
                 placeholder=" "
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 value={formik.values.dob}
-                className="peer w-full h-11 px-3 pt-5 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
+                  max={new Date().toISOString().split("T")[0]} // 👈 This disables future dates
+               className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
               />
               {formik.touched.dob && formik.errors.dob && (
                 <p className="text-red-500 text-xs mt-1">{formik.errors.dob}</p>
@@ -230,6 +247,7 @@ const SelfInformations = () => {
                     value="male"
                     checked={formik.values.gender === "male"}
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     className="text-violet-600 focus:ring-violet-500 border-gray-300"
                   />
                   <span className="ml-2 text-sm text-violet-800">Male</span>
@@ -241,6 +259,7 @@ const SelfInformations = () => {
                     value="female"
                     checked={formik.values.gender === "female"}
                     onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
                     className="text-violet-600 focus:ring-violet-500 border-gray-300"
                   />
                   <span className="ml-2 text-sm text-violet-800">Female</span>
@@ -263,8 +282,10 @@ const SelfInformations = () => {
                 type="text"
                 name="panCard"
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 value={formik.values.panCard}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
+              className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+
               />
               {formik.touched.panCard && formik.errors.panCard && (
                 <p className="text-red-500 text-xs mt-1">
@@ -281,8 +302,10 @@ const SelfInformations = () => {
                 type="number"
                 name="aadharCard"
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 value={formik.values.aadharCard}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
+              className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+
               />
               {formik.touched.aadharCard && formik.errors.aadharCard && (
                 <p className="text-red-500 text-xs mt-1">
@@ -302,8 +325,10 @@ const SelfInformations = () => {
                 type="text"
                 name="address1"
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 value={formik.values.address1}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
+              className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+
               />
               {formik.touched.address1 && formik.errors.address1 && (
                 <p className="text-red-500 text-xs mt-1">
@@ -320,8 +345,10 @@ const SelfInformations = () => {
                 type="text"
                 name="address2"
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 value={formik.values.address2}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
+              className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+
               />
               {formik.touched.address1 && formik.errors.address2 && (
                 <p className="text-red-500 text-xs mt-1">
@@ -341,8 +368,10 @@ const SelfInformations = () => {
                 type="text"
                 name="city"
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 value={formik.values.city}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
+              className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+
               />
               {formik.touched.city && formik.errors.city && (
                 <p className="text-red-500 text-xs mt-1">
@@ -359,8 +388,10 @@ const SelfInformations = () => {
                 type="text"
                 name="state"
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 value={formik.values.state}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
+              className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+
               />
               {formik.touched.state && formik.errors.state && (
                 <p className="text-red-500 text-xs mt-1">
@@ -380,8 +411,10 @@ const SelfInformations = () => {
                 type="text"
                 name="pincode"
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 value={formik.values.pincode}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
+              className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+
               />
               {formik.touched.pincode && formik.errors.pincode && (
                 <p className="text-red-500 text-xs mt-1">
@@ -397,8 +430,10 @@ const SelfInformations = () => {
               <select
                 name="country"
                 onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
                 value={formik.values.country}
-                className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
+              className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+
               >
                 <option value="">Select Country</option>
                 <option value="india">India</option>

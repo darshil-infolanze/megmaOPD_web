@@ -4,14 +4,21 @@ import * as Yup from "yup";
 import { FaCheck } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router";
 
-const Members2 = () => {
+const Members2= () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-    useEffect(() => {
+  useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
-  const steps = ["Self Information", "Member 1", "Member 2", "Member 3", "Payment"];
+
+  const steps = [
+    "Self Information",
+    "Member 1",
+    "Member 2",
+    "Member 3",
+    "Payment",
+  ];
   const stepPaths = ["/self", "/member1", "/member2", "/member3", "/payment"];
   const currentStepIndex = stepPaths.indexOf(location.pathname);
 
@@ -29,17 +36,23 @@ const Members2 = () => {
       relation: Yup.string().required("Relation is required"),
       email: Yup.string().email("Invalid email").required("Email is required"),
       phone: Yup.string()
-        .matches(/^\d{10}$/, "Enter a valid 10-digit number")
+        .matches(/^[6-9]\d{9}$/, "Enter a valid 10-digit number")
         .required("Phone is required"),
-      dob: Yup.string().required("DOB is required"),
+      dob: Yup.date()
+        .max(new Date(), "Future dates are not allowed")
+        .required("Date of birth is required"),
       gender: Yup.string().required("Gender is required"),
     }),
+    validateOnBlur: true,
+    validateOnChange: true,
     onSubmit: (values) => {
-      console.log("Member 2 Data:", JSON.stringify(values, null, 2));
-      localStorage.setItem("member2", JSON.stringify(values));
+      console.log("Member 1 Data:", JSON.stringify(values, null, 2));
+      localStorage.setItem("member1", JSON.stringify(values));
       navigate("/member3");
     },
   });
+
+  const today = new Date().toISOString().split("T")[0]; // 👈 for max DOB
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-100 via-violet-500 to-slate-600 flex items-center justify-center p-4 font-inter">
@@ -53,10 +66,22 @@ const Members2 = () => {
             return (
               <div key={index} className="flex flex-col items-center flex-1">
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold
-                    ${isCompleted ? "bg-emerald-500 text-white border-2 border-emerald-500" : ""}
-                    ${isActive ? "bg-white border-2 border-violet-700 text-violet-700" : ""}
-                    ${!isCompleted && !isActive ? "bg-slate-200 border border-slate-300 text-slate-400" : ""}
+                  className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300
+                    ${
+                      isCompleted
+                        ? "bg-emerald-500 text-white border-2 border-emerald-500"
+                        : ""
+                    }
+                    ${
+                      isActive
+                        ? "bg-white border-2 border-violet-700 text-violet-700"
+                        : ""
+                    }
+                    ${
+                      !isCompleted && !isActive
+                        ? "bg-slate-200 border border-slate-300 text-slate-400"
+                        : ""
+                    }
                   `}
                 >
                   {isCompleted ? <FaCheck size={16} /> : index + 1}
@@ -79,28 +104,34 @@ const Members2 = () => {
         <form onSubmit={formik.handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
             <div>
-              <label className="block text-md font-medium text-violet-800 mb-1">Member 2</label>
+              <label className="block text-md font-medium text-violet-800 mb-1">
+                Member 2
+              </label>
               <input
                 type="text"
                 name="name"
                 placeholder="Member 2 Full Name"
-                value={formik.values.name}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                    className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
+                value={formik.values.name}
+                className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
               />
               {formik.touched.name && formik.errors.name && (
-                <p className="text-red-600 text-sm mt-1">{formik.errors.name}</p>
+                <p className="text-red-600 text-sm mt-1">
+                  {formik.errors.name}
+                </p>
               )}
             </div>
             <div>
-              <label className="block text-md font-medium text-violet-800 mb-1">Relation</label>
+              <label className="block text-md font-medium text-violet-800 mb-1">
+                Relation
+              </label>
               <select
                 name="relation"
-                value={formik.values.relation}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                 className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
+                value={formik.values.relation}
+                className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
               >
                 <option value="">- Select -</option>
                 <option value="spouse">Spouse</option>
@@ -110,75 +141,106 @@ const Members2 = () => {
                 <option value="other">Other</option>
               </select>
               {formik.touched.relation && formik.errors.relation && (
-                <p className="text-red-600 text-sm mt-1">{formik.errors.relation}</p>
+                <p className="text-red-600 text-sm mt-1">
+                  {formik.errors.relation}
+                </p>
               )}
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
             <div>
-              <label className="block text-md font-medium text-violet-800 mb-1">Email</label>
+              <label className="block text-md font-medium text-violet-800 mb-1">
+                Email
+              </label>
               <input
                 type="email"
                 name="email"
                 placeholder="Email Address"
-                value={formik.values.email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                    className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
+                value={formik.values.email}
+                className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
               />
               {formik.touched.email && formik.errors.email && (
-                <p className="text-red-600 text-sm mt-1">{formik.errors.email}</p>
+                <p className="text-red-600 text-sm mt-1">
+                  {formik.errors.email}
+                </p>
               )}
             </div>
             <div>
-              <label className="block text-md font-medium text-violet-800 mb-1">Phone/Mobile</label>
+              <label className="block text-md font-medium text-violet-800">
+                Phone/Mobile
+              </label>
               <input
                 type="tel"
                 name="phone"
                 placeholder="Mobile Number"
-                value={formik.values.phone}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                    className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
+                value={formik.values.phone}
+                className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
               />
               {formik.touched.phone && formik.errors.phone && (
-                <p className="text-red-600 text-sm mt-1">{formik.errors.phone}</p>
+                <p className="text-red-600 text-sm mt-1">
+                  {formik.errors.phone}
+                </p>
               )}
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
             <div>
-              <label className="block text-md font-medium text-violet-800 mb-1">DOB</label>
+              <label className="block text-md font-medium text-violet-800">
+                DOB
+              </label>
               <input
                 type="date"
                 name="dob"
-                value={formik.values.dob}
+                max={today} // ❗ Restrict future dates
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                    className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
+                value={formik.values.dob}
+                className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
               />
               {formik.touched.dob && formik.errors.dob && (
                 <p className="text-red-600 text-sm mt-1">{formik.errors.dob}</p>
               )}
             </div>
             <div>
-              <label className="block text-md font-medium text-violet-800 mb-1">Gender</label>
-              <select
-                name="gender"
-                value={formik.values.gender}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                 className="peer w-full h-11 px-3 pt-5 pb-2 border border-gray-300 rounded-lg text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent focus:ring-offset-violet-800"
-              >
-                <option value="">- Select -</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-              </select>
+              <label className="block text-md font-medium text-violet-800 mb-1">
+                Gender <span className="text-red-500">*</span>
+              </label>
+              <div className="flex items-center gap-6 mt-4">
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="male"
+                    checked={formik.values.gender === "male"}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    className="text-violet-600 focus:ring-violet-500 border-gray-300"
+                  />
+                  <span className="ml-2 text-sm text-violet-800">Male</span>
+                </label>
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    name="gender"
+                    value="female"
+                    checked={formik.values.gender === "female"}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    className="text-violet-600 focus:ring-violet-500 border-gray-300"
+                  />
+                  <span className="ml-2 text-sm text-violet-800">Female</span>
+                </label>
+              </div>
               {formik.touched.gender && formik.errors.gender && (
-                <p className="text-red-600 text-sm mt-1">{formik.errors.gender}</p>
+                <p className="text-red-500 text-xs mt-1">
+                  {formik.errors.gender}
+                </p>
               )}
             </div>
           </div>
