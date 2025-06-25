@@ -12,7 +12,8 @@ import {
 import { FaEye, FaRocket } from "react-icons/fa6";
 import { MinusIcon, PlusIcon } from "@heroicons/react/24/outline";
 import Banner2 from "../components/Banner/Banner2";
-
+import c2 from "../assets/c2.png";
+import { useNavigate } from "react-router-dom";
 const FeatureCard = ({ icon: Icon, title, description }) => (
   <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl border border-fuchsia-300 flex flex-col items-center text-center transition-shadow duration-300">
     <div className="p-3 rounded-full mb-4">
@@ -63,6 +64,8 @@ function App() {
     },
   ];
 
+  const navigate = useNavigate()
+
   return (
     <div className=" bg-gradient-to-br from-slate-100 to-violet-100  ">
       {/* About Section */}
@@ -96,25 +99,64 @@ function App() {
               ))}
             </ul>
 
-            <button className="mt-6 px-8 py-3 bg-violet-500 text-white font-bold rounded-md border-2 border-violet-500 hover:bg-transparent hover:text-violet-600 transition duration-300">
-              <a href="/premium">Explore Our Plans</a>
+            <button className="mt-6 px-8 py-3 bg-violet-500 text-white font-bold rounded-md border-2 border-violet-500 hover:bg-transparent hover:text-violet-600 transition duration-300"
+            onClick={(navigate("/magmapremiumcare"))}
+            >
+            Explore Our Plans
             </button>
           </div>
 
           {/* Right Section */}
-          <div className="relative flex-1  p-6 sm:p-10 lg:p-12 flex items-center justify-center overflow-hidden">
-            {/* Family Image (Placeholder) */}
-            <div className="relative w-full max-w-sm">
-              <img
-                src="https://axencare.in/wp-content/uploads/2025/04/Axen-Care-scaled.png"
-                alt="Happy family"
-                className="w-full h-auto rounded-xl  animate-float  object-cover"
-                onError={(e) => {
-                  e.target.onerror = null;
-                  e.target.src =
-                    "https://placehold.co/400x300/cccccc/333333?text=Image+Not+Found";
-                }}
-              />
+
+          <div className="relative flex-1 p-6 ism:p-10 lg:p-12 flex items-center justify-center overflow-hidden">
+            {/* ✅ Animate the full block: tags + image together */}
+            <div className="relative animate-float">
+              {/* Top-left Tagline */}
+              <div
+                className="absolute left-4 bg-lime-500 text-white text-sm px-4 py-2 rounded-lg shadow-md"
+                style={{ top: "-2.9rem" }}
+              >
+                <ul className="space-y-1">
+                  <li className="flex items-center gap-2">
+                    ✅ Unlimited Doctor Access
+                  </li>
+                  <li className="flex items-center gap-2">
+                    ✅ Annual Health Check-ups
+                  </li>
+                  <li className="flex items-center gap-2">
+                    ✅ Mental Wellness Support
+                  </li>
+                </ul>
+              </div>
+
+              {/* Circular Image with Gradient Border */}
+              <div className="bg-gradient-to-br from-slate-600 to-violet-500 p-[4px] rounded-full">
+                <div className="bg-white rounded-full w-[300px] h-[300px] sm:w-[340px] sm:h-[340px] md:w-[380px] md:h-[380px] flex items-center justify-center overflow-hidden">
+                  <img
+                    src={c2}
+                    alt="Family Health Plan"
+                    className="w-full h-full object-cover rounded-full"
+                  />
+                </div>
+              </div>
+
+              {/* Bottom-right Tagline */}
+              <div
+                className="absolute bottom-4 right-4 bg-cyan-900 text-white text-sm px-4 py-2 rounded-lg shadow-md"
+                // style={{ bottom: "3.8rem" }}
+              >
+                <ul className="space-y-1">
+                  <li className="flex items-center gap-2">
+                    ✅ Personalized Nutrition Guidance
+                  </li>
+                  <li className="flex items-center gap-2">
+                    ✅ Eye & Dental Care
+                  </li>
+                  <li className="flex items-center gap-2">
+                    ✅ Big Discounts on Health Essentials
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -134,10 +176,10 @@ function App() {
                 Our Vision
               </h2>
               <p className="text-slate-600 leading-relaxed text-base sm:text-lg">
-               At Magma OPD, our vision is to revolutionize outpatient care by
-              making quality medical consultations accessible and seamless for
-              every individual. We envision a future where health services are
-              just a click away, delivered with compassion and care.
+                At Magma OPD, our vision is to revolutionize outpatient care by
+                making quality medical consultations accessible and seamless for
+                every individual. We envision a future where health services are
+                just a click away, delivered with compassion and care.
               </p>
             </div>
 
@@ -156,10 +198,10 @@ function App() {
               </h2>
               <p className="text-slate-600 leading-relaxed text-base sm:text-lg">
                 Magma OPD is on a mission to provide fast, affordable, and
-              reliable outpatient healthcare services. We aim to bridge the gap
-              between patients and doctors by offering easy appointment booking,
-              expert consultations, and a smooth healthcare experience across
-              all touchpoints.
+                reliable outpatient healthcare services. We aim to bridge the
+                gap between patients and doctors by offering easy appointment
+                booking, expert consultations, and a smooth healthcare
+                experience across all touchpoints.
               </p>
             </div>
           </div>
@@ -169,7 +211,7 @@ function App() {
       {/* Why Choose Us Section */}
       <div className="min-h-screen py-20 bg-gradient-to-br from-slate-100 to-violet-100 flex flex-col items-center  px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl w-full">
-          <h1 className="text-5xl font-bold text-violet-500 relative ">
+          <h1 className="text-5xl mb-2 font-bold text-violet-500 relative ">
             Why Choose Us
           </h1>
 
@@ -180,7 +222,7 @@ function App() {
                 icon={feature.icon}
                 title={feature.title}
                 description={feature.description}
-              />  
+              />
             ))}
           </div>
         </div>
@@ -191,4 +233,3 @@ function App() {
 }
 
 export default App;
-  

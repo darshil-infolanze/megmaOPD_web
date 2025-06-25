@@ -54,9 +54,7 @@ const Contact = () => {
             <FaLocationDot className="text-violet-600 mt-1 mr-2" />
             <p>
               <span className="text-fuchsia-600 font-bold block">
-                201-Manglam Paradise Mall, Plot no 8, Manglam Place,
-                <br />
-                Sector 3, Rohini Delhi, 110085
+                Basement, 5B-16, Tilak Nagar New Delhi 110018
               </span>
             </p>
           </div>
@@ -64,20 +62,20 @@ const Contact = () => {
           <div className="flex items-center mb-3 text-slate-700">
             <IoMail className="text-violet-600 mr-2" />
             <a
-              href="mailto:hello@axencare.in"
+              href="mailto:support@magmaopd.in"
               className="text-fuchsia-600 hover:underline"
             >
-              hello@magmaopd.in
+              support@magmaopd.in
             </a>
           </div>
 
           <div className="flex items-center text-slate-700">
             <FaPhone className="text-violet-600 mr-2" />
             <a
-              href="tel:011-43658206"
+              href="tel:8851766923"
               className="text-fuchsia-600 hover:underline"
             >
-              011-43658206
+              8851766923
             </a>
           </div>
         </div>
@@ -92,7 +90,7 @@ const Contact = () => {
               <input
                 type="text"
                 name="name"
-                className="w-full border border-gray-400 rounded-md px-3 py-2"
+              className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
                 value={formik.values.name}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -111,7 +109,7 @@ const Contact = () => {
               <input
                 type="email"
                 name="email"
-                className="w-full border border-gray-400 rounded-md px-3 py-2"
+              className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -130,7 +128,7 @@ const Contact = () => {
               <input
                 type="text"
                 name="mobile"
-                className="w-full border border-gray-400 rounded-md px-3 py-2"
+           className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
                 value={formik.values.mobile}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -148,14 +146,14 @@ const Contact = () => {
               </label>
               <select
                 name="plan"
-                className="w-full border border-gray-400 rounded-md px-3 py-2 bg-white"
+               className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
                 value={formik.values.plan}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               >
                 <option value="">Select a Package</option>
-                <option value="premium">Axen Premium Care</option>
-                <option value="shield">Axen Health Shield</option>
+                <option value="premium">Magma Premium Care</option>
+                <option value="shield">Magma Health Shield</option>
               </select>
               {formik.touched.plan && formik.errors.plan && (
                 <p className="text-red-500 text-sm mt-1">
@@ -182,14 +180,14 @@ const Contact = () => {
 
       <div className="w-full mt-10">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3499.720589706074!2d77.11202057529162!3d28.69800367562906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d03e4b7aa4e19%3A0x9dd22017492dcc53!2sManglam%20Paradise%20Mall!5e0!3m2!1sen!2sin!4v1750317807847!5m2!1sen!2sin"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.6875277668655!2d77.08406657528936!3d28.63912577566109!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d052015491755%3A0xa59ac50c2af42186!2sBasement%2C%205B%2C%2016%2C%20Block%20F%2C%20Tilak%20Nagar%2C%20New%20Delhi%2C%20Delhi%2C%20110018!5e0!3m2!1sen!2sin!4v1750844856004!5m2!1sen!2sin"
           width="100%"
           height="450"
           allowfullscreen=""
           loading="lazy"
           referrerpolicy="no-referrer-when-downgrade"
           className="border-0 w-full"
-          title="Manglam Paradise Mall"
+          title="Basement, 5B"
         ></iframe>
       </div>
     </div>
