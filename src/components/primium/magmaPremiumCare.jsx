@@ -6,7 +6,7 @@ import FeaturesSection from "./FeaturesSection";
 import { useNavigate } from "react-router-dom";
 import { Users } from "lucide-react";
 
-const AxenPremiumCare = () => {
+const MagmaPremiumCare = () => {
   const navigate = useNavigate();
     useEffect(() => {
     window.scrollTo(0, 0);
@@ -15,6 +15,10 @@ const AxenPremiumCare = () => {
     localStorage.setItem("selectedPlan", JSON.stringify(plan));
     navigate("/selfinformation");
   };
+
+  const handleOpenPDF =()=>{
+     window.open("/docs/premium plan.pdf", "_blank");
+  }
   return (
     <>
       <section className="bg-slate-50 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -105,7 +109,9 @@ const AxenPremiumCare = () => {
                 Buy Now
               </button>
 
-              <button className="bg-slate-600 text-white border rounded border-slate-600 font-bold py-3 px-8 transition duration-300 ease-in-out hover:bg-transparent hover:text-slate-500">
+              <button className="bg-slate-600 text-white border rounded border-slate-600 font-bold py-3 px-8 transition duration-300 ease-in-out hover:bg-transparent hover:text-slate-500"
+              onClick={handleOpenPDF}
+              >
                 Download Plan Details
               </button>
             </div>
@@ -132,4 +138,4 @@ const AxenPremiumCare = () => {
   );
 };
 
-export default AxenPremiumCare;
+export default MagmaPremiumCare;
