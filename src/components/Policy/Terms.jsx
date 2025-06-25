@@ -5,30 +5,31 @@ const Terms = () => {
     <div className="min-h-screen bg-white py-10 px-4 flex justify-center">
       <div className="w-full max-w-4xl">
         {/* Headings outside the box */}
-        <h1 className="text-center text-[#8CC63E] font-semibold text-xl mb-2">
-          Axen Care
+
+        <h1 className="text-center text-[#0f172a ] font-semibold text-xl mb-2">
+          Magma OPD
         </h1>
-        <h2 className="text-center text-[#1EA1A9] font-extrabold text-5xl mb-6">
+        <h2 className="text-center text-[#8b5cf6] font-extrabold text-5xl mb-6">
           TERMS & CONDITIONS
         </h2>
+
         {/* Bordered Content Box */}
-        <div className="border border-[#1EA1A9] p-8 rounded-md space-y-4 text-gray-700">
+        <div className="border border-[#8b5cf6] p-8 rounded-md space-y-4 text-slate-700">
           <p>
             These terms and conditions (“Terms of Use” / “Terms”) constitute a
-            binding and enforceable contract between Infoaxen Solutions (OPC)
+            binding and enforceable contract between InfoMagma Solutions (OPC)
             Private Limited, a private limited company having its registered
             office at{" "}
             <strong>
-              201, 2nd Floor, Manglam Paradise Mall, Plot No. 8, Manglam Place,
-              Sector 3, Rohini, Delhi – 110085
+             Basement, 5B-16, Tilak Nagar New Delhi 110018
             </strong>{" "}
-            (hereinafter referred to as “we”, “us”, “our”, “Company” or
-            “AxenCare”), and you, an end user (hereinafter referred to as “you”,
+            (hereinafter referred to as “we”, “us”, “our”, “Company” or “Magma
+            OPD”), and you, an end user (hereinafter referred to as “you”,
             “your”, “User”, “Customer”) in relation to the use of the website{" "}
-            <strong>www.axencare.in</strong> (referred to as the “Online
+            <strong>www.Magma OPD.in</strong> (referred to as the “Online
             Platform”). You represent and warrant that you have full legal
             capacity and authority to agree and bind yourself to these Terms.
-            AxenCare and the User are collectively referred to as “Parties” and
+            Magma OPD and the User are collectively referred to as “Parties” and
             singularly referred to as “Party”.
           </p>
           <p className="mt-4">
@@ -55,7 +56,9 @@ const Terms = () => {
             you do not wish to be bound by the updated Terms, we request you to
             stop accessing the Online Platform and the Services.
           </p>
-          <h3 className="text-lg font-semibold text-[#7A7A7A] mt-6">DEFINITIONS</h3>
+          <h3 className="text-lg font-semibold text-[#64748B] mt-6">
+            DEFINITIONS
+          </h3>
           <p>
             For the purpose of these Terms, the following words and phrases
             shall have the meaning assigned to them hereunder.
@@ -71,10 +74,10 @@ const Terms = () => {
           <p className="mt-2">
             <strong>“Confidential Information”</strong> means and includes the
             Intellectual Property and any and all business, technical and
-            financial information of AxenCare or of any of its affiliates that
+            financial information of Magma OPD or of any of its affiliates that
             is related to any of the arrangements contemplated in these Terms or
             any other document in which these Terms are incorporated by
-            reference, or otherwise disclosed by AxenCare to the User. This
+            reference, or otherwise disclosed by Magma OPD to the User. This
             includes any information which relates to its financial and/or
             business operations, including but not limited to: specifications,
             models, merchant lists/information samples, reports, forecasts,
@@ -96,21 +99,21 @@ const Terms = () => {
             limitation: (a) software, operating manuals, software code,
             programs, instructions, specifications, processes, input methods,
             data or information used in relation to or in association with the
-            operation of software installed by AxenCare; (b) trademarks, service
-            marks, trade names, business names, logos, symbols, styles, colour
-            combinations used by AxenCare during the course of its business and
-            all associated depictions, derivations, graphics, images, content
-            and the ‘look and feel’ thereof; (c) all information, data or
-            material in any form provided by AxenCare to the User during the
-            usage of the Online Platform; and (d) all techniques, formulae,
-            patterns, compilations, processes, inventions, practices,
-            methodologies, improvements, procedures, designs, skills, notes,
-            experimental results, specifications, rights on software, and any
-            other know-how of any nature whatsoever.
+            operation of software installed by Magma OPD; (b) trademarks,
+            service marks, trade names, business names, logos, symbols, styles,
+            colour combinations used by Magma OPD during the course of its
+            business and all associated depictions, derivations, graphics,
+            images, content and the ‘look and feel’ thereof; (c) all
+            information, data or material in any form provided by Magma OPD to
+            the User during the usage of the Online Platform; and (d) all
+            techniques, formulae, patterns, compilations, processes, inventions,
+            practices, methodologies, improvements, procedures, designs, skills,
+            notes, experimental results, specifications, rights on software, and
+            any other know-how of any nature whatsoever.
           </p>
           <p className="mt-4">
             <strong>“Services”</strong> shall mean the services provided by
-            AxenCare to the Users utilizing the Online Platform, including all
+            Magma OPD to the Users utilizing the Online Platform, including all
             content, features, technologies or functions offered or made
             available on the Online Platform including but not limited to:{" "}
             <br />
@@ -119,11 +122,13 @@ const Terms = () => {
           </p>
           <p className="mt-4">
             <strong>“Service Provider”</strong> shall mean any entity with which
-            AxenCare has, directly or indirectly, executed an agreement for
+            Magma OPD has, directly or indirectly, executed an agreement for
             facilitating any Services to the Users in association with such
             entity.
           </p>
-          <h3 className="text-lg font-semibold text-[#7A7A7A] mt-6">ELIGIBILITY</h3>
+          <h3 className="text-lg font-semibold text-[#64748B] mt-6">
+            ELIGIBILITY
+          </h3>
           <p className="mt-2">
             By accepting these Terms, you hereby declare and confirm that:
             <br />
@@ -133,17 +138,17 @@ const Terms = () => {
             <br />
             iii. you have the capacity to enter into a legally binding contract
             as specified under the Indian Contract Act, 1872, while availing the
-            Services offered by AxenCare,
+            Services offered by Magma OPD,
             <br />
             iv. you are not barred or otherwise legally prohibited from
             accessing or using the Services under any Applicable Law.
           </p>
-          <h3 className="text-lg font-semibold text-[#7A7A7A] mt-6">
+          <h3 className="text-lg font-semibold text-[#64748B] mt-6">
             Use of the Website and Service
           </h3>
           <p className="mt-2">
             These Terms and Conditions (“Terms”) govern your access to and use
-            of the AxenCare Website, AxenCare App, and AxenCare Call Centers
+            of the Magma OPD Website, Magma OPD App, and Magma OPD Call Centers
             (collectively referred to as the “Platform”) and the SaaS-based
             healthtech infrastructure we provide (the “Service”). By accessing
             or using the Platform or Service, you agree to be bound by these
@@ -163,14 +168,14 @@ const Terms = () => {
             harassing, defamatory, obscene, or otherwise objectionable.
             <br />• Violates any applicable laws or regulations.
           </p>
-          <h3 className="text-lg font-semibold text-[#7A7A7A] mt-6">
+          <h3 className="text-lg font-semibold text-[#64748B] mt-6">
             PLATFORM ACCESS
           </h3>
           <p className="mt-2">
             By using or accessing the Online Platform, you represent and warrant
             that:
           </p>
-          <ol className="list-[lower-roman] list-inside text-gray-700 mt-2 space-y-1">
+          <ol className="list-[lower-roman] list-inside text-slate-700 mt-2 space-y-1">
             <li>
               you are accessing the Online Platform on your own initiative and
               are responsible for compliance with all local laws and regulations
@@ -185,11 +190,11 @@ const Terms = () => {
               you agree not to undertake activities which include but are not
               limited to infringing any proprietary rights, including but not
               limited to Intellectual Property, or Confidential Information, of
-              AxenCare or Service Provider; except as may be provided hereunder,
-              copying, displaying, distributing, modifying, publishing,
-              reproducing, storing, transmitting, posting, translating, creating
-              any derivative works, renting, or licensing the Online Platform or
-              any portion thereof;
+              Magma OPD or Service Provider; except as may be provided
+              hereunder, copying, displaying, distributing, modifying,
+              publishing, reproducing, storing, transmitting, posting,
+              translating, creating any derivative works, renting, or licensing
+              the Online Platform or any portion thereof;
             </li>
             <li>
               caching unauthorized hypertext links to the Online Platform;
@@ -242,33 +247,33 @@ const Terms = () => {
               manner.
             </li>
           </ol>
-          <h3 className="text-lg font-semibold text-[#7A7A7A] mt-6">
+          <h3 className="text-lg font-semibold text-[#64748B] mt-6">
             General Terms:
           </h3>
-          <ul className="list-disc list-inside text-gray-700 mt-2 space-y-1">
+          <ul className="list-disc list-inside text-slate-700 mt-2 space-y-1">
             <li>
               The Service is available to anyone who registers with{" "}
-              <strong>Axen Care</strong>.
+              <strong>Magma OPD</strong>.
             </li>
             <li>
-              <strong>Axen Care</strong> Standard Members can only access
+              <strong>Magma OPD</strong> Standard Members can only access
               information about health centers.
             </li>
             <li>
-              Only one <strong>Axen Care</strong> plan can be used at a time.
+              Only one <strong>Magma OPD</strong> plan can be used at a time.
             </li>
             <li>
-              <strong>Axen Care</strong> Health Plans benefits cannot be
+              <strong>Magma OPD</strong> Health Plans benefits cannot be
               combined with EMI no-interest features.
             </li>
           </ul>
-          <h3 className="text-lg font-semibold text-[#7A7A7A] mt-6">
+          <h3 className="text-lg font-semibold text-[#64748B] mt-6">
             User Content
           </h3>
           <p className="mt-2">
             You are solely responsible for any content you upload, transmit, or
             store on the Website or Service. By submitting content, you grant{" "}
-            <strong>Axen Care</strong> a non-exclusive, royalty-free license to
+            <strong>Magma OPD</strong> a non-exclusive, royalty-free license to
             use, reproduce, modify, publish, and distribute your User Content in
             connection with the Website and Service.
           </p>
@@ -278,20 +283,21 @@ const Terms = () => {
             provide details and additional data about or in connection with the
             Online Platform and the Services.
           </p>
-          <h3 className="text-lg font-semibold text-[#7A7A7A] mt-6">
+          <h3 className="text-lg font-semibold text-[#64748B] mt-6">
             Test Booking & Services:
           </h3>
-          <ul className="list-disc list-inside text-gray-700 mt-2 space-y-1">
+          <ul className="list-disc list-inside text-slate-700 mt-2 space-y-1">
             <li>
-              Tests must be booked through AxenCare at least 5 working days in
+              Tests must be booked through Magma OPD at least 5 working days in
               advance at a center of your choice.
             </li>
             <li>
-              If your chosen center is not on the AxenCare network, we’ll assist
-              in adding it or help you find an alternate networked center.
+              If your chosen center is not on the Magma OPD network, we’ll
+              assist in adding it or help you find an alternate networked
+              center.
             </li>
             <li>
-              By selecting a center, you indemnify AxenCare from any mishaps
+              By selecting a center, you indemnify Magma OPD from any mishaps
               before, during, or after the tests.
             </li>
             <li>
@@ -300,24 +306,24 @@ const Terms = () => {
               specifically mentioned in the Terms of Use.
             </li>
           </ul>
-          <h3 className="text-lg font-semiboldtext-[#7A7A7A] mt-6">
+          <h3 className="text-lg font-semiboldtext-[#64748B] mt-6">
             Description of Services:
           </h3>
-          <ul className="list-disc list-inside text-gray-700 mt-2 space-y-1">
+          <ul className="list-disc list-inside text-slate-700 mt-2 space-y-1">
             <li>
-              AxenCare only facilitates access to healthcare services including
+              Magma OPD only facilitates access to healthcare services including
               diagnostics and medical by booking appointments and offering
               discounted rates. We do not provide healthcare services directly.
             </li>
             <li>
-              AxenCare is not responsible for any outcomes resulting from the
+              Magma OPD is not responsible for any outcomes resulting from the
               use of these services.
             </li>
             <li>
               We do not guarantee service timing with healthcare providers.
             </li>
             <li>
-              AxenCare does not verify or cross-check the regulatory
+              Magma OPD does not verify or cross-check the regulatory
               authorization, licenses, or certifications of healthcare providers
               and is not liable for any regulatory breaches or malpractice.
             </li>
@@ -326,12 +332,12 @@ const Terms = () => {
               the services you selected.
             </li>
             <li>
-              You consent to AxenCare or its partners contacting you for
+              You consent to Magma OPD or its partners contacting you for
               fulfillment or promotional purposes via electronic or
               non-electronic means.
             </li>
           </ul>
-          <h3 className="text-lg font-semibold text-[#7A7A7A] mt-6">
+          <h3 className="text-lg font-semibold text-[#64748B] mt-6">
             ACCURACY OF INFORMATION
           </h3>
           <p className="mt-2">
@@ -344,74 +350,74 @@ const Terms = () => {
             about the validity, accuracy, correctness, reliability of any
             information provided on or through the Online Platform.
           </p>
-          <h3 className="text-lg font-semibold text-[#7A7A7A] mt-6">
+          <h3 className="text-lg font-semibold text-[#64748B] mt-6">
             Intellectual Property
           </h3>
           <p>
             All rights, title, and interest in and to the Online Platform,
             including all Intellectual Property rights arising out of the Online
-            Platform, are owned by or otherwise licensed to AxenCare. Subject to
-            your compliance with these Terms, AxenCare grants you a
+            Platform, are owned by or otherwise licensed to Magma OPD. Subject
+            to your compliance with these Terms, Magma OPD grants you a
             non-exclusive, non-transferable, non-sub licensable, royalty-free,
             revocable, and limited licence to use the Online Platform in
             accordance with the Terms
           </p>
           <p>
-            Except as expressly authorized by AxenCare, the User agrees not to
+            Except as expressly authorized by Magma OPD, the User agrees not to
             sell, license, distribute, copy, modify, publicly perform or
             display, transmit, publish, edit, adapt, create derivative works
-            from, or otherwise make unauthorized use of the AxenCare’s
+            from, or otherwise make unauthorized use of the Magma OPD’s
             Intellectual Property. User do not accrue any rights or interest in
-            AxenCare’s Intellectual Property and use of any Intellectual
+            Magma OPD’s Intellectual Property and use of any Intellectual
             Property by User shall be strictly in for the fulfillment of and in
             compliance with the Terms. User undertake that it shall not, nor
             will it allow others to, reverse engineer or disassemble any parts
-            of AxenCare’s Intellectual Property.
+            of Magma OPD’s Intellectual Property.
           </p>
           <p>
-            AxenCare may request you to submit suggestions and other feedback,
+            Magma OPD may request you to submit suggestions and other feedback,
             including bug reports, relating to the Online Platform from time to
-            time (“Feedback”). AxenCare may freely use, copy, disclose, create
+            time (“Feedback”). Magma OPD may freely use, copy, disclose, create
             derivative works on, publish, display, distribute, and exploit the
             Feedback without any payment of royalty, acknowledgement, prior
             consent, or any other form of restriction arising out of your
-            Intellectual Property rights. AxenCare shall be at liberty to make
-            changes/updates to the Online Platform as may be required and
-            AxenCare shall have all such rights as mentioned under this section
-            on the additions/modifications.
+            Intellectual Property rights. Magma OPD shall be at liberty to make
+            changes/updates to the Online Platform as may be required and Magma
+            OPD shall have all such rights as mentioned under this section on
+            the additions/modifications.
           </p>
           <p>You represent and warrant that:</p>
-          <ol className="list-[lower-roman] list-inside text-gray-700 mt-2 space-y-1">
+          <ol className="list-[lower-roman] list-inside text-slate-700 mt-2 space-y-1">
             <li>
               you shall use the Intellectual Property solely for discharge of
               your duties for the usage of the Online Platform;
             </li>
             <li>
-              you shall use Intellectual Property of AxenCare only in the form
-              and manner stipulated by AxenCare;
+              you shall use Intellectual Property of Magma OPD only in the form
+              and manner stipulated by Magma OPD;
             </li>
             <li>
-              you shall seek prior written consent from AxenCare for use of
-              AxenCare’s Intellectual Property which is not previously provided
-              for by AxenCare;
+              you shall seek prior written consent from Magma OPD for use of
+              Magma OPD’s Intellectual Property which is not previously provided
+              for by Magma OPD;
             </li>
             <li>
-              . you shall bring to AxenCare’s notice all cases concerning
-              AxenCare’s Intellectual Property’s (a) infringement, (b) passing
-              off, (c) registration, or (d) attempted registration;
+              . you shall bring to Magma OPD’s notice all cases concerning Magma
+              OPD’s Intellectual Property’s (a) infringement, (b) passing off,
+              (c) registration, or (d) attempted registration;
             </li>
             <li>
               {" "}
-              you shall render to AxenCare all assistance in connection with any
-              matter pertaining to the protection of AxenCare’s Intellectual
-              Property whether in courts, before administrative agencies, or
-              otherwise
+              you shall render to Magma OPD all assistance in connection with
+              any matter pertaining to the protection of Magma OPD’s
+              Intellectual Property whether in courts, before administrative
+              agencies, or otherwise
             </li>
             <li>
               you shall refrain from taking any action which shall or may impair
-              AxenCare’s right, title or interest in the Intellectual Property,
+              Magma OPD’s right, title or interest in the Intellectual Property,
               or create any right, title or interest therein or thereto, adverse
-              to that of AxenCare;
+              to that of Magma OPD;
             </li>
             <li>
               you shall not use or permit to be used the Intellectual Property
@@ -422,7 +428,7 @@ const Terms = () => {
               with any other mark or marks.
             </li>
           </ol>
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
             CONFIDENTIALITY
           </h3>
           <p>
@@ -437,7 +443,7 @@ const Terms = () => {
             neither the User nor its affiliates will do any act to violate the
             same. Confidential Information shall exclude any information:
           </p>
-          <ol className="list-[lower-roman] list-inside text-gray-700 mt-2 space-y-1">
+          <ol className="list-[lower-roman] list-inside text-slate-700 mt-2 space-y-1">
             <li>
               which is already in the possession of the receiving Party and not
               subject to any other duty of confidentiality;
@@ -461,10 +467,10 @@ const Terms = () => {
             </li>
           </ol>
           <p className="mt-4">
-            Provided however, that AxenCare may make the following disclosures
+            Provided however, that Magma OPD may make the following disclosures
             for which no consent shall be required from the User:
           </p>
-          <ol className="list-[lower-roman] list-inside text-gray-700 mt-2 space-y-1">
+          <ol className="list-[lower-roman] list-inside text-slate-700 mt-2 space-y-1">
             <li>
               Disclosures to its directors, officers, employees,
               affiliates/subsidiaries/group/holding companies, Service Providers
@@ -484,46 +490,48 @@ const Terms = () => {
               authority.
             </li>
           </ol>
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
             COMMUNICATION POLICY
           </h3>
           <p>
             As part of the User’s usage of the Services, the User may receive
-            notifications, offers, discounts and general information from
-            AxenCare via text messages or by emails, for the purpose of
-            collecting Feedback regarding its Services. The User understands
-            that receipt of non-service related communications can be
-            deactivated by User by sending mail to hello@axencare.in and by
-            ab-initio consents to receive such these communications. The User
-            acknowledges that the SMS service provided by AxenCare is an
-            additional facility provided for the User’s convenience and that it
-            may be susceptible to error, omission and/ or inaccuracy.
+            notifications, offers, discounts and general information from Magma
+            OPD via text messages or by emails, for the purpose of collecting
+            Feedback regarding its Services. The User understands that receipt
+            of non-service related communications can be deactivated by User by
+            sending mail to hello@Magma OPD.in and by ab-initio consents to
+            receive such these communications. The User acknowledges that the
+            SMS service provided by Magma OPD is an additional facility provided
+            for the User’s convenience and that it may be susceptible to error,
+            omission and/ or inaccuracy.
           </p>
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">Disclaimers</h3>
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
+            Disclaimers
+          </h3>
           <p>
             THE WEBSITE AND SERVICE ARE PROVIDED “AS IS” AND WITHOUT WARRANTIES
-            OF ANY KIND, EITHER EXPRESS OR IMPLIED. AxenCare DISCLAIMS ALL
+            OF ANY KIND, EITHER EXPRESS OR IMPLIED. Magma OPD DISCLAIMS ALL
             WARRANTIES, INCLUDING, BUT NOT LIMITED TO, WARRANTIES OF
             MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND
             NON-INFRINGEMENT.
           </p>
           <p>
-            AxenCare DOES NOT WARRANT THAT THE WEBSITE OR SERVICE WILL BE
+            Magma OPD DOES NOT WARRANT THAT THE WEBSITE OR SERVICE WILL BE
             UNINTERRUPTED OR ERROR-FREE, THAT DEFECTS WILL BE CORRECTED, OR THAT
             THE WEBSITE OR SERVICE IS FREE OF VIRUSES OR OTHER HARMFUL
             COMPONENTS.
           </p>
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
             Limitation of Liability
           </h3>
           <p>
-            <strong>AxenCare</strong> SHALL NOT BE LIABLE FOR ANY DIRECT,
+            <strong>Magma OPD</strong> SHALL NOT BE LIABLE FOR ANY DIRECT,
             INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES
             ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF THE WEBSITE OR
             SERVICE.
           </p>
           <p>
-            In no event shall AxenCare or any of its subsidiaries or affiliates
+            In no event shall Magma OPD or any of its subsidiaries or affiliates
             be liable to you or any person for any direct, indirect, special,
             consequential or other damages (including, without limitation, any
             lost profits, business interruption, loss of information or programs
@@ -532,22 +540,22 @@ const Terms = () => {
             of the Online Platform, even if expressly advised of the possibility
             of such damages.
           </p>
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
             Terms and Termination
           </h3>
-          <ul className="list-disc list-inside text-gray-700 mt-2 space-y-1">
+          <ul className="list-disc list-inside text-slate-700 mt-2 space-y-1">
             <li>
               These Terms shall remain in full force and effect until terminated
-              by you or <strong>Axen Care.</strong>
+              by you or <strong>Magma OPD.</strong>
             </li>
           </ul>
           <p>
-            <strong>Axen Care</strong> may suspend or terminate your plans if
+            <strong>Magma OPD</strong> may suspend or terminate your plans if
             any information provided is found to be inaccurate, incomplete, or
             outdated.
           </p>
           <p>
-            <strong>Axen Care</strong> reserves the right, in its sole and
+            <strong>Magma OPD</strong> reserves the right, in its sole and
             absolute discretion, to suspend or terminate your use of one or more
             Services, without notice and without liability to you or any third
             party, for any reason, including without limitation inactivity or
@@ -556,7 +564,7 @@ const Terms = () => {
             effectuated through the Service Provider and
           </p>
           <p>
-            <strong>Axen Care</strong> shall not be held liable for the same.
+            <strong>Magma OPD</strong> shall not be held liable for the same.
             You agree and understand to abide all the terms & conditions
             stipulated under these Terms and of the Service Provider upon
             termination of the Services.
@@ -567,50 +575,50 @@ const Terms = () => {
             are in addition to any other remedies
           </p>
           <p>
-            <strong>Axen Care</strong> may have at law or in equity. Upon
+            <strong>Magma OPD</strong> may have at law or in equity. Upon
             termination for any reason, you agree to immediately stop using the
-            Services of <strong>Axen Care</strong>.
+            Services of <strong>Magma OPD</strong>.
           </p>
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
             Dispute Resolution & Governing Law
           </h3>
           <p>
-            At AxenCare, we value transparency and customer satisfaction. In the
-            unlikely event of a dispute arising from any transaction, product,
-            or service:
+            At Magma OPD, we value transparency and customer satisfaction. In
+            the unlikely event of a dispute arising from any transaction,
+            product, or service:
           </p>
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
             Step 1: Internal Resolution
           </h3>
           <p>
             Customers are encouraged to first reach out to our Grievance
-            Redressal Team by writing to us at support@axencare.in with the
+            Redressal Team by writing to us at support@magmaopd.in with the
             subject line: “Dispute Resolution – [Order ID]”.
           </p>
           <p>
             We aim to resolve all complaints within 10 business days of receipt.
           </p>
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
             Step 2: Escalation
           </h3>
           <p>
             If the issue remains unresolved after Step 1, the customer may
             escalate the matter by sending a formal written complaint to the
-            AxenCare Compliance Officer at hello@axencare.in. We shall attempt a
-            good-faith resolution through mediation within 15 business days.
+            Magma OPD Compliance Officer at hello@Magma OPD.in. We shall attempt
+            a good-faith resolution through mediation within 15 business days.
           </p>
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
             Step 3: Legal Recourse
           </h3>
           <p>
             If a resolution is still not reached, the matter shall be subject to
             legal proceedings:
           </p>
-          <ul className="list-disc list-inside text-gray-700 mt-2 space-y-1">
+          <ul className="list-disc list-inside text-slate-700 mt-2 space-y-1">
             <li>
               Governing Law: This policy and all transactions undertaken through
-              AxenCare shall be governed by and construed in accordance with the
-              laws of India.
+              Magma OPD shall be governed by and construed in accordance with
+              the laws of India.
             </li>
             <li>
               Jurisdiction: Subject to the foregoing, all disputes, claims, or
@@ -618,15 +626,15 @@ const Terms = () => {
               competent courts at New Delhi, India.
             </li>
           </ul>
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
             THIRD PARTY SERVICES AND LINKS
           </h3>
           <p>
             Our Services contain or may contain, links to third-party websites,
             applications, content, products, services and resources that are not
             under the control and do not form a part of the Services offered by
-            the AxenCare. We provide these links only for your convenience and
-            AxenCare makes no representation or warranty of any kind regarding
+            the Magma OPD. We provide these links only for your convenience and
+            Magma OPD makes no representation or warranty of any kind regarding
             its accuracy, reliability, effectiveness, or correctness and shall
             not be responsible or liable for any aspect of any such third-party
             services.
@@ -637,23 +645,23 @@ const Terms = () => {
             applies to their use of any third-party services. Further, the User
             acknowledges that the information may be transferred, stored or
             utilised by a third party, and you consent to such transfer and{" "}
-            <strong>AxenCare</strong> shall not be responsible for the security
+            <strong>Magma OPD</strong> shall not be responsible for the security
             of such information.
           </p>
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
             Entire Agreement
           </h3>
           <p>
-            These Terms constitute the entire agreement between you and AxenCare
-            with respect to the use of the Website and Service.
+            These Terms constitute the entire agreement between you and Magma
+            OPD with respect to the use of the Website and Service.
           </p>
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
             FORCE MAJEURE
           </h3>
           <p>
-            If performance of the Services by AxenCare is prevented, restricted,
-            delayed or interfered with by reason of and including, but not
-            limited to, labour disputes, strikes, acts of God, floods,
+            If performance of the Services by Magma OPD is prevented,
+            restricted, delayed or interfered with by reason of and including,
+            but not limited to, labour disputes, strikes, acts of God, floods,
             lightning, severe weather, shortages of materials, rationing,
             inducement of any virus, malware, trojan or other disruptive
             mechanisms, pandemic, epidemic, any event of hacking or illegal
@@ -664,25 +672,27 @@ const Terms = () => {
             requirement having legal effect of any government or any judicial
             authority or representative of any such government, or any other act
             whatsoever, whether similar or dissimilar to those referred to in
-            this clause, which are beyond the reasonable control of AxenCare and
-            could not have been prevented by reasonable precautions, then
-            AxenCare shall be excused and discharged from such performance to
+            this clause, which are beyond the reasonable control of Magma OPD
+            and could not have been prevented by reasonable precautions, then
+            Magma OPD shall be excused and discharged from such performance to
             the extent of and during the period of such force majeure event, and
             such non-performance shall, in no manner whosoever, amount to a
-            breach by AxenCare of its obligations herein or incur any legal
-            liability on AxenCare.
+            breach by Magma OPD of its obligations herein or incur any legal
+            liability on Magma OPD.
           </p>
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">INDEMNITY</h3>
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
+            INDEMNITY
+          </h3>
           <p>
-            You agree to indemnify and hold AxenCare and its affiliates harmless
-            against all actions, claims, demands, proceedings, losses, damages,
-            costs, charges and expenses whatsoever which AxenCare may at any
-            time incur, sustain, suffer or be put to as a consequence of or by
-            reason of or arising due to any negligence/mistake/misconduct on
-            your part or breach or non-compliance of any provision of these
+            You agree to indemnify and hold Magma OPD and its affiliates
+            harmless against all actions, claims, demands, proceedings, losses,
+            damages, costs, charges and expenses whatsoever which Magma OPD may
+            at any time incur, sustain, suffer or be put to as a consequence of
+            or by reason of or arising due to any negligence/mistake/misconduct
+            on your part or breach or non-compliance of any provision of these
             Terms by you or any person using your behalf.
           </p>
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
             Severability
           </h3>
           <p>
@@ -696,7 +706,7 @@ const Terms = () => {
             provision so severed, and shall not cause the invalidity or
             unenforceability of the remainder of these Terms.
           </p>
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
             ASSIGNMENT AND WAIVER
           </h3>
           <p>
@@ -712,74 +722,77 @@ const Terms = () => {
             Terms will prevent any further exercise of the right or remedy or
             the exercise of any other right or remedy.
           </p>
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
             Update to Terms
           </h3>
           <p>
-            <strong>AxenCare </strong>may update these Terms at any time by
+            <strong>Magma OPD </strong>may update these Terms at any time by
             posting the amended terms on the Website. Your continued use of the
             Website or Service following the posting of amended Terms
             constitutes your acceptance of the amended Terms.
           </p>
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">Contact Us</h3>
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
+            Contact Us
+          </h3>
           If you have any questions about these Terms, please reach out to our
           support team:
-          <ul className="list-disc list-inside text-gray-700 space-y-1">
+          <ul className="list-disc list-inside space-y-2 text-slate-700">
             <li>
-              <strong>Email:</strong>support@axencare.in
+              <strong>Email :</strong>support@magmaopd.in
             </li>
             <li>
-              <strong>Phone:</strong>011-43658206
+              <strong>Phone:</strong> 8851766923
             </li>
             <li>
-              <strong>Support Hours:</strong>Mon- Sat, 10:00 am to 6:00 pm
+              <strong>Support Hours:</strong> Mon – Sat, 10:00 am to 6:00 pm
             </li>
             <li>
-              <strong>Website:</strong>www.axencare.in
+              <strong>Website</strong>www.magmaopd.in
             </li>
+            <p>We’re here to help you every step of the way.</p>
           </ul>
-          We’re here to help you every step of the way.
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
             Legal Disclaimer
           </h3>
-          By engaging in any transaction with <strong> AxenCare</strong>, all
+          By engaging in any transaction with <strong> Magma OPD</strong>, all
           customers acknowledge and agree to the following terms. Any violation
           of the terms mentioned below may result in legal consequences as per
           the applicable laws.
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
             17.1 No Unauthorized Inducements or Commitments
           </h3>
           <p>
             No individual shall, directly or indirectly, offer or induce another
             person to engage in a transaction under false pretenses.
-            <strong>AxenCare</strong> does not assume responsibility for any
+            <strong>Magma OPD</strong> does not assume responsibility for any
             false commitments or inducements made by its agents or telemarketing
             representatives regarding the sale of any product. If there is any
             doubt regarding the authenticity of a commitment or representation,
-            it may be verified through a confirmation call conducted by AxenCare
-            after any payment is made. Customers may also verify any transaction
-            within <strong> fifteen (15) days </strong> of payment by contacting
-            customer service at 011-43658206 or via email at{" "}
-            <strong>hello@axencare.in.</strong> No agreement may be challenged
+            it may be verified through a confirmation call conducted by Magma
+            OPD after any payment is made. Customers may also verify any
+            transaction within <strong> fifteen (15) days </strong> of payment
+            by contacting customer service at 011-43658206 or via email at{" "}
+            <strong>hello@Magma OPD.in.</strong> No agreement may be challenged
             after fifteen (15) days from the date of issuance or commencement of
             risk coverage.
           </p>
-          <h3 className="text-lg text-[#7A7A7A] font-semibold mt-6">
+          <h3 className="text-lg text-[#64748B] font-semibold mt-6">
             17.2 Third-Party Payments
           </h3>
           <p>
-            <strong>AxenCare</strong> will not be held liable for any payments
+            <strong>Magma OPD</strong> will not be held liable for any payments
             made by customers to third parties or any payments made by a third
             party on behalf of the customer. If a customer makes a payment to
             any third party under any undue influence or coercion, the
             responsibility lies solely with the customer.{" "}
-            <strong>AxenCare</strong> disclaims all liability in such
+            <strong>Magma OPD</strong> disclaims all liability in such
             circumstances. The Company does not accept cash payments for any
             transactions. Customers are strongly advised to refrain from making
             cash transactions under any circumstances, as
-            <strong> AxenCare</strong> will not be accountable for such payments.
+            <strong> Magma OPD</strong> will not be accountable for such
+            payments.
           </p>
-          <p>This website is operated by INFOAXEN SOLUTIONS OPC PVT LTD</p>
+          <p>This website is operated by INFOMAGMA SOLUTIONS OPC PVT LTD</p>
         </div>
       </div>
     </div>

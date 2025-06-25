@@ -5,17 +5,17 @@ const Privacy = () => {
     <div className="min-h-screen bg-white py-10 px-4 flex justify-center">
       <div className="w-full max-w-4xl">
         {/* Headings outside the box */}
-        <h1 className="text-center text-[#8CC63E] font-semibold text-xl mb-2">
-          Axen Care
+        <h1 className="text-center text-[#0f172a ] font-semibold text-xl mb-2">
+          Magma OPD
         </h1>
-        <h2 className="text-center text-[#1EA1A9] font-extrabold text-5xl mb-6">
+        <h2 className="text-center text-[#8b5cf6] font-extrabold text-5xl mb-6">
           Privacy Policy
         </h2>
 
         {/* Bordered Content Box */}
-        <div className="border border-[#1EA1A9] p-8 rounded-md space-y-4 text-gray-700">
+        <div className="border border-[#8b5cf6] p-8 rounded-md space-y-4 text-slate-700">
           <p>
-            At <strong>Axencare</strong> (“we”, “us”, “our”), we respect the
+            At <strong>Magma OPD</strong> (“we”, “us”, “our”), we respect the
             privacy of our users (“you”, “your”). This Privacy Policy outlines
             how we collect, use, disclose, and protect your personal information
             when you access and use our website (the “Website”) and our
@@ -28,7 +28,7 @@ const Privacy = () => {
             This Privacy Policy (hereinafter referred to as{" "}
             <strong>“Privacy Policy”</strong>) specifies the manner in which
             personal and/or sensitive information is collected, received,
-            stored, processed, disclosed, and handled by AxenCare. It does not
+            stored, processed, disclosed, and handled by Magma OPD. It does not
             apply to third-party services or websites that you may access
             through our Online Platforms.
           </p>
@@ -52,12 +52,12 @@ const Privacy = () => {
 
           <ul className="list-disc ml-6 space-y-2">
             <li>
-              By using the <strong>AxenCare</strong> website and registering at{" "}
-              <strong>AxenCare.in</strong>, you consent to be contacted via
+              By using the <strong>Magma OPD</strong> website and registering at{" "}
+              <strong>Magma OPD.in</strong>, you consent to be contacted via
               email or phone.
             </li>
             <li>
-              You authorize <strong>AxenCare</strong>, its affiliates, and
+              You authorize <strong>Magma OPD</strong>, its affiliates, and
               partners to offer services, products, and promotional offers.
             </li>
             <li>
@@ -69,11 +69,11 @@ const Privacy = () => {
             </li>
             <li>
               This policy applies to all data collected via website, app, or
-              services provided by AxenCare.
+              services provided by Magma OPD.
             </li>
           </ul>
 
-          <h3 className="text-lg font-semibold text-[#7A7A7A]mt-6">
+          <h3 className="text-lg font-semibold text-[#64748B]mt-6">
             Scope of this Policy
           </h3>
           <p>
@@ -82,7 +82,7 @@ const Privacy = () => {
             whether stored digitally or physically.
           </p>
 
-          <h3 className="text-lg font-semibold text-[#7A7A7A] mt-6">
+          <h3 className="text-lg font-semibold text-[#64748B] mt-6">
             Information Collected
           </h3>
           <p>
@@ -116,7 +116,7 @@ const Privacy = () => {
 
           <ol className="list-decimal ml-6 space-y-2" start={3}>
             <li>
-              Other information that AxenCare is required to collect as per
+              Other information that Magma OPD is required to collect as per
               specific mandate from partner bank or as a requirement under
               applicable law, regulation, rule, or statute in India.
             </li>
@@ -195,9 +195,9 @@ const Privacy = () => {
             </li>
             <li>
               Correspondence Information: For quality and training purposes or
-              for its own protection, AxenCare may monitor or record its
+              for its own protection, Magma OPD may monitor or record its
               telephone conversations with you or anyone acting on your behalf.
-              By communicating with AxenCare, you acknowledge that your
+              By communicating with Magma OPD, you acknowledge that your
               communication may be overheard, monitored, or recorded without
               further notice or warning.
             </li>
@@ -271,7 +271,7 @@ const Privacy = () => {
             <strong>User Access of Personal Information</strong>
           </p>
           <p>
-            As a registered AxenCare user, you can modify some of your Personal
+            As a registered Magma OPD user, you can modify some of your Personal
             Information and your privacy preferences by accessing the “Account”
             section of the Online Platforms.
           </p>
@@ -375,7 +375,8 @@ const Privacy = () => {
             advertising purposes without your explicit consent.
           </p>
           <p>
-            The AxenCare may disclose your information, to the extent necessary:
+            The Magma OPD may disclose your information, to the extent
+            necessary:
           </p>
           <ol className="list-decimal ml-6 space-y-2">
             <li>
@@ -394,22 +395,22 @@ const Privacy = () => {
             </li>
           </ul>
           <p>
-            In such an event, AxenCare is in no manner responsible for informing
-            you or seeking your approval or consent. We and our group entities
-            or affiliates (to the extent Personal Information is collected by
-            them) may, in compliance with applicable laws, share/transfer/assign
-            all of your Personal Information and other information with any
-            other business entities, in the event of a merger, sale,
-            re-organization, amalgamation, joint ventures, assignment,
-            restructuring of business or transfer or disposition of all or any
-            portion of our business.
+            In such an event, Magma OPD is in no manner responsible for
+            informing you or seeking your approval or consent. We and our group
+            entities or affiliates (to the extent Personal Information is
+            collected by them) may, in compliance with applicable laws,
+            share/transfer/assign all of your Personal Information and other
+            information with any other business entities, in the event of a
+            merger, sale, re-organization, amalgamation, joint ventures,
+            assignment, restructuring of business or transfer or disposition of
+            all or any portion of our business.
           </p>
 
-          <h3 className="text-lg font-semibold text-[#7A7A7A] mt-6">
+          <h3 className="text-lg font-semibold text-[#64748B] mt-6">
             Data Retention
           </h3>
           <p>
-            AxenCare may, at its sole discretion, retain any information and/or
+            Magma OPD may, at its sole discretion, retain any information and/or
             data provided by you for as long as your Account is active, for
             resolution of disputes, for the purpose of investigations or ongoing
             prosecutions or in case of any suspicious/illegal transactions, for
@@ -421,11 +422,11 @@ const Privacy = () => {
             Account.
           </p>
 
-          <h3 className="text-lg font-semibold text-[#7A7A7A] mt-6">
+          <h3 className="text-lg font-semibold text-[#64748B] mt-6">
             Security Practices
           </h3>
           <p>
-            AxenCare employs a range of measures to protect the privacy and
+            Magma OPD employs a range of measures to protect the privacy and
             confidentiality of Personal Information. We primarily hold Personal
             Information in electronic form and take reasonable steps to ensure
             your Personal Information is protected from misuse and loss and from
@@ -458,7 +459,7 @@ const Privacy = () => {
             protective steps.
           </p>
 
-          <h3 className="text-lg font-semibold text-[#7A7A7A] mt-6">Cookies</h3>
+          <h3 className="text-lg font-semibold text-[#64748B] mt-6">Cookies</h3>
           <p>
             A cookie is a small piece of information stored by a web server on a
             web browser so it can be later read back from that browser. We use
@@ -470,7 +471,7 @@ const Privacy = () => {
             parties.
           </p>
 
-          <h3 className="text-lg font-semibold text-[#7A7A7A] mt-6">
+          <h3 className="text-lg font-semibold text-[#64748B] mt-6">
             Links to Other Sites
           </h3>
           <p>
@@ -481,12 +482,12 @@ const Privacy = () => {
             collected whilst visiting such websites is not governed by this
             Privacy Policy. You are encouraged to exercise caution and review
             the privacy policies applicable to such websites before accessing
-            them. You acknowledge that AxenCare shall not be responsible for and
-            has no control over the practices and content of any website
+            them. You acknowledge that Magma OPD shall not be responsible for
+            and has no control over the practices and content of any website
             accessed using the links contained on our Online Platforms.
           </p>
 
-          <h3 className="text-lg font-semibold text-[#7A7A7A] mt-6">
+          <h3 className="text-lg font-semibold text-[#64748B] mt-6">
             Changes to this Privacy Policy
           </h3>
           <p>
@@ -510,28 +511,20 @@ const Privacy = () => {
             referring to the date on which this Privacy Policy was last updated.
           </p>
 
-          <h3 className="text-lg font-semibold text-[#7A7A7A] mt-6">
+          <h3 className="text-lg font-semibold text-[#64748B] mt-6">
             Customer Support
           </h3>
           <p>
             If you have any questions about this Privacy Policy, please contact
             us at:
           </p>
-          <ul className="list-disc ml-6 space-y-2">
-            <li>
-              <strong>Email:</strong> support@axencare.in
-            </li>
-            <li>
-              <strong>Phone:</strong> 011-43658206
-            </li>
-            <li>
-              <strong>Support Hours:</strong> Mon – Sat, 10:00 am to 6:00 pm
-            </li>
-            <li>
-              <strong>Website:</strong> www.axencare.in
-            </li>
-          </ul>
-          <p>We’re here to help you every step of the way.</p>
+           <ul className="list-disc list-inside space-y-2 text-slate-700">
+              <li><strong>Email :</strong>support@magmaopd.in</li>
+              <li><strong>Phone:</strong> 8851766923</li>
+              <li><strong>Support Hours:</strong> Mon – Sat, 10:00 am to 6:00 pm</li>
+              <strong>Website</strong>www.magmaopd.in
+              <p>We’re here to help you every step of the way.</p>
+            </ul>
         </div>
       </div>
     </div>
