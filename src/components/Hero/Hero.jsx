@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import c1 from "../../assets/c1.png";
+// import c1 from "../../assets/c1.png";
 import c2 from "../../assets/c2.png";
-import c3 from "../../assets/c3.png";
+// import c3 from "../../assets/c3.png";
 
 const images = [
   {
     id: 1,
-    url: c1,
+    url: "https://cf.kizlarsoruyor.com/q23141830/primary-share.png?23",
     alt: "Meditating Woman",
     tagTop: "Mental Wellness Support",
     tagBottom: "Big Discounts on Health Essentials",
@@ -21,7 +21,7 @@ const images = [
   },
   {
     id: 3,
-    url: c3,
+    url:     "https://mir-s3-cdn-cf.behance.net/projects/404/af2240213032843.Y3JvcCw4NjYsNjc4LDkwLDA.png",
     alt: "Doctor Advice",
     tagTop: "24x7 Doctor Access",
     tagBottom: "Affordable Consultations",
@@ -99,7 +99,8 @@ const Hero = () => {
         <div className="w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto text-center relative">
           <div className="relative mt-10 flex items-center justify-center">
             {/* TagTop */}
-            <div className="absolute top-2 left-2 bg-slate-800/80 text-white text-xs sm:text-sm px-3 py-1 rounded-full shadow-md border border-violet-300">
+
+            <div className="absolute top-2 left-2  bg-violet-600/80 text-white text-xs sm:text-sm px-3 py-1 rounded-full shadow-md border border-slate-200">
               {current.tagTop}
             </div>
 
@@ -109,11 +110,11 @@ const Hero = () => {
             </div>
 
             {/* Circular Image with Gradient Ring */}
-            <div className="p-[15px] bg-gradient-to-r from-slate-600 to-slate-800 rounded-full inline-block">
+            <div className="p-2  rounded-full inline-block">
               <img
                 src={current.url}
                 alt={current.alt}
-                className="rounded-full object-containt w-[300px] sm:w-[400px] md:w-[500px] h-[300px] sm:h-[400px] md:h-[500px] border-4 border-white shadow-xl transition-opacity duration-700"
+                className="rounded-full object-cover w-[300px] sm:w-[400px] md:w-[500px] h-[300px] sm:h-[400px] md:h-[500px] border-4 border-violet-500 shadow-xl transition-opacity duration-700 mx-auto"
               />
             </div>
           </div>

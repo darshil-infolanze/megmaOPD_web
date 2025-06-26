@@ -46,7 +46,7 @@ const Members2= () => {
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: (values) => {
-      console.log("Member 1 Data:", JSON.stringify(values, null, 2));
+      console.log("Member 2 Data:", JSON.stringify(values, null, 2));
       localStorage.setItem("member1", JSON.stringify(values));
       navigate("/member3");
     },

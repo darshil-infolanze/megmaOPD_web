@@ -1,23 +1,23 @@
 import React, { useEffect } from "react";
-
+import a1 from "../../assets/a1.png";
 import { FaCheck } from "react-icons/fa6";
 import FeaturesSection from "../primium/FeaturesSection";
 import { useNavigate } from "react-router-dom";
 import { Users } from "lucide-react";
 const MagmaHealthShield = () => {
   const navigate = useNavigate();
-    useEffect(() => {
-      window.scrollTo(0, 0);
-    }, []);
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleSelectPlan = (plan) => {
     localStorage.setItem("selectedPlan", JSON.stringify(plan));
     navigate("/selfinformation");
   };
 
-    const handleOpenPDF =()=>{
-     window.open("/docs/shieldPlan.pdf", "_blank");
-  }
+  const handleOpenPDF = () => {
+    window.open("/docs/shieldPlan.pdf", "_blank");
+  };
   return (
     <>
       <section className="bg-slate-50 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -111,8 +111,9 @@ const MagmaHealthShield = () => {
                 Buy Now
               </button>
 
-              <button className="bg-slate-600 text-white border rounded border-slate-600 font-bold py-3 px-8 transition duration-300 ease-in-out hover:bg-transparent hover:text-slate-500"
-                  onClick={handleOpenPDF}
+              <button
+                className="bg-slate-600 text-white border rounded border-slate-600 font-bold py-3 px-8 transition duration-300 ease-in-out hover:bg-transparent hover:text-slate-500"
+                onClick={handleOpenPDF}
               >
                 Download Plan Details
               </button>
@@ -124,11 +125,11 @@ const MagmaHealthShield = () => {
             <div className="relative w-72 h-72 sm:w-96 sm:h-96">
               {/* The circular shape with the family image */}
 
-              <div>
+              <div className="w-[300px] sm:w-[350px] md:w-[500px] aspect-square">
                 <img
-                  src="https://axencare.in/wp-content/uploads/2025/05/Axen-Health-Shield1.png" // Placeholder image, replace with your actual family image
-                  alt="Axen Health Shield1"
-                  className="w-full h-full object-cover animate-float rounded-full "
+                  src={a1}
+                  alt="Magma Health Shield"
+                  className="w-full h-full object-contain animate-float rounded-full"
                 />
               </div>
             </div>

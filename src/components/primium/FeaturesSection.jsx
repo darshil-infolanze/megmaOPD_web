@@ -4,7 +4,7 @@ import FeatureCard from "./FeatureCard"; // path depends on your folder structur
 const FeaturesSection = () => {
   const features = [
     {
-      image: "https://axencare.in/wp-content/uploads/2025/04/4-1.png",
+      image: "https://avatars.mds.yandex.net/i?id=d8de0d351d6996a190d262d57baf473d81369493-12473993-images-thumbs&n=13",
       title: "Comprehensive Care Access",
       description: [
         {
@@ -23,7 +23,7 @@ const FeaturesSection = () => {
     },
     {
       image:
-        "https://axencare.in/wp-content/uploads/2025/05/Advanced-Wellness-Programs.png",
+        "https://cf.kizlarsoruyor.com/q23141830/primary-share.png?23",
       title: "Advanced Wellness Programs",
       description: [
         {
@@ -38,7 +38,7 @@ const FeaturesSection = () => {
     },
     {
       image:
-        "https://axencare.in/wp-content/uploads/2025/05/Specialist-Benefits.png",
+        "https://mir-s3-cdn-cf.behance.net/projects/404/af2240213032843.Y3JvcCw4NjYsNjc4LDkwLDA.png",
       title: "Specialist Benefits",
       description: [
         {
@@ -52,7 +52,7 @@ const FeaturesSection = () => {
       ],
     },
     {
-      image: "https://axencare.in/wp-content/uploads/2025/04/6.png",
+      image: "https://avatars.mds.yandex.net/get-altay/6236523/2a000001806bb7495769296602b410439de8/XXL_height",
       title: "Medicines & Diagnostics",
       description: [
         {
@@ -66,7 +66,7 @@ const FeaturesSection = () => {
       ],
     },
     {
-      image: "https://axencare.in/wp-content/uploads/2025/04/5-1.png",
+      image: "https://p0.zoon.ru/5/3/5e74bc83fdb33a147704e8a2_5f167c8999fed.jpg",
       title: "Tools & Extras",
       description: [
         {

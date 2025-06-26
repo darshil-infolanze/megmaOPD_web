@@ -5,10 +5,10 @@ import { FaCheck } from "react-icons/fa6";
 import FeaturesSection from "./FeaturesSection";
 import { useNavigate } from "react-router-dom";
 import { Users } from "lucide-react";
-
+import a2 from "../../assets/a2.png";
 const MagmaPremiumCare = () => {
   const navigate = useNavigate();
-    useEffect(() => {
+  useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
   const handleSelectPlan = (plan) => {
@@ -16,9 +16,9 @@ const MagmaPremiumCare = () => {
     navigate("/selfinformation");
   };
 
-  const handleOpenPDF =()=>{
-     window.open("/docs/premium plan.pdf", "_blank");
-  }
+  const handleOpenPDF = () => {
+    window.open("/docs/premium plan.pdf", "_blank");
+  };
   return (
     <>
       <section className="bg-slate-50 min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
@@ -109,8 +109,9 @@ const MagmaPremiumCare = () => {
                 Buy Now
               </button>
 
-              <button className="bg-slate-600 text-white border rounded border-slate-600 font-bold py-3 px-8 transition duration-300 ease-in-out hover:bg-transparent hover:text-slate-500"
-              onClick={handleOpenPDF}
+              <button
+                className="bg-slate-600 text-white border rounded border-slate-600 font-bold py-3 px-8 transition duration-300 ease-in-out hover:bg-transparent hover:text-slate-500"
+                onClick={handleOpenPDF}
               >
                 Download Plan Details
               </button>
@@ -122,10 +123,10 @@ const MagmaPremiumCare = () => {
             <div className="relative w-72 h-72 sm:w-96 sm:h-96">
               {/* The circular shape with the family image */}
 
-              <div>
+              <div className="w-[250px] sm:w-[300px] md:w-[400px] aspect-square">
                 <img
-                  src="https://axencare.in/wp-content/uploads/2025/05/Axen-Premium-Care1.png" // Placeholder image, replace with your actual family image
-                  alt="Happy family"
+                  src={a2}
+                  alt="magma premium care"
                   className="w-full h-full object-cover animate-float rounded-full"
                 />
               </div>

@@ -64,7 +64,7 @@ function App() {
     },
   ];
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   return (
     <div className=" bg-gradient-to-br from-slate-100 to-violet-100  ">
@@ -99,10 +99,11 @@ function App() {
               ))}
             </ul>
 
-            <button className="mt-6 px-8 py-3 bg-violet-500 text-white font-bold rounded-md border-2 border-violet-500 hover:bg-transparent hover:text-violet-600 transition duration-300"
-            onClick={(navigate("/magmapremiumcare"))}
+            <button
+              className="mt-6 px-8 py-3 bg-violet-500 text-white font-bold rounded-md border-2 border-violet-500 hover:bg-transparent hover:text-violet-600 transition duration-300"
+              onClick={() => navigate("/magmapremiumcare")}
             >
-            Explore Our Plans
+              Explore Our Plans
             </button>
           </div>
 

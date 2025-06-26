@@ -6,9 +6,9 @@ const HealthPlanCards = () => {
 
   const handleGetStarted = (plan) => {
     if (plan === "premium") {
-      navigate("/premium");
+      navigate("/magmapremiumcare");
     } else if (plan === "shield") {
-      navigate("/AxenHealthShield");
+      navigate("/magmahealthshield");
     }
   };
 
@@ -35,7 +35,7 @@ const HealthPlanCards = () => {
             </span>
           </p>
 
-          <ul className="text-gray-700 text-left space-y-4 mb-8">
+          <ul className="text-slate-700 text-left space-y-4 mb-8">
             <li className="flex items-start">
               <Check className="w-5 h-5 text-slate-500 mr-2 mt-1 flex-shrink-0" />
               <span>
@@ -101,7 +101,7 @@ const HealthPlanCards = () => {
           </button>
         </div>
 
-        {/* Card 2: Axen Health Shield (with Popular Ribbon) */}
+        {/* Card 2: Magma Health Shield (with Popular Ribbon) */}
 
         <div
           style={boxShadowStyle}
@@ -122,7 +122,7 @@ const HealthPlanCards = () => {
             </span>
           </p>
 
-          <ul className="text-gray-700 text-left space-y-4 mb-8">
+          <ul className="text-slate-700 text-left space-y-4 mb-8">
             <li className="flex items-start">
               <Check className="w-5 h-5 text-slate-500 mr-2 mt-1 flex-shrink-0" />
               <span>

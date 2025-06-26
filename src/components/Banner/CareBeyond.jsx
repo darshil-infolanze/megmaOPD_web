@@ -58,7 +58,7 @@ const CareBeyondCoverage = () => {
         {/* Image Section */}
         <div className="w-full md:w-1/2">
           <img
-            src="https://axencare.in/wp-content/uploads/2025/04/kid-playing-with-paper-plane-1024x819.jpg"
+            src="https://cms-tc.pbskids.org/parents/_1200x630_crop_center-center_82_none/creative-problem-solving-thumbnail.jpg?mtime=1607702638"
             alt="Family protection"
             className="w-full rounded-lg shadow-lg object-cover"
           />

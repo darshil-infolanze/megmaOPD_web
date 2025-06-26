@@ -1,13 +1,11 @@
 import React from "react";
 
-import money from "../../assets/illustrated-money.webp";
-
 import { FaArrowRight, FaCoins } from "react-icons/fa";
 import HealthPlanCards from "../Subscribe/Subscribe"; // Assuming HealthPlanCards.jsx is in the same 'components' directory
 
 const Banner = () => {
   return (
-  <div className="relative bg-gradient-to-r from-slate-600 to-slate-800 text-white  overflow-hidden">
+    <div className="relative bg-gradient-to-r from-slate-600 to-slate-800 text-white  overflow-hidden">
       {/* Hero Section */}
       <div className="relative w-full px-6 py-16 lg:py-24">
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center lg:items-start">
@@ -26,7 +24,7 @@ const Banner = () => {
             </p>
 
             <a
-              href="/premium"
+              href="/magmapremiumcare"
               className="mt-6 inline-flex items-center gap-2 text-sm sm:text-base font-semibold tracking-wide underline-offset-4 hover:text-violet-400  hover:underline"
             >
               Start Exploring{" "}
@@ -39,7 +37,7 @@ const Banner = () => {
           {/* Right: Illustration */}
           <div className="lg:w-1/2 mt-12 lg:mt-0 flex justify-center">
             <img
-              src={money}
+              src="https://premiumaddons.com/wp-content/uploads/2020/05/illustrated-money.png"
               alt="Plan Illustration"
               className="w-full max-w-md object-contain"
             />

@@ -59,6 +59,7 @@ const SelfInformations = () => {
         .matches(/^[0-9]{12}$/, "Enter a valid 12-digit Aadhar Card Number")
         .required("This field is required"),
       address1: Yup.string().required("This field is required"),
+      address2: Yup.string().required("This field is required"),
       city: Yup.string().required("This field is required"),
       state: Yup.string().required("This field is required"),
       pincode: Yup.string()
@@ -196,7 +197,7 @@ const SelfInformations = () => {
                 Phone/Mobile <span className="text-red-500">*</span>
               </label>
               <input
-                type="tel"
+                type="number"
                 name="phone"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -350,7 +351,7 @@ const SelfInformations = () => {
               className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
 
               />
-              {formik.touched.address1 && formik.errors.address2 && (
+              {formik.touched.address2 && formik.errors.address2 && (
                 <p className="text-red-500 text-xs mt-1">
                   {formik.errors.address2}
                 </p>

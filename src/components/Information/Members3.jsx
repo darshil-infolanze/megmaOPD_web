@@ -46,7 +46,7 @@ const Members3 = () => {
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: (values) => {
-      console.log("Member 1 Data:", JSON.stringify(values, null, 2));
+      console.log("Member 3 Data:", JSON.stringify(values, null, 2));
       localStorage.setItem("member1", JSON.stringify(values));
       navigate("/payment");
     },
@@ -105,12 +105,12 @@ const Members3 = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
             <div>
               <label className="block text-md font-medium text-violet-800 mb-1">
-                Member 2
+                Member 3
               </label>
               <input
                 type="text"
                 name="name"
-                placeholder="Member 2 Full Name"
+                placeholder="Member 3 Full Name"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.name}
