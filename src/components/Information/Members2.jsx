@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import { FaCheck } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router";
 
-const Members2= () => {
+const Members2 = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -48,7 +48,7 @@ const Members2= () => {
     onSubmit: (values) => {
       console.log("Member 2 Data:", JSON.stringify(values, null, 2));
       localStorage.setItem("member1", JSON.stringify(values));
-      navigate("/member3");
+      navigate("/members3");
     },
   });
 
@@ -67,31 +67,31 @@ const Members2= () => {
               <div key={index} className="flex flex-col items-center flex-1">
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300
-                    ${
-                      isCompleted
-                        ? "bg-emerald-500 text-white border-2 border-emerald-500"
-                        : ""
-                    }
-                    ${
-                      isActive
-                        ? "bg-white border-2 border-violet-700 text-violet-700"
-                        : ""
-                    }
-                    ${
-                      !isCompleted && !isActive
-                        ? "bg-slate-200 border border-slate-300 text-slate-400"
-                        : ""
-                    }
-                  `}
+                            ${
+                              isCompleted
+                                ? "bg-emerald-500 text-white border-2 border-emerald-500"
+                                : ""
+                            }
+                            ${
+                              isActive
+                                ? "bg-white border-2 border-violet-700 text-violet-700"
+                                : ""
+                            }
+                            ${
+                              !isCompleted && !isActive
+                                ? "bg-slate-200 border border-slate-300 text-slate-400"
+                                : ""
+                            }
+                          `}
                 >
                   {isCompleted ? <FaCheck size={16} /> : index + 1}
                 </div>
                 <span
                   className={`mt-2 text-center text-xs sm:text-sm whitespace-nowrap
-                    ${isCompleted ? "text-emerald-600 font-medium" : ""}
-                    ${isActive ? "text-violet-800 font-semibold" : ""}
-                    ${!isCompleted && !isActive ? "text-slate-500" : ""}
-                  `}
+                            ${isCompleted ? "text-emerald-600 font-medium" : ""}
+                            ${isActive ? "text-violet-800 font-semibold" : ""}
+                            ${!isCompleted && !isActive ? "text-slate-500" : ""}
+                          `}
                 >
                   {step}
                 </span>
@@ -207,7 +207,7 @@ const Members2= () => {
                 <p className="text-red-600 text-sm mt-1">{formik.errors.dob}</p>
               )}
             </div>
-               <div>
+            <div>
               <label className="block text-md font-medium text-violet-800 mb-1">
                 Gender <span className="text-red-500">*</span>
               </label>

@@ -10,14 +10,14 @@ const Submit = () => {
     price: 0,
   };
 
-  const sgst = Math.round(storedPlan.price * 0.09);
-  const cgst = Math.round(storedPlan.price * 0.09);
-  const total = storedPlan.price + sgst + cgst;
+  // const sgst = Math.round(storedPlan.price * 0.09);
+  // const cgst = Math.round(storedPlan.price * 0.09);
+  // const total = storedPlan.price + sgst + cgst;
 
   const handlePayment = () => {
     console.log("Payment method:", selected);
     console.log("Selected Plan:", storedPlan.name);
-    console.log("Total Amount:", total);
+    // console.log("Total Amount:", total);
     alert("Proceeding to payment gateway...");
     navigate("/success");
   };
@@ -46,22 +46,22 @@ const Submit = () => {
             </tr>
             <tr className="bg-gray-50 font-semibold">
               <td className="p-4 border-t border-gray-300" colSpan="2">
-                Subtotal:
+                Total:
               </td>
               <td className="p-4 border-t border-gray-300">
                 ₹{storedPlan.price.toLocaleString()}
               </td>
             </tr>
             <tr className="bg-white font-semibold">
-              <td className="p-4 border-t border-gray-300" colSpan="2">
+              {/* <td className="p-4 border-t border-gray-300" colSpan="2">
                 Total:
-              </td>
-              <td className="p-4 border-t border-gray-300">
+              </td> */}
+              {/* <td className="p-4 border-t border-gray-300">
                 ₹{total.toLocaleString()}
                 <span className="block text-sm text-gray-500">
                  <small> (includes ₹{sgst} SGST 9%, ₹{cgst} CGST 9%)</small>
                 </span>
-              </td>
+              </td> */}
             </tr>
           </tbody>
         </table>

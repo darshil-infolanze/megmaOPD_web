@@ -67,31 +67,31 @@ const Members3 = () => {
               <div key={index} className="flex flex-col items-center flex-1">
                 <div
                   className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300
-                    ${
-                      isCompleted
-                        ? "bg-emerald-500 text-white border-2 border-emerald-500"
-                        : ""
-                    }
-                    ${
-                      isActive
-                        ? "bg-white border-2 border-violet-700 text-violet-700"
-                        : ""
-                    }
-                    ${
-                      !isCompleted && !isActive
-                        ? "bg-slate-200 border border-slate-300 text-slate-400"
-                        : ""
-                    }
-                  `}
+                            ${
+                              isCompleted
+                                ? "bg-emerald-500 text-white border-2 border-emerald-500"
+                                : ""
+                            }
+                            ${
+                              isActive
+                                ? "bg-white border-2 border-violet-700 text-violet-700"
+                                : ""
+                            }
+                            ${
+                              !isCompleted && !isActive
+                                ? "bg-slate-200 border border-slate-300 text-slate-400"
+                                : ""
+                            }
+                          `}
                 >
                   {isCompleted ? <FaCheck size={16} /> : index + 1}
                 </div>
                 <span
                   className={`mt-2 text-center text-xs sm:text-sm whitespace-nowrap
-                    ${isCompleted ? "text-emerald-600 font-medium" : ""}
-                    ${isActive ? "text-violet-800 font-semibold" : ""}
-                    ${!isCompleted && !isActive ? "text-slate-500" : ""}
-                  `}
+                            ${isCompleted ? "text-emerald-600 font-medium" : ""}
+                            ${isActive ? "text-violet-800 font-semibold" : ""}
+                            ${!isCompleted && !isActive ? "text-slate-500" : ""}
+                          `}
                 >
                   {step}
                 </span>
