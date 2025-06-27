@@ -207,7 +207,7 @@ const Members2= () => {
                 <p className="text-red-600 text-sm mt-1">{formik.errors.dob}</p>
               )}
             </div>
-            <div>
+               <div>
               <label className="block text-md font-medium text-violet-800 mb-1">
                 Gender <span className="text-red-500">*</span>
               </label>

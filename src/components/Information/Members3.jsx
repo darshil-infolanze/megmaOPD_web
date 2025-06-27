@@ -173,7 +173,7 @@ const Members3 = () => {
                 Phone/Mobile
               </label>
               <input
-                type="tel"
+                type="number"
                 name="phone"
                 placeholder="Mobile Number"
                 onChange={formik.handleChange}
