@@ -6,11 +6,10 @@ import logo from "../../assets/logo.png"; // Adjust as necessary
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isPlansOpen, setIsPlansOpen] = useState(false);
+
   const [showModal, setShowModal] = useState(false);
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-  const togglePlans = () => setIsPlansOpen(!isPlansOpen);
 
   const formik = useFormik({
     initialValues: {
@@ -42,7 +41,6 @@ const Navbar = () => {
   return (
     <header className="bg-white shadow-sm font-sans relative z-10">
       <nav className="container mx-auto flex items-center justify-evenly flex-wrap">
-
         {/* Logo + Hamburger */}
         <div className="flex items-center justify-between w-full md:w-auto">
           <Link to="/" className="flex items-center space-x-2">
@@ -85,16 +83,11 @@ const Navbar = () => {
             </Link>
 
             {/* Plans Dropdown */}
-            <div className="relative inline-block">
-              <button
-                onClick={togglePlans}
-                className="mt-4 font-bold text-slate-600 hover:text-violet-600 mr-4 px-3 py-2 flex items-center gap-1 transition-colors duration-300"
-              >
+            <div className="relative inline-block group">
+              <button className="mt-4 font-bold text-slate-600 hover:text-violet-600 mr-4 px-3 py-2 flex items-center gap-1 transition-colors duration-300">
                 <span className="text-lg">Plans</span>
                 <svg
-                  className={`h-4 w-4 transition-transform ${
-                    isPlansOpen ? "rotate-180" : ""
-                  }`}
+                  className="h-4 w-4 transition-transform group-hover:rotate-180"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -107,11 +100,8 @@ const Navbar = () => {
                   />
                 </svg>
               </button>
-              <div
-                className={`absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 transition-all ${
-                  isPlansOpen ? "opacity-100 visible" : "opacity-0 invisible"
-                }`}
-              >
+
+              <div className="absolute left-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
                 <div className="py-1">
                   <Link
                     to="/magmapremiumcare"
@@ -172,7 +162,7 @@ const Navbar = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.name}
-                     className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+                        className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
                         placeholder="Enter your name"
                       />
                       {formik.touched.name && formik.errors.name && (
@@ -193,7 +183,7 @@ const Navbar = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.email}
-                       className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+                        className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
                         placeholder="you@example.com"
                       />
                       {formik.touched.email && formik.errors.email && (
@@ -214,7 +204,7 @@ const Navbar = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.phone}
-                       className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+                        className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
                         placeholder="+91 1234567890"
                       />
                       {formik.touched.phone && formik.errors.phone && (
@@ -234,7 +224,7 @@ const Navbar = () => {
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
                         value={formik.values.plan}
-                       className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+                        className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
                       >
                         <option value="">Select Plan</option>
                         <option value="shield">Magma Health Shield</option>
