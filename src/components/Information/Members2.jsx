@@ -48,7 +48,7 @@ const Members2 = () => {
     onSubmit: (values) => {
       console.log("Member 2 Data:", JSON.stringify(values, null, 2));
       localStorage.setItem("member1", JSON.stringify(values));
-      navigate("/members3");
+      navigate("/member3");
     },
   });
 
