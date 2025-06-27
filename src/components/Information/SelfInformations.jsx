@@ -236,7 +236,7 @@ const SelfInformations = () => {
             </div>
 
             {/* Gender */}
-            <div>
+             <div>
               <label className="block text-md font-medium text-violet-800 mb-1">
                 Gender <span className="text-red-500">*</span>
               </label>
