@@ -21,9 +21,10 @@ import MagmaPremiumCare from "./components/primium/magmapremiumcare";
 import MagmaHealthShield from "./components/Subscribe/MagmaHealthShield";
 import SelfInformations from "./components/Information/SelfInformations";
 
-import Members3 from "./components/Information/Membrs3";
+
 import Members1 from "./components/Information/Members1";
 import Members2 from "./components/Information/Members2";
+import Members3 from "./components/Information/Members3";
 import Payments from "./components/Information/Payments";
 import Submit from "./components/Information/Submit";
 import Privacy from "./components/Policy/Privacy";
@@ -58,14 +59,15 @@ const App = () => {
           <Route path="/team" element={<OurTeam />} />
 
         <Route path="/MagmaPremiumCare" element={<MagmaPremiumCare/>}/>
-          {/* <Route path="/MagmaPremiumCare" element={<MagmaPremiumCare />} /> */}
+          
           <Route path="/subscribe" element={<Subscribe />} />
           <Route path="/MagmaHealthShield" element={<MagmaHealthShield />} />
 
           <Route path="/selfinformation" element={<SelfInformations />} />
           <Route path="/member1" element={<Members1 />} />
           <Route path="/member2" element={<Members2 />} />
-          <Route path="/member3" element={<Members3 />} />
+          <Route path="/members3" element={<Members3/>}/>
+          
           <Route path="/payment" element={<Payments />} />
           <Route path="/submit" element={<Submit />} />
           <Route path="/privacy" element={<Privacy />} />
