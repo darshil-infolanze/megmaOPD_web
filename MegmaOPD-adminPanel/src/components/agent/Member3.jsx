@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { FaCheck } from "react-icons/fa";
-import axiosConfig from '../../redux/axiosConfig';
+import axiosConfig from "../../redux/axiosConfig";
 import { useLocation, useNavigate } from "react-router";
 
 const Member3 = () => {
@@ -20,10 +20,12 @@ const Member3 = () => {
     const member3 = JSON.parse(localStorage.getItem("member3") || "{}");
     window.scrollTo({ top: 0, behavior: "smooth" });
     const combined = {
-      selfInfo: self,
+      ...self,
       members: [member1, member2, member3],
+      plan: self.plan,
+      amountPaid: self.amountPaid,
     };
-
+    console.log(combined);
     setFormData(combined);
   }, []);
   const steps = [
@@ -59,43 +61,40 @@ const Member3 = () => {
     }),
     validateOnBlur: true,
     validateOnChange: true,
-   onSubmit: async (values) => {
-  console.log("Member 3 Data:", JSON.stringify(values, null, 2));
-  
-  // Save to localStorage
-  localStorage.setItem("member3", JSON.stringify(values));
+    onSubmit: async (values) => {
+      console.log("Member 3 Data:", JSON.stringify(values, null, 2));
+      // Save to localStorage
+      localStorage.setItem("member3", JSON.stringify(values));
+      // Optional loading state
+      setLoading(true);
 
-  // Optional loading state
-  setLoading(true);
+      try {
+        // Submit to backend
+        const { data } = await axiosConfig.post("/submit-agent", formData);
 
-  try {
-    // Submit to backend
-    const { data } = await axiosConfig.post("/submit-agent",formData);
-
-    // If payment link received, set it
-    if (data.paymentLink) {
-      setPaymentLink(data.paymentLink);
-    } else {
-      alert("Something went wrong generating the link.");
-    }
-  } catch (err) {
-    console.error(err);
-    alert("Error submitting the form.");
-  } finally {
-    setLoading(false);
-  }
-}
-
+        // If payment link received, set it
+        if (data.paymentLink) {
+          setPaymentLink(data.paymentLink);
+        } else {
+          alert("Something went wrong generating the link.");
+        }
+      } catch (err) {
+        console.error(err);
+        alert("Error submitting the form.");
+      } finally {
+        setLoading(false);
+      }
+    },
   });
 
   const today = new Date().toISOString().split("T")[0]; // 👈 for max DOB
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-violet-500 to-slate-600 flex items-center justify-center p-4 font-inter">
-      <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 max-w-4xl w-full mx-auto my-8">
+    <div className="flex items-center justify-center min-h-screen p-4 bg-gradient-to-br from-slate-100 via-violet-500 to-slate-600 font-inter">
+      <div className="w-full max-w-4xl p-6 mx-auto my-8 bg-white shadow-2xl rounded-3xl sm:p-8 lg:p-10">
         {/* Stepper */}
         <div className="overflow-x-auto">
-          <div className="flex justify-between items-center mb-8 sm:mb-10 relative">
+          <div className="relative flex items-center justify-between mb-8 sm:mb-10">
             <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 -z-10 mx-4"></div>
             {steps.map((step, index) => {
               const isCompleted = index < currentStepIndex;
@@ -142,7 +141,7 @@ const Member3 = () => {
         <form onSubmit={formik.handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
             <div>
-              <label className="block text-md font-medium text-violet-800 mb-1">
+              <label className="block mb-1 font-medium text-md text-violet-800">
                 Member 3
               </label>
               <input
@@ -152,16 +151,16 @@ const Member3 = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.name}
-                className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg h-11 text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
               />
               {formik.touched.name && formik.errors.name && (
-                <p className="text-red-600 text-sm mt-1">
+                <p className="mt-1 text-sm text-red-600">
                   {formik.errors.name}
                 </p>
               )}
             </div>
             <div>
-              <label className="block text-md font-medium text-violet-800 mb-1">
+              <label className="block mb-1 font-medium text-md text-violet-800">
                 Relation
               </label>
               <select
@@ -169,7 +168,7 @@ const Member3 = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.relation}
-                className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg h-11 text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
               >
                 <option value="">- Select -</option>
                 <option value="spouse">Spouse</option>
@@ -179,7 +178,7 @@ const Member3 = () => {
                 <option value="other">Other</option>
               </select>
               {formik.touched.relation && formik.errors.relation && (
-                <p className="text-red-600 text-sm mt-1">
+                <p className="mt-1 text-sm text-red-600">
                   {formik.errors.relation}
                 </p>
               )}
@@ -188,7 +187,7 @@ const Member3 = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
             <div>
-              <label className="block text-md font-medium text-violet-800 mb-1">
+              <label className="block mb-1 font-medium text-md text-violet-800">
                 Email
               </label>
               <input
@@ -198,16 +197,16 @@ const Member3 = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.email}
-                className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg h-11 text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
               />
               {formik.touched.email && formik.errors.email && (
-                <p className="text-red-600 text-sm mt-1">
+                <p className="mt-1 text-sm text-red-600">
                   {formik.errors.email}
                 </p>
               )}
             </div>
             <div>
-              <label className="block text-md font-medium text-violet-800">
+              <label className="block font-medium text-md text-violet-800">
                 Phone/Mobile
               </label>
               <input
@@ -217,10 +216,10 @@ const Member3 = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.phone}
-                className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg h-11 text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
               />
               {formik.touched.phone && formik.errors.phone && (
-                <p className="text-red-600 text-sm mt-1">
+                <p className="mt-1 text-sm text-red-600">
                   {formik.errors.phone}
                 </p>
               )}
@@ -229,7 +228,7 @@ const Member3 = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
             <div>
-              <label className="block text-md font-medium text-violet-800">
+              <label className="block font-medium text-md text-violet-800">
                 DOB
               </label>
               <input
@@ -239,14 +238,14 @@ const Member3 = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.dob}
-                className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+                className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg h-11 text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
               />
               {formik.touched.dob && formik.errors.dob && (
-                <p className="text-red-600 text-sm mt-1">{formik.errors.dob}</p>
+                <p className="mt-1 text-sm text-red-600">{formik.errors.dob}</p>
               )}
             </div>
             <div>
-              <label className="block text-md font-medium text-violet-800 mb-1">
+              <label className="block mb-1 font-medium text-md text-violet-800">
                 Gender <span className="text-red-500">*</span>
               </label>
               <div className="flex items-center gap-6 mt-4">
@@ -258,7 +257,7 @@ const Member3 = () => {
                     checked={formik.values.gender === "male"}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    className="text-violet-600 focus:ring-violet-500 border-gray-300"
+                    className="border-gray-300 text-violet-600 focus:ring-violet-500"
                   />
                   <span className="ml-2 text-sm text-violet-800">Male</span>
                 </label>
@@ -270,13 +269,13 @@ const Member3 = () => {
                     checked={formik.values.gender === "female"}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    className="text-violet-600 focus:ring-violet-500 border-gray-300"
+                    className="border-gray-300 text-violet-600 focus:ring-violet-500"
                   />
                   <span className="ml-2 text-sm text-violet-800">Female</span>
                 </label>
               </div>
               {formik.touched.gender && formik.errors.gender && (
-                <p className="text-red-500 text-xs mt-1">
+                <p className="mt-1 text-xs text-red-500">
                   {formik.errors.gender}
                 </p>
               )}
@@ -287,34 +286,34 @@ const Member3 = () => {
             <button
               type="button"
               onClick={() => navigate("/member2")}
-              className="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition transform hover:scale-105"
+              className="px-6 py-2 font-bold text-white transition transform bg-gray-600 rounded-lg shadow-md hover:bg-gray-700 hover:scale-105"
             >
               Previous
             </button>
             <button
-            type="submit"
-            className="w-60 px-4 py-2 font-semibold text-white bg-purple-600 rounded hover:bg-purple-700"
-            disabled={loading}
-          >
-            {loading ? "Generating..." : "Generate Payment Link"}
-          </button>
+              type="submit"
+              className="px-4 py-2 font-semibold text-white bg-purple-600 rounded w-60 hover:bg-purple-700"
+              disabled={loading}
+            >
+              {loading ? "Generating..." : "Generate Payment Link"}
+            </button>
           </div>
         </form>
-         {paymentLink && (
-        <div className="p-4 mt-6 text-green-800 bg-green-100 border rounded">
-          <p className="mb-1 font-medium">
-            Send this payment link to the user:
-          </p>
-          <a
-            href={paymentLink}
-            className="text-blue-600 underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {paymentLink}
-          </a>
-        </div>
-      )}
+        {paymentLink && (
+          <div className="p-4 mt-6 text-green-800 bg-green-100 border rounded">
+            <p className="mb-1 font-medium">
+              Send this payment link to the user:
+            </p>
+            <a
+              href={paymentLink}
+              className="text-blue-600 underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {paymentLink}
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );

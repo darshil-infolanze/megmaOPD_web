@@ -37,6 +37,8 @@ const SelfInformation = () => {
       state: "",
       pincode: "",
       country: "india",
+      plan: "",
+      amountPaid: "",
     },
     validationSchema: Yup.object({
       selfName: Yup.string().required("This field is required"),
@@ -66,13 +68,15 @@ const SelfInformation = () => {
         .matches(/^[1-9][0-9]{5}$/, "Enter a valid 6-digit PIN code")
         .required("This field is required"),
       country: Yup.string().required("This field is required"),
+      plan: Yup.string().required("Plan is required"),
+      amountPaid: Yup.number().required("Amount is required"),
     }),
     validateOnBlur: true, // ✅ enable validation on blur
     validateOnChange: true, // ✅ enable validation on change
 
     onSubmit: async (values) => {
       console.log("Self Info Submitted:", JSON.stringify(values, null, 2));
-      localStorage.setItem("Self Info", JSON.stringify(values));
+      localStorage.setItem("selfInfo", JSON.stringify(values));
       navigate("/member1");
     },
   });
@@ -268,6 +272,48 @@ const SelfInformation = () => {
                   {formik.errors.gender}
                 </p>
               )}
+            </div>
+          </div>
+          {/* Plan and Amount */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label className="block text-md font-medium text-violet-800 mb-1">
+                Plan <span className="text-red-500">*</span>
+              </label>
+              <select
+                name="plan"
+                onChange={e => {
+                  formik.handleChange(e);
+                  // Set amountPaid based on plan
+                  const value = e.target.value;
+                  let amount = "";
+                  if (value === "Magma Premium Care") amount = 29999;
+                  if (value === "Magma Health Shield") amount = 49999;
+                  formik.setFieldValue("amountPaid", amount);
+                }}
+                onBlur={formik.handleBlur}
+                value={formik.values.plan}
+                className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+              >
+                <option value="">Select Plan</option>
+                <option value="Magma Premium Care">Magma Premium Care</option>
+                <option value="Magma Health Shield">Magma Health Shield</option>
+              </select>
+              {formik.touched.plan && formik.errors.plan && (
+                <p className="text-red-500 text-xs mt-1">{formik.errors.plan}</p>
+              )}
+            </div>
+            <div>
+              <label className="block text-md font-medium text-violet-800 mb-1">
+                Amount
+              </label>
+              <input
+                type="number"
+                name="amountPaid"
+                value={formik.values.amountPaid}
+                readOnly
+                className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 bg-gray-100"
+              />
             </div>
           </div>
           {/* PAN and Aadhar */}
