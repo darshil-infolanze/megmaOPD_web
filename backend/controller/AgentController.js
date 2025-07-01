@@ -157,4 +157,6 @@ export const agentSubmit = async (req, res) => {
         console.error('Error in agent form submit:', error);
         res.status(500).json({ message: 'Server error' });
     }
+    
 }
+
