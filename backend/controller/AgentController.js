@@ -81,7 +81,7 @@ import { SelfInfo } from '../models/SelfInfoModel.js';
 import { sendPaymentLinkEmail } from '../utils/email.js';
 
 export const agentSubmit = async (req, res) => {
-    console.log("AGENT SUBMIT BODY:", JSON.stringify(req.body, null, 2));
+    // console.log("AGENT SUBMIT BODY:", JSON.stringify(req.body, null, 2));
     try {
         const {
             selfName,
@@ -129,7 +129,7 @@ export const agentSubmit = async (req, res) => {
             accept_partial: false,
             customer: {
                 name: selfName,
-                contact: String(phone), // Ensure phone is a string
+                contact: String(phone), 
                 email: email
             },
             notify: {

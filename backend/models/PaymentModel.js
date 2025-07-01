@@ -7,11 +7,11 @@ const PaymentSchema = new mongoose.Schema({
   },
   razorpay_payment_id: {
     type: String,
-    required: true,
+    // required: true, // Made optional for payment link webhook
   },
   razorpay_signature: {
     type: String,
-    required: true,
+    // required: true, // Made optional for payment link webhook
   },
   plan: {
     name: String,
