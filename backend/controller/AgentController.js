@@ -123,30 +123,30 @@ export const agentSubmit = async (req, res) => {
             members,
         });
         // Step 2: Create Razorpay Payment Link
+        const initialReferenceId = `${newForm._id.toString()}_${Date.now()}`;
         const paymentLink = await instance.paymentLink.create({
             amount: amountPaid * 100, // in paise
             currency: 'INR',
             accept_partial: false,
             customer: {
                 name: selfName,
-                contact: String(phone), 
+                contact: String(phone), // Ensure phone is a string
                 email: email
             },
             notify: {
                 sms: true,
                 email: true
             },
-            reference_id: newForm._id.toString(),
+            reference_id: initialReferenceId,
             description: `Payment for ${plan}`,
             callback_url: `http://localhost:5173/payment-success?ref_id=${newForm._id}`,
             callback_method: 'get'
         });
-   
 
-        
         // Step 3: Save payment link in DB
         newForm.paymentLinkId = paymentLink.id;
         newForm.paymentLinkUrl = paymentLink.short_url;
+        newForm.paymentLinkRefId = initialReferenceId;
         await newForm.save();
         await sendPaymentLinkEmail(email, paymentLink.short_url);
 
@@ -160,4 +160,50 @@ export const agentSubmit = async (req, res) => {
         res.status(500).json({ message: 'Server error' });
     }    
 }
+
+export const regeneratePaymentLink = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const form = await SelfInfo.findById(id);
+    if (!form) return res.status(404).json({ message: "User not found" });
+
+    // Create new payment link
+    const newReferenceId = `${form._id.toString()}_${Date.now()}`;
+    const paymentLink = await instance.paymentLink.create({
+      amount: form.amountPaid * 100,
+      currency: 'INR',
+      accept_partial: false,
+      customer: {
+        name: form.selfName,
+        contact: String(form.phone),
+        email: form.email
+      },
+      notify: {
+        sms: true,
+        email: true
+      },
+      reference_id: newReferenceId,
+      description: `Payment for ${form.plan}`,
+      callback_url: `http://localhost:5173/payment-success?ref_id=${form._id}`,
+      callback_method: 'get'
+    });
+
+    // Update SelfInfo with new payment link and reference id
+    form.paymentLinkId = paymentLink.id;
+    form.paymentLinkUrl = paymentLink.short_url;
+    form.paymentLinkRefId = newReferenceId;
+    await form.save();
+
+    // Optionally, email the new link
+    await sendPaymentLinkEmail(form.email, paymentLink.short_url);
+
+    res.status(200).json({
+      message: "Payment link regenerated",
+      paymentLink: paymentLink.short_url
+    });
+  } catch (error) {
+    console.error("Error regenerating payment link:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+};
 

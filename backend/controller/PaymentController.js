@@ -90,7 +90,7 @@ export const handleRazorpayWebhook = async (req, res) => {
       if (event.event === "payment_link.paid") {
         const refId = event.payload.payment_link.entity.reference_id;
         console.log("[Webhook] payment_link.paid for refId:", refId);
-        form = await SelfInfo.findById(refId);
+        form = await SelfInfo.findOne({ paymentLinkRefId: refId });
       } else { // This handles 'order.paid'
         const orderId = event.payload.payment.entity.order_id;
         console.log("[Webhook] order.paid for order_id:", orderId);

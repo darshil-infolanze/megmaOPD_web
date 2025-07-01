@@ -27,6 +27,7 @@ const selfInfoSchema = new mongoose.Schema({
   paymentStatus: { type: String, enum: ['pending', 'paid'], default: 'pending' },
   paymentLinkId: { type: String },  // For Razorpay Payment Link tracking
   paymentLinkUrl: { type: String },
+  paymentLinkRefId: { type: String },
   submittedBy: {
     type: String,
     enum: ['user', 'agent'],

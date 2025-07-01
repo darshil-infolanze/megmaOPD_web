@@ -16,9 +16,9 @@ export const getDashboard = createAsyncThunk("business/getDashboard", async () =
 
 export const getUser = createAsyncThunk(
   "business/getUser",
-  async () => {
+  async ({ page = 1, limit = 10 } = {}) => {
     try {
-      const response = await axiosConfig.get("users");
+      const response = await axiosConfig.get(`users?page=${page}&limit=${limit}`);
       return response.data;
     } catch (error) {
       throw (

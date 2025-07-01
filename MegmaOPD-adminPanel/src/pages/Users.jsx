@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser } from "../redux/features/businessSlice";
 
@@ -6,9 +6,14 @@ function Users() {
   const dispatch = useDispatch();
   const { user, loading, error } = useSelector((state) => state.business);
 
+  const [page, setPage] = useState(1);
+  const [limit] = useState(10);
+  const total = user?.total || 0;
+  const totalPages = Math.ceil(total / limit);
+
   useEffect(() => {
-    dispatch(getUser());
-  }, [dispatch]);
+    dispatch(getUser({ page, limit }));
+  }, [dispatch, page, limit]);
 
   // user.users is the array from backend
   const users = user && Array.isArray(user.users) ? user.users : [];
@@ -28,6 +33,7 @@ function Users() {
           ) : error ? (
             <div className="py-10 text-center text-red-500">{error}</div>
           ) : (
+            <>
             <table className="min-w-full bg-white border rounded shadow text-sm">
               <thead className="bg-gray-100">
                 <tr>
@@ -82,6 +88,29 @@ function Users() {
                 )}
               </tbody>
             </table>
+            {/* Pagination Controls */}
+            <div className="flex justify-between items-center mt-4">
+              <span className="text-sm text-gray-600">
+                Page {page} of {totalPages}
+              </span>
+              <div>
+                <button
+                  className="px-3 py-1 mr-2 bg-gray-200 rounded disabled:opacity-50"
+                  onClick={() => setPage((p) => Math.max(1, p - 1))}
+                  disabled={page === 1}
+                >
+                  Prev
+                </button>
+                <button
+                  className="px-3 py-1 bg-gray-200 rounded disabled:opacity-50"
+                  onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
+                  disabled={page === totalPages || totalPages === 0}
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+            </>
           )}
         </div>
       </div>
