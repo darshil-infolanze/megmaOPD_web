@@ -1,5 +1,5 @@
 import React from "react";
-import FeatureCard from "./FeatureCard"; // path depends on your folder structure
+import FeatureCard from "./Featurecard"; // path depends on your folder structure
 
 const FeaturesSection = () => {
   const features = [
