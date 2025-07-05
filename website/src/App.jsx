@@ -17,7 +17,7 @@ import TestimonialSlider from "./components/Hero/Testimonials";
 import PartnerSlider from "./components/Services/PartnerSlider";
 import CareBeyondCoverage from "./components/Banner/CareBeyond";
 
-import MagmaPremiumCare from "./components/primium/magmapremiumcare";
+import MagmaPremiumCare from "./components/primium/MagmaPremiumCare";
 import MagmaHealthShield from "./components/Subscribe/MagmaHealthShield";
 import SelfInformations from "./components/Information/SelfInformations";
 
