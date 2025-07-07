@@ -26,6 +26,7 @@ app.get('/', (req, res) => {
 });
 
 
+
 app.use('/api',PaymentRoute);
 app.use("/api/admin", AdminRoutes);
 app.use("/api/user", userRoutes);
