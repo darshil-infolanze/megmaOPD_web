@@ -3,7 +3,7 @@ import axios from "axios";
 
 const axiosConfig = axios.create({
   // baseURL: "http://localhost:4000/api/admin/",
-  baseURL: "http://server.magmaopd.in:4000/api/admin/",
+  baseURL: "http://server.magmaopd.in/api/admin/",
   headers: {
     "Content-Type": "application/json",
   },

@@ -54,7 +54,7 @@ const Submit = () => {
           try {
             const verifyRes = await fetch(
               // "http://localhost:4000/api/paymentverification",
-              "http://server.magmaopd.in:4000/api/paymentverification",
+              "http://server.magmaopd.in/api/paymentverification",
 
               {
                 method: "POST",
@@ -94,7 +94,7 @@ const Submit = () => {
 
             const backendRes = await fetch(
               // "http://localhost:4000/api/user/submitinfo",
-              "http://server.magmaopd.in:4000/api/user/submitinfo",
+              "http://server.magmaopd.in/api/user/submitinfo",
 
               {
                 method: "POST",
