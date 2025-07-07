@@ -53,7 +53,9 @@ const Submit = () => {
 
           try {
             const verifyRes = await fetch(
-              "http://localhost:4000/api/paymentverification",
+              // "http://localhost:4000/api/paymentverification",
+              "http://server.magmaopd.in/api/paymentverification",
+
               {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -91,7 +93,9 @@ const Submit = () => {
             // console.log("Self Info from localStorage:", selfInfo);
 
             const backendRes = await fetch(
-              "http://localhost:4000/api/user/submitinfo",
+              // "http://localhost:4000/api/user/submitinfo",
+              "http://server.magmaopd.in/api/user/submitinfo",
+
               {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
