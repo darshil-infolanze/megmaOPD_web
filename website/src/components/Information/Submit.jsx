@@ -94,7 +94,7 @@ const Submit = () => {
 
             const backendRes = await fetch(
               // "http://localhost:4000/api/user/submitinfo",
-              "http://server.magmaopd.in/api/user/submitinfo",
+              "http://server.magmaopd.in:4000/api/user/submitinfo",
 
               {
                 method: "POST",
