@@ -2,7 +2,8 @@ import axios from "axios";
 // import { store } from "./store";
 
 const axiosConfig = axios.create({
-  baseURL: "http://localhost:4000/api/admin/",
+  // baseURL: "http://localhost:4000/api/admin/",
+  baseURL: `${import.meta.env.VITE_SERVER_URL}/api/admin/`,
   headers: {
     "Content-Type": "application/json",
   },
