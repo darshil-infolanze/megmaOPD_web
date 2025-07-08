@@ -139,7 +139,8 @@ export const agentSubmit = async (req, res) => {
             },
             reference_id: initialReferenceId,
             description: `Payment for ${plan}`,
-            callback_url: `http://localhost:5173/payment-success?ref_id=${newForm._id}`,
+            // callback_url: `http://localhost:5173/payment-success?ref_id=${newForm._id}`,
+            callback_url: `http://www.magmaopd.in/payment-success?ref_id=${newForm._id}`,
             callback_method: 'get'
         });
 
@@ -184,7 +185,8 @@ export const regeneratePaymentLink = async (req, res) => {
       },
       reference_id: newReferenceId,
       description: `Payment for ${form.plan}`,
-      callback_url: `http://localhost:5173/payment-success?ref_id=${form._id}`,
+      // callback_url: `http://localhost:5173/payment-success?ref_id=${form._id}`,
+      callback_url: `http://www.magmaopd.in/payment-success?ref_id=${form._id}`,
       callback_method: 'get'
     });
 

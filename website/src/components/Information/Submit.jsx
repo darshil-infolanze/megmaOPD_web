@@ -19,7 +19,7 @@ const Submit = () => {
 
   const handlePayment = async () => {
     const res = await loadRazorpayScript();
-    const { key } = await fetch("http://localhost:4000/api/getkey").then(
+    const { key } = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/getkey`).then(
       (res) => res.json()
     );
 
@@ -29,7 +29,7 @@ const Submit = () => {
     }
 
     try {
-      const orderRes = await fetch("http://localhost:4000/api/checkout", {
+      const orderRes = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/checkout`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount: total }),
@@ -53,7 +53,9 @@ const Submit = () => {
 
           try {
             const verifyRes = await fetch(
-              "http://localhost:4000/api/paymentverification",
+              // "http://localhost:4000/api/paymentverification",
+              `${import.meta.env.VITE_SERVER_URL}/api/paymentverification`,
+
               {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -91,7 +93,9 @@ const Submit = () => {
             // console.log("Self Info from localStorage:", selfInfo);
 
             const backendRes = await fetch(
-              "http://localhost:4000/api/user/submitinfo",
+              // "http://localhost:4000/api/user/submitinfo",
+              `${import.meta.env.VITE_SERVER_URL}/api/user/submitinfo`,
+
               {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

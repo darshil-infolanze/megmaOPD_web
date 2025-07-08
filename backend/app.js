@@ -11,11 +11,21 @@ config({path:'./config/config.env' })
 export const app=express(); 
 app.use(cors());
 
+app.get('/', (req, res) => {
+  res.send('Server is running ✅');
+});
+
 // Razorpay Webhook - MUST be before express.json()
 app.post("/api/webhook", express.raw({ type: "application/json" }), handleRazorpayWebhook);
 
 app.use(express.json()); 
 app.use(express.urlencoded({extended:true}));
+
+app.get('/', (req, res) => {
+  res.send('Server is running ✅');
+});
+
+
 
 app.use('/api',PaymentRoute);
 app.use("/api/admin", AdminRoutes);
