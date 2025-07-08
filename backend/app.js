@@ -21,12 +21,6 @@ app.post("/api/webhook", express.raw({ type: "application/json" }), handleRazorp
 app.use(express.json()); 
 app.use(express.urlencoded({extended:true}));
 
-app.get('/', (req, res) => {
-  res.send('Server is running ✅');
-});
-
-
-
 app.use('/api',PaymentRoute);
 app.use("/api/admin", AdminRoutes);
 app.use("/api/user", userRoutes);

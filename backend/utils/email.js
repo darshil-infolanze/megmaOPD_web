@@ -24,7 +24,7 @@ export const sendPaymentLinkEmail = async (to, paymentLink) => {
       <h2>Thank you for registering!</h2>
       <p>Please click the link below to complete your payment:</p>
       <a href="${paymentLink}" target="_blank">${paymentLink}</a>
-      <p>If you have any questions, contact us at support@smart-health.co.in</p>
+      <p>If you have any questions, contact us at support@magmaopd.in</p>
     `,
   };
 
