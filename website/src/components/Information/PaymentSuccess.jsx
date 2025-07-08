@@ -76,7 +76,7 @@ const PaymentSuccess = () => {
       try {
         const { data } = await axios.get(
           // `http://localhost:4000/api/payment-status/${paymentLinkId}`
-          `http://server.magmaopd.in/api/payment-status/${paymentLinkId}`
+          `${import.meta.env.VITE_SERVER_URL}/api/payment-status/${paymentLinkId}`
 
         );
         setPaymentData(data);
