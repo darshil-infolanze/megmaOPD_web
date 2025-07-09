@@ -68,6 +68,7 @@ const PaymentSuccess = () => {
   const [status, setStatus] = useState(paymentLinkId ? "Verifying payment..." : "success");
   const [error, setError] = useState("");
   const [paymentData, setPaymentData] = useState(null);
+  console.log('check',paymentData);
 
   useEffect(() => {
     const verifyPayment = async () => {
@@ -133,7 +134,7 @@ const PaymentSuccess = () => {
         </p>
 
         <div className="p-4 text-left border border-gray-200 shadow-inner bg-gray-50 rounded-xl">
-          <h2 className="mb-2 text-lg font-semibold text-gray-800">Payment Details:</h2>
+          <h2 className="mb-2 text-lg font-semibold text-gray-800">Payment Details</h2>
           <div className="space-y-2 text-sm text-gray-700">
             {isAgentFlow ? (
               <>

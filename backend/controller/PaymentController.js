@@ -66,21 +66,36 @@ export const PaymentVerification = async (req, res) => {
 
 
 export const handleRazorpayWebhook = async (req, res) => {
+  console.log("[Webhook] Incoming request headers:", req.headers);
+  console.log("[Webhook] Incoming request body:", req.body);
   const secret = process.env.RAZORPAY_WEBHOOK_SECRET;
   const signature = req.headers["x-razorpay-signature"];
 
-  const digest = crypto
-    .createHmac("sha256", secret)
-    .update(req.body)
-    .digest("hex");
+  let digest;
+  try {
+    digest = crypto
+      .createHmac("sha256", secret)
+      .update(req.body)
+      .digest("hex");
+    console.log("[Webhook] Calculated digest:", digest);
+  } catch (err) {
+    console.error("[Webhook] Error calculating digest:", err);
+    return res.status(500).json({ message: "Digest calculation error" });
+  }
 
   if (digest !== signature) {
-
+    console.error("[Webhook] Invalid signature!", { digest, signature });
     return res.status(400).json({ message: "Invalid signature" });
   }
 
-  // If the signature is valid, parse the body to get the event object
-  const event = JSON.parse(req.body.toString());
+  let event;
+  try {
+    event = JSON.parse(req.body.toString());
+    console.log("[Webhook] Parsed event:", event);
+  } catch (err) {
+    console.error("[Webhook] Error parsing event body:", err);
+    return res.status(400).json({ message: "Invalid event body" });
+  }
 
   console.log("🔔 Webhook Event:", event.event);
 
@@ -91,10 +106,12 @@ export const handleRazorpayWebhook = async (req, res) => {
         const refId = event.payload.payment_link.entity.reference_id;
         console.log("[Webhook] payment_link.paid for refId:", refId);
         form = await SelfInfo.findOne({ paymentLinkRefId: refId });
+        console.log("[Webhook] SelfInfo found:", form);
       } else { // This handles 'order.paid'
         const orderId = event.payload.payment.entity.order_id;
         console.log("[Webhook] order.paid for order_id:", orderId);
         form = await SelfInfo.findOne({ razorpayOrderId: orderId });
+        console.log("[Webhook] SelfInfo found:", form);
       }
 
       if (form) {
@@ -169,7 +186,7 @@ export const handleRazorpayWebhook = async (req, res) => {
           console.log("ℹ️ Payment status was already 'paid'. Skipping invoice.", form._id);
         }
       } else {
-        console.log("❌ No form found for this event.");
+        console.error("❌ No form found for this event.");
       }
     } catch (err) {
       console.error("❌ Error processing webhook event:", err);
