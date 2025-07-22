@@ -1,0 +1,66 @@
+name: Deploy to VPS
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
+        with:
+          ssh-private-key: |
+            -----BEGIN OPENSSH PRIVATE KEY-----
+            b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+            QyNTUxOQAAACDhfTDzsirxXGh+knebxeHg6XAz9pA3p5OK4J9pVB7Y0QAAAKAqJKOiKiSj
+            ogAAAAtzc2gtZWQyNTUxOQAAACDhfTDzsirxXGh+knebxeHg6XAz9pA3p5OK4J9pVB7Y0Q
+            AAAEB2T1c6fX743/A/WuROG5TgV7SoJXYImcOxTr+xrISwFuF9MPOyKvFcaH6Sd5vF4eDp
+            cDP2kDenk4rgn2lUHtjRAAAAF2t1c2ggbWV2YWRhQEtVU0gtTUVWQURBAQIDBAUG
+            -----END OPENSSH PRIVATE KEY-----
+
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: 147.93.105.242 # Replace with your VPS IP address
+          username: root # Replace with your SSH username
+          key: |
+            -----BEGIN OPENSSH PRIVATE KEY-----
+            b3BlbnNzaC1rZXktdjEAAAAABG5vbmUAAAAEbm9uZQAAAAAAAAABAAAAMwAAAAtzc2gtZW
+            QyNTUxOQAAACDhfTDzsirxXGh+knebxeHg6XAz9pA3p5OK4J9pVB7Y0QAAAKAqJKOiKiSj
+            ogAAAAtzc2gtZWQyNTUxOQAAACDhfTDzsirxXGh+knebxeHg6XAz9pA3p5OK4J9pVB7Y0Q
+            AAAEB2T1c6fX743/A/WuROG5TgV7SoJXYImcOxTr+xrISwFuF9MPOyKvFcaH6Sd5vF4eDp
+            cDP2kDenk4rgn2lUHtjRAAAAF2t1c2ggbWV2YWRhQEtVU0gtTUVWQURBAQIDBAUG
+            -----END OPENSSH PRIVATE KEY-----
+          port: 22
+          script: |
+            echo "📂 Going to project directory..."
+            cd /var/www/Megma/megmaOPD_web || exit 1
+
+            echo "🔄 Pulling latest code from GitHub..."
+            git pull origin dev || exit 1
+
+            echo "🚀 Restarting Backend with PM2..."
+            cd backend || exit 1
+            npm install || exit 1
+            pm2 restart megma-backend  || exit 1
+
+            echo "⚙️ Building Frontend..."
+            cd ../MegmaOPD-adminPanel || exit 1
+            npm install || exit 1
+            npm run build || exit 1
+
+            echo "⚙️ Building Frontend..."
+            cd ../website || exit 1
+            npm install || exit 1
+            npm run build || exit 1
+
+            echo "🔁 Restarting Nginx..."
+            sudo systemctl restart nginx || exit 1
+
+            echo "✅ Deployment finished!"
