@@ -27,6 +27,7 @@ const Submit = () => {
       alert("Razorpay SDK failed to load. Are you online?");
       return;
     }
+    
 
     try {
       const orderRes = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/checkout`, {
