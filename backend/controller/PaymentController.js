@@ -280,7 +280,7 @@ export const checkstatus = async (req, res) => {
     if (response.data.success === true) {
       const url = "http:localhost:5173/payment-success"
       return res.redirect(url);
-
+      
     }
     else {
       const url = "http:localhost:5173/payment-failure"
