@@ -7,6 +7,9 @@ import crypto from 'crypto'
 import { sendInvoiceEmail } from '../utils/email.js';
 import { generateInvoiceHtml } from '../utils/invoiceHtml.js';
 import puppeteer from 'puppeteer';
+import { request } from "http";
+import { response } from "express";
+import { error } from "console";
 
 // import { generateInvoicePDF } from '../utils/invoice.js';
 
@@ -60,7 +63,7 @@ export const PaymentVerification = async (req, res) => {
     res.status(200).json({ success: true, message: "Payment verified successfully" });
 
   } catch (err) {
-    res.status(500).json({ success: false, message: "Server error",err });
+    res.status(500).json({ success: false, message: "Server error", err });
   }
 };
 
@@ -200,3 +203,94 @@ export const handleRazorpayWebhook = async (req, res) => {
 
   res.status(200).json({ success: true });
 };
+const MERCHANT_KEY = "96434309-7796-489d-8924-ab56988a6076"
+const MERCHANT_ID = "PGTESTPAYUAT86"
+const MERCHANT_BASE_URL = "https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay"
+ const MERCHANT_STATUS_URL = "https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay/status"
+
+const redirectUrl = "http:localhost:4000/api/status"
+const successUrl = "http:localhost:5173/payment-success"
+const failureUrl = "http:localhost:5173/payment-failure"
+export const newpayment = async (req, res) => {
+  try {
+    const { merchantTransactionId, amount, MUID, name, number } = req.body;
+    // const merchantTransactionId = req.body.merchantTransactionId;
+    const data = {
+      merchantId: MERCHANT_ID,
+      merchantTransactionId: merchantTransactionId,
+      amount: req.body.amount * 100, // in paise
+      merchantUserId: req.body.MUID,
+      name: req.body.name,
+      redirectUrl: `${redirectUrl}/?id=${merchantTransactionId}`,
+      redirectMode: 'POST',
+      mobileNumber: req.body.number,
+      paymentInstrument: {
+        type: 'PAY_PAGE'
+      }
+    };
+    const payload = Buffer.from(JSON.stringify(paymentPayload)).toString('base64')
+    const keyIndex = 1;
+    const string = payload + '/pg/v1/pay' + MERCHANT_KEY
+    const sha256 = crypto.createHash('sha256').update(string).digest('hex');
+    const checksum = sha256 + '###' + keyIndex;
+
+    // const prod_Url= "https://api.phonepe.com/apis/hermes/pg/v1/pay"
+    const options = {
+      method: "POST",
+      url: MERCHANT_BASE_URL,
+      headers: {
+        accept: 'application/json',
+        'Content-Type': 'application/json',
+        'X-VERIFY': checksum
+      },
+      data: {
+        request: paylaod
+
+      }
+    }
+    const response = await axios.request(option);
+    console.log(response.data.data.instrumentResponse.redirectInfo.url)
+    res.status(200).json({ msg: "OK", url: response.data.data.instrumentResponse.redirectInfo.url })
+
+  }
+  catch (error) {
+    console.log("error in payment", error)
+    res.status(500).json({ error: 'Failed to initiate payment' })
+  }
+}
+
+export const checkstatus = async (req, res) => {
+  const merchantTransactionId = res.req.body.merchantTransactionId;
+  // const merchantId = res.req.body.merchantId;
+  const keyIndex = 1;
+  const string = `/pg/v1/status/${merchantId}/${merchantTransactionId}` + MERCHANT_KEY;
+  const sha256 = crypto.createHash('sha256').update(string).digest('hex');
+  const checksum = sha256 + '###' + keyIndex;
+  const options = {
+    method: "GET",
+    url:`${MERCHANT_STATUS_URL}/${MERCHANT_ID}/${merchantTransactionId}`,
+    headers: {
+      accept: 'application/json',
+      'Content-Type': 'application/json',
+      'X-VERIFY': checksum,
+      'X-MERCHANT-ID': MERCHANT_ID
+    },
+  }
+  axios.request(options).then(async (response) => {
+    if (response.data.success === true) {
+      const url = "http:localhost:5173/payment-success"
+      return res.redirect(url);
+      
+    }
+    else {
+      const url = "http:localhost:5173/payment-failure"
+      return res.redirect(url);
+    }
+  })
+    .catch((error) => {
+      console.log(error);
+    })
+}
+
+
+
