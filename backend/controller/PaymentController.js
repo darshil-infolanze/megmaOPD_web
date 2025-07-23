@@ -10,6 +10,7 @@ import puppeteer from 'puppeteer';
 import { request } from "http";
 import { response } from "express";
 import { error } from "console";
+import axios from "axios";
 
 // import { generateInvoicePDF } from '../utils/invoice.js';
 
@@ -206,35 +207,38 @@ export const handleRazorpayWebhook = async (req, res) => {
 const MERCHANT_KEY = "96434309-7796-489d-8924-ab56988a6076"
 const MERCHANT_ID = "PGTESTPAYUAT86"
 const MERCHANT_BASE_URL = "https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay"
- const MERCHANT_STATUS_URL = "https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay/status"
+const MERCHANT_STATUS_URL = "https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/status"
 
-const redirectUrl = "http:localhost:4000/api/status"
-const successUrl = "http:localhost:5173/payment-success"
-const failureUrl = "http:localhost:5173/payment-failure"
+// Use your actual frontend URL here:
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
+
+
 export const newpayment = async (req, res) => {
   try {
-    const { merchantTransactionId, amount, MUID, name, number } = req.body;
-    // const merchantTransactionId = req.body.merchantTransactionId;
+    const { merchantTransactionId, amount, MUID, name, number, email, planName } = req.body;
+    console.log('Received PhonePe payment request:', req.body);
     const data = {
       merchantId: MERCHANT_ID,
       merchantTransactionId: merchantTransactionId,
-      amount: req.body.amount * 100, // in paise
-      merchantUserId: req.body.MUID,
-      name: req.body.name,
-      redirectUrl: `${redirectUrl}/?id=${merchantTransactionId}`,
-      redirectMode: 'POST',
-      mobileNumber: req.body.number,
+      amount: amount * 100, // in paise
+      merchantUserId: MUID,
+      name: name,
+      // redirectUrl: `${FRONTEND_URL}/payment-success?phonepe_txn_id=${merchantTransactionId}`,
+      // redirectUrl: `${FRONTEND_URL}/payment-success`,
+      // redirectUrl: `http://localhost:5173/payment-success?phonepe_txn_id=${merchantTransactionId}`,
+      redirectUrl: `${FRONTEND_URL}/payment-success?phonepe_txn_id=${merchantTransactionId}`,
+
+      mobileNumber: number,
       paymentInstrument: {
         type: 'PAY_PAGE'
       }
     };
-    const payload = Buffer.from(JSON.stringify(paymentPayload)).toString('base64')
+    const payload = Buffer.from(JSON.stringify(data)).toString('base64');
     const keyIndex = 1;
-    const string = payload + '/pg/v1/pay' + MERCHANT_KEY
+    const string = payload + '/pg/v1/pay' + MERCHANT_KEY;
     const sha256 = crypto.createHash('sha256').update(string).digest('hex');
     const checksum = sha256 + '###' + keyIndex;
 
-    // const prod_Url= "https://api.phonepe.com/apis/hermes/pg/v1/pay"
     const options = {
       method: "POST",
       url: MERCHANT_BASE_URL,
@@ -244,26 +248,117 @@ export const newpayment = async (req, res) => {
         'X-VERIFY': checksum
       },
       data: {
-        request: paylaod
+        request: payload
+      }
+    };
+    console.log('Sending PhonePe payment request:', options);
+    const response = await axios.request(options);
+    const redirectUrl = response.data?.data?.instrumentResponse?.redirectInfo?.url;
+    console.log('PhonePe API response:', response.data);
+    console.log('Redirect URL:', redirectUrl);
 
+    // Save user info in Payment collection for PhonePe
+    try {
+      const paymentDoc = await Payment.create({
+
+        plan: { name: planName || '', price: amount },
+        userInfo: {
+          name: name,
+          email: email || '',
+          contact: number,
+          selfName: name,
+        },
+        amountPaid: amount,
+        phonepe_txn_id: merchantTransactionId,
+      });
+      console.log('Saved PhonePe payment to DB:', paymentDoc);
+    } catch (dbErr) {
+      console.error('Error saving PhonePe payment to DB:', dbErr);
+    }
+
+    if (redirectUrl) {
+      res.status(200).json({ msg: "OK", url: redirectUrl });
+    } else {
+      res.status(500).json({ error: 'Failed to get PhonePe redirect URL' });
+    }
+  } catch (error) {
+    console.log("error in payment", error);
+    res.status(500).json({ error: 'Failed to initiate payment', details: error.message });
+  }
+};
+
+// PhonePe payment status fetcher for frontend
+export const getPhonePePaymentStatus = async (req, res) => {
+  try {
+    const merchantTransactionId = req.params.txnId;
+    const keyIndex = 1;
+    const string = `/pg/v1/status/${MERCHANT_ID}/${merchantTransactionId}` + MERCHANT_KEY;
+    const sha256 = crypto.createHash('sha256').update(string).digest('hex');
+    const checksum = sha256 + '###' + keyIndex;
+    const options = {
+      method: "GET",
+      url: `${MERCHANT_STATUS_URL}/${MERCHANT_ID}/${merchantTransactionId}`,
+      headers: {
+        accept: 'application/json',
+        'Content-Type': 'application/json',
+        'X-VERIFY': checksum,
+        'X-MERCHANT-ID': MERCHANT_ID
+      },
+    };
+    const response = await axios.request(options);
+    // Look up user info in Payment collection
+    const paymentRecord = await Payment.findOne({ phonepe_txn_id: merchantTransactionId });
+
+    // Send receipt if payment is successful and not already sent
+    if (
+      response.data.success &&
+      response.data.code === 'PAYMENT_SUCCESS' &&
+      paymentRecord &&
+      !paymentRecord.receiptSent
+    ) {
+      try {
+        const invoiceData = {
+          name: paymentRecord.userInfo?.name || '',
+          email: paymentRecord.userInfo?.email || '',
+          address: '',
+          amount: paymentRecord.amountPaid || 0,
+          plan: paymentRecord.plan?.name || '',
+          invoiceNo: `INV-${paymentRecord._id.toString().slice(-6)}`,
+          date: new Date().toLocaleDateString('en-IN'),
+        };
+        const html = generateInvoiceHtml(invoiceData);
+        const browser = await puppeteer.launch({ args: ['--no-sandbox', '--disable-setuid-sandbox'] });
+        const page = await browser.newPage();
+        await page.setContent(html, { waitUntil: 'networkidle0' });
+        const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true });
+        await browser.close();
+        await sendInvoiceEmail(invoiceData.email, pdfBuffer);
+        paymentRecord.receiptSent = true;
+        await paymentRecord.save();
+        console.log(`✅ PhonePe invoice sent to ${invoiceData.email}`);
+      } catch (err) {
+        console.error('❌ Error generating or sending PhonePe invoice:', err);
       }
     }
-    const response = await axios.request(option);
-    console.log(response.data.data.instrumentResponse.redirectInfo.url)
-    res.status(200).json({ msg: "OK", url: response.data.data.instrumentResponse.redirectInfo.url })
 
+    res.json({
+      status: response.data.success && response.data.code === 'PAYMENT_SUCCESS' ? 'Success' : 'Failed',
+      name: paymentRecord?.userInfo?.name || '',
+      email: paymentRecord?.userInfo?.email || '',
+      amountPaid: paymentRecord?.amountPaid || '',
+      txnId: merchantTransactionId
+    });
+  } catch (error) {
+    console.log('Error fetching PhonePe payment status:', error);
+    res.status(500).json({ status: 'Error', error: error.message });
   }
-  catch (error) {
-    console.log("error in payment", error)
-    res.status(500).json({ error: 'Failed to initiate payment' })
-  }
-}
+};
 
 export const checkstatus = async (req, res) => {
   const merchantTransactionId = res.req.body.merchantTransactionId;
   // const merchantId = res.req.body.merchantId;
   const keyIndex = 1;
-  const string = `/pg/v1/status/${merchantId}/${merchantTransactionId}` + MERCHANT_KEY;
+  const string = `/pg/v1/status/${MERCHANT_ID}/${merchantTransactionId}` + MERCHANT_KEY;
   const sha256 = crypto.createHash('sha256').update(string).digest('hex');
   const checksum = sha256 + '###' + keyIndex;
   const options = {
@@ -291,6 +386,19 @@ export const checkstatus = async (req, res) => {
       console.log(error);
     })
 }
+
+export const phonePeRedirectHandler = (req, res) => {
+  console.log('PhonePe redirect POST body:', req.body);
+
+  const txnId = req.body.transactionId || req.body.merchantTransactionId || req.body.txnId;
+  const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
+
+  const redirectUrl = `${FRONTEND_URL}/payment-success?phonepe_txn_id=${txnId}`;
+  console.log('Redirecting to:', redirectUrl);
+
+  return res.redirect(redirectUrl);  // Sends to frontend
+};
+
 
 
 

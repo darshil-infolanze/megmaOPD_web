@@ -3,15 +3,15 @@ import mongoose from "mongoose";
 const PaymentSchema = new mongoose.Schema({
   razorpay_order_id: {
     type: String,
-    required: true,
+    required: false,
   },
   razorpay_payment_id: {
     type: String,
-    // required: true, // Made optional for payment link webhook
+    required: false,
   },
   razorpay_signature: {
     type: String,
-    // required: true, // Made optional for payment link webhook
+    required: false,
   },
   plan: {
     name: String,
@@ -23,8 +23,16 @@ const PaymentSchema = new mongoose.Schema({
     contact: String,
     selfName:String,
   },
+  phonepe_txn_id: {
+    type: String,
+    required: false,
+  },
 
   amountPaid: Number,
+  receiptSent: {
+    type: Boolean,
+    default: false,
+  },
   createdAt: {
     type: Date,
     default: Date.now,
