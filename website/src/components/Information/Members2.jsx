@@ -3,6 +3,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { FaCheck } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { updateMember2 } from "../../redux/formSlice";
 
 const Members2 = () => {
   const navigate = useNavigate();
@@ -22,15 +24,27 @@ const Members2 = () => {
   const stepPaths = ["/self", "/member1", "/member2", "/member3", "/payment"];
   const currentStepIndex = stepPaths.indexOf(location.pathname);
 
-  const formik = useFormik({
-    initialValues: {
-      name: "",
-      relation: "",
-      email: "",
-      phone: "",
-      dob: "",
-      gender: "",
-    },
+  const dispatch =useDispatch()
+  const selfData = useSelector((state)=> state.form?.member2|| {})
+
+  // const formik = useFormik({
+  //   initialValues: {
+  //     name: "",
+  //     relation: "",
+  //     email: "",
+  //     phone: "",
+  //     dob: "",
+  //     gender: "",
+  //   },
+    const formik = useFormik({
+      initialValues: {
+        name: selfData.name || "",
+        relation: selfData.relation || "",
+        email: selfData.email || "",
+        phone: selfData.phone || "",
+        dob: selfData.dob || "",
+        gender: selfData.gender || "",
+      },
     validationSchema: Yup.object({
       name: Yup.string().required("Name is required"),
       relation: Yup.string().required("Relation is required"),
@@ -46,6 +60,7 @@ const Members2 = () => {
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: (values) => {
+      dispatch(updateMember2(values))
       console.log("Member 2 Data:", JSON.stringify(values, null, 2));
       localStorage.setItem("member2", JSON.stringify(values));
       navigate("/member3");

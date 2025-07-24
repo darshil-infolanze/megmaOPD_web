@@ -190,7 +190,7 @@ const PaymentSuccess = () => {
                   <strong>Email:</strong> {paymentData?.email || "N/A"}
                 </div>
                 <div>
-                  <strong>Amount Paid:</strong> ₹{paymentData?.amountPaid ? paymentData.amountPaid / 100 : "N/A"}
+                  <strong>Amount Paid:</strong> ₹{paymentData?.amountPaid ? paymentData.amountPaid : "N/A"}
                 </div>
               </>
             ) : (

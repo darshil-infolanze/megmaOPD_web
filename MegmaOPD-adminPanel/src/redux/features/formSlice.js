@@ -13,7 +13,7 @@ const formSlice = createSlice({
   name: "form",
   initialState,
   reducers: {
-    updateSelfInformation: (state, action) => {
+    updateSelfInformations: (state, action) => {
       state.selfInformation = action.payload;
     },
     updateMembers1: (state, action) => {
