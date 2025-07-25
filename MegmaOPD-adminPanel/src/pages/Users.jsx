@@ -64,6 +64,7 @@ function Users() {
                     <th className="p-2 border">Plan</th>
                     <th className="p-2 border">Payment ID</th>
                     <th className="p-2 border">Amount</th>
+                    <th className="p-2 border">Payment Mode</th>
                     <th className="p-2 border">Created At</th>
                   </tr>
                 </thead>
@@ -103,6 +104,13 @@ function Users() {
                           {user.paymentLinkId || user.razorpayPaymentId || "-"}
                         </td>
                         <td className="p-2 border">{user.amountPaid}</td>
+                        <td className="p-2 border">
+                          {user.paymentMode ? (
+                            <span className={`px-2 py-1 rounded text-xs font-semibold ${user.paymentMode === 'razorpay' ? 'bg-blue-100 text-blue-700' : user.paymentMode === 'phonepe' ? 'bg-purple-100 text-purple-700' : 'bg-gray-100 text-gray-700'}`}>{user.paymentMode}</span>
+                          ) : (
+                            <span className="text-gray-400">-</span>
+                          )}
+                        </td>
                         <td className="p-2 border">
                           {user.createdAt
                             ? new Date(user.createdAt).toLocaleDateString()

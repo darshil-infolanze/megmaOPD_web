@@ -27,6 +27,11 @@ const PaymentSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
+  paymentMode: {
+    type: String,
+    enum: ["razorpay", "phonepe"],
+    required: true,
+  },
 
   amountPaid: Number,
   receiptSent: {

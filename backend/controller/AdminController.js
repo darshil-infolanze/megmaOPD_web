@@ -44,7 +44,8 @@ export const getDashboardStats = async (req, res) => {
     const latestPayments = await Payment.find()
       .sort({ createdAt: -1 })
       .limit(5)
-      .populate("userInfo");
+      .populate("userInfo")
+      .select("amountPaid paymentMode userInfo");
 
     res.status(200).json({
       success: true,

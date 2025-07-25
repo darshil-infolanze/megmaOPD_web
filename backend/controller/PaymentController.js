@@ -58,6 +58,7 @@ export const PaymentVerification = async (req, res) => {
       plan,
       userInfo,
       amountPaid,
+      paymentMode: 'razorpay',
     });
 
     console.log("✅ Payment record stored in database.");
@@ -141,6 +142,7 @@ export const handleRazorpayWebhook = async (req, res) => {
                 selfName: form.selfName,
               },
               amountPaid: form.amountPaid,
+              paymentMode: 'razorpay',
             });
           }
 
@@ -182,6 +184,7 @@ export const handleRazorpayWebhook = async (req, res) => {
                 selfName: form.selfName,
               },
               amountPaid: form.amountPaid,
+              paymentMode: 'razorpay',
             });
           } catch (invoiceError) {
             console.error("❌ Error generating or sending invoice:", invoiceError);
@@ -270,6 +273,7 @@ export const newpayment = async (req, res) => {
         },
         amountPaid: amount,
         phonepe_txn_id: merchantTransactionId,
+        paymentMode: 'phonepe',
       });
       console.log('Saved PhonePe payment to DB:', paymentDoc);
     } catch (dbErr) {
