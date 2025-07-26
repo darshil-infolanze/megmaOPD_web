@@ -4,6 +4,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaCheck } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { updateSelfInformations } from "../../redux/features/formSlice";
 
 const SelfInformation = () => {
   const steps = [
@@ -21,24 +23,45 @@ const SelfInformation = () => {
   }, []);
   const currentStepIndex = stepPaths.indexOf(location.pathname);
 
+  const dispatch = useDispatch();
+  const agentData = useSelector((state) => state.form?.selfInformation) || {};
+  // const formik = useFormik({
+  //   initialValues: {
+  //     selfName: "",
+  //     fatherHusbandName: "",
+  //     email: "",
+  //     phone: "",
+  //     dob: "",
+  //     gender: "",
+  //     panCard: "",
+  //     aadharCard: "",
+  //     address1: "",
+  //     address2: "",
+  //     city: "",
+  //     state: "",
+  //     pincode: "",
+  //     country: "india",
+  // plan: "",
+  // amountPaid: "",
+  //   },
   const formik = useFormik({
     initialValues: {
-      selfName: "",
-      fatherHusbandName: "",
-      email: "",
-      phone: "",
-      dob: "",
-      gender: "",
-      panCard: "",
-      aadharCard: "",
-      address1: "",
-      address2: "",
-      city: "",
-      state: "",
-      pincode: "",
-      country: "india",
-      plan: "",
-      amountPaid: "",
+      selfName: agentData.selfName || "",
+      fatherHusbandName: agentData.fatherHusbandName || "",
+      email: agentData.email || "",
+      phone: agentData.phone || "",
+      dob: agentData.dob || "",
+      gender: agentData.gender || "",
+      panCard: agentData.panCard || "",
+      aadharCard: agentData.aadharCard || "",
+      address1: agentData.address1 || "",
+      address2: agentData.address2 || "",
+      city: agentData.city || "",
+      state: agentData.state || "",
+      pincode: agentData.pincode || "",
+      country: agentData.country || "india",
+      plan: agentData.plan || "",
+      amountPaid: agentData.amountPaid || "",
     },
     validationSchema: Yup.object({
       selfName: Yup.string().required("This field is required"),
@@ -75,6 +98,7 @@ const SelfInformation = () => {
     validateOnChange: true, // ✅ enable validation on change
 
     onSubmit: async (values) => {
+      dispatch(updateSelfInformations(values));
       console.log("Self Info Submitted:", JSON.stringify(values, null, 2));
       localStorage.setItem("selfInfo", JSON.stringify(values));
       navigate("/member1");
@@ -282,7 +306,7 @@ const SelfInformation = () => {
               </label>
               <select
                 name="plan"
-                onChange={e => {
+                onChange={(e) => {
                   formik.handleChange(e);
                   // Set amountPaid based on plan
                   const value = e.target.value;
@@ -300,7 +324,9 @@ const SelfInformation = () => {
                 <option value="Magma Health Shield">Magma Health Shield</option>
               </select>
               {formik.touched.plan && formik.errors.plan && (
-                <p className="text-red-500 text-xs mt-1">{formik.errors.plan}</p>
+                <p className="text-red-500 text-xs mt-1">
+                  {formik.errors.plan}
+                </p>
               )}
             </div>
             <div>

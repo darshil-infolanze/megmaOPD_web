@@ -30,7 +30,7 @@ const formSlice = createSlice({
 });
 
 export const {
-  updateSelfInformation,
+  updateSelfInformations,
   updateMembers1,
   updateMembers2,
   updateMembers3,
