@@ -32,7 +32,7 @@ import Terms from "./components/Policy/Terms";
 import Refund from "./components/Policy/Refund";
 import Eshipping from "./components/Policy/Eshipping";
 import PaymentSuccess from "./components/Information/PaymentSuccess";
-
+import PaymentFailure from "./components/Information/PaymentFailure";
 
 
 const Home = () => (
@@ -76,6 +76,7 @@ const App = () => {
           <Route path="/refund" element={<Refund />} />
           <Route path="/eshipping" element={<Eshipping />} />
           <Route path='/payment-success' element={<PaymentSuccess/>}/>
+          <Route path='/payment-failure' element={<PaymentFailure/>}/>
         </Routes>
       </div>
       <Footer />

@@ -51,46 +51,62 @@
 
 
 import { useEffect, useState } from "react";
-import { useSearchParams, useLocation } from "react-router-dom";
+import { useSearchParams, useLocation, useNavigate } from "react-router-dom";
 import { CheckCircle, AlertTriangle } from "lucide-react";
 import axios from "axios";
 
 const PaymentSuccess = () => {
   const [params] = useSearchParams();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const paymentLinkId = params.get("razorpay_payment_link_id");
   const paymentId = params.get("razorpay_payment_id");
+  const phonepeTxnId = params.get("phonepe_txn_id");
 
   const { state } = location || {};
   const { plan, payment } = state || {};
 
-  const [status, setStatus] = useState(paymentLinkId ? "Verifying payment..." : "success");
+  const [status, setStatus] = useState(
+    paymentLinkId || phonepeTxnId ? "Verifying payment..." : "success"
+  );
   const [error, setError] = useState("");
   const [paymentData, setPaymentData] = useState(null);
-  console.log('check',paymentData);
 
   useEffect(() => {
     const verifyPayment = async () => {
-      if (!paymentLinkId) return;
-
-      try {
-        const { data } = await axios.get(
-          // `http://localhost:4000/api/payment-status/${paymentLinkId}`
-          `${import.meta.env.VITE_SERVER_URL}/api/payment-status/${paymentLinkId}`
-
-        );
-        setPaymentData(data);
-        setStatus("success");
-      } catch (err) {
-        console.error("Payment verification error:", err.response?.data || err.message);
-        setError("Could not verify payment. Please contact support.");
-        setStatus("failed");
+      if (paymentLinkId) {
+        try {
+          const { data } = await axios.get(
+            `${import.meta.env.VITE_SERVER_URL}/api/payment-status/${paymentLinkId}`
+          );
+          setPaymentData(data);
+          setStatus("success");
+        } catch (err) {
+          console.error("Payment verification error:", err.response?.data || err.message);
+          setError("Could not verify payment. Please contact support.");
+          setStatus("failed");
+        }
+      } else if (phonepeTxnId) {
+        try {
+          const { data } = await axios.get(
+            `${import.meta.env.VITE_SERVER_URL}/api/phonepe-payment-status/${phonepeTxnId}`
+          );
+          setPaymentData(data);
+          if (data.status !== "Success") {
+            navigate(`/payment-failure?phonepe_txn_id=${phonepeTxnId}`);
+            return;
+          }
+          setStatus("success");
+        } catch (err) {
+          console.error("PhonePe payment verification error:", err.response?.data || err.message);
+          setError("Could not verify PhonePe payment. Please contact support.");
+          setStatus("failed");
+        }
       }
     };
-
     verifyPayment();
-  }, [paymentLinkId]);
+  }, [paymentLinkId, phonepeTxnId, navigate]);
 
   if (status === "Verifying payment...") {
     return (
@@ -110,6 +126,7 @@ const PaymentSuccess = () => {
   }
 
   const isAgentFlow = !!paymentLinkId;
+  const isPhonePeFlow = !!phonepeTxnId;
 
   return (
     <div className="flex items-center justify-center min-h-screen px-4 bg-gradient-to-tr from-purple-50 via-white to-purple-100">
@@ -119,6 +136,10 @@ const PaymentSuccess = () => {
         <p className="mb-6 text-gray-700">
           Thank you{" "}
           {isAgentFlow ? (
+            <span className="font-semibold text-purple-600">
+              {paymentData?.name || "User"}
+            </span>
+          ) : isPhonePeFlow ? (
             <span className="font-semibold text-purple-600">
               {paymentData?.name || "User"}
             </span>
@@ -152,6 +173,24 @@ const PaymentSuccess = () => {
                   <span className="font-medium text-green-600 capitalize">
                     {paymentData?.status || "Success"}
                   </span>
+                </div>
+              </>
+            ) : isPhonePeFlow ? (
+              <>
+                <div>
+                  <strong>Transaction ID:</strong> {phonepeTxnId}
+                </div>
+                <div>
+                  <strong>Status:</strong> {paymentData?.status || "Success"}
+                </div>
+                <div>
+                  <strong>Name:</strong> {paymentData?.name || "N/A"}
+                </div>
+                <div>
+                  <strong>Email:</strong> {paymentData?.email || "N/A"}
+                </div>
+                <div>
+                  <strong>Amount Paid:</strong> ₹{paymentData?.amountPaid ? paymentData.amountPaid : "N/A"}
                 </div>
               </>
             ) : (

@@ -6,7 +6,8 @@ import { IoMail } from "react-icons/io5";
 
 const Contact = () => {
   const [errorMsg, setErrorMsg] = useState("");
-
+  const [msg, setMsg] = useState("");
+;
   const formik = useFormik({
     initialValues: {
       name: "",
@@ -27,14 +28,18 @@ const Contact = () => {
     onSubmit: (values, { resetForm }) => {
       const hasError = Object.values(formik.errors).length > 0;
       if (hasError) {
-        setErrorMsg(
-          "One or more fields have an error. Please check and try again."
-        );
+        setErrorMsg('Please fix the errors before submitting.')
         return;
       }
-      console.log("Submitted:", values);
+
+      // simulate form submission
+      console.log("Form Submitted:", values);
+
+      // reset form
       resetForm();
       setErrorMsg("");
+      setMsg("Thank you! Your message has been submitted successfully.");
+      setMsg("");
     },
   });
 
@@ -90,7 +95,7 @@ const Contact = () => {
               <input
                 type="text"
                 name="name"
-              className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+                className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
                 value={formik.values.name}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -109,7 +114,7 @@ const Contact = () => {
               <input
                 type="email"
                 name="email"
-              className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+                className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
                 value={formik.values.email}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -128,7 +133,7 @@ const Contact = () => {
               <input
                 type="text"
                 name="mobile"
-           className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+                className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
                 value={formik.values.mobile}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -146,7 +151,7 @@ const Contact = () => {
               </label>
               <select
                 name="plan"
-               className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
+                className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
                 value={formik.values.plan}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -174,7 +179,13 @@ const Contact = () => {
                 {errorMsg}
               </div>
             )}
+        
           </form>
+          {msg && (
+            <div className="mt-4 border border-green-400 text-green-800 bg-green-100 px-4 py-2 rounded text-sm">
+              {msg}
+            </div>
+          )}
         </div>
       </div>
 

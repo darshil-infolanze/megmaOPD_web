@@ -3,7 +3,8 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { FaCheck } from "react-icons/fa";
 import { useLocation, useNavigate } from "react-router";
-
+import { useDispatch, useSelector } from "react-redux";
+import { updateMember1 } from "../../redux/formSlice";
 const Members1 = () => {
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,15 +23,27 @@ const Members1 = () => {
   const stepPaths = ["/self", "/member1", "/member2", "/member3", "/payment"];
   const currentStepIndex = stepPaths.indexOf(location.pathname);
 
+  const disaptch = useDispatch();
+  const selfData = useSelector((state) => state.form?.member1 || {});
+  // const formik = useFormik({
+  //   initialValues: {
+  //     name: "",
+  // relation: "",
+  // email: "",
+  // phone: "",
+  // dob: "",
+  // gender: "",
+  //   },
   const formik = useFormik({
     initialValues: {
-      name: "",
-      relation: "",
-      email: "",
-      phone: "",
-      dob: "",
-      gender: "",
+      name: selfData.name || "",
+      relation: selfData.relation || "",
+      email: selfData.email || "",
+      phone: selfData.phone || "",
+      dob: selfData.dob || "",
+      gender: selfData.gender || "",
     },
+
     validationSchema: Yup.object({
       name: Yup.string().required("Name is required"),
       relation: Yup.string().required("Relation is required"),
@@ -46,6 +59,7 @@ const Members1 = () => {
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: (values) => {
+      disaptch(updateMember1(values));
       console.log("Member 1 Data:", JSON.stringify(values, null, 2));
       localStorage.setItem("member1", JSON.stringify(values));
       navigate("/member2");
@@ -58,17 +72,17 @@ const Members1 = () => {
     <div className="min-h-screen bg-gradient-to-br from-slate-100 via-violet-500 to-slate-600 flex items-center justify-center p-4 font-inter">
       <div className="bg-white rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 max-w-4xl w-full mx-auto my-8">
         {/* Stepper */}
-          <div className="overflow-x-auto">
-                  <div className="flex justify-between items-center mb-8 sm:mb-10 relative">
-                    <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 -z-10 mx-4"></div>
-                    {steps.map((step, index) => {
-                      const isCompleted = index < currentStepIndex;
-                      const isActive = index === currentStepIndex;
-        
-                      return (
-                        <div key={index} className="flex flex-col items-center flex-1">
-                          <div
-                            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300
+        <div className="overflow-x-auto">
+          <div className="flex justify-between items-center mb-8 sm:mb-10 relative">
+            <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-200 -z-10 mx-4"></div>
+            {steps.map((step, index) => {
+              const isCompleted = index < currentStepIndex;
+              const isActive = index === currentStepIndex;
+
+              return (
+                <div key={index} className="flex flex-col items-center flex-1">
+                  <div
+                    className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all duration-300
                     ${
                       isCompleted
                         ? "bg-emerald-500 text-white border-2 border-emerald-500"
@@ -85,23 +99,23 @@ const Members1 = () => {
                         : ""
                     }
                   `}
-                          >
-                            {isCompleted ? <FaCheck size={16} /> : index + 1}
-                          </div>
-                          <span
-                            className={`mt-2 text-center text-xs sm:text-sm whitespace-nowrap
+                  >
+                    {isCompleted ? <FaCheck size={16} /> : index + 1}
+                  </div>
+                  <span
+                    className={`mt-2 text-center text-xs sm:text-sm whitespace-nowrap
                     ${isCompleted ? "text-emerald-600 font-medium" : ""}
                     ${isActive ? "text-violet-800 font-semibold" : ""}
                     ${!isCompleted && !isActive ? "text-slate-500" : ""}
                   `}
-                          >
-                            {step}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
+                  >
+                    {step}
+                  </span>
                 </div>
+              );
+            })}
+          </div>
+        </div>
 
         {/* Form */}
         <form onSubmit={formik.handleSubmit} className="space-y-6">
@@ -210,7 +224,7 @@ const Members1 = () => {
                 <p className="text-red-600 text-sm mt-1">{formik.errors.dob}</p>
               )}
             </div>
-               <div>
+            <div>
               <label className="block text-md font-medium text-violet-800 mb-1">
                 Gender <span className="text-red-500">*</span>
               </label>

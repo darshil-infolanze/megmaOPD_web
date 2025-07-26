@@ -1,81 +1,104 @@
-import React, { useEffect } from "react";
+  import React, { useEffect } from "react";
 
-import { useFormik } from "formik";
-import * as Yup from "yup";
-import { useLocation, useNavigate } from "react-router-dom";
-import { FaCheck } from "react-icons/fa";
+  import { useFormik } from "formik";
+  import * as Yup from "yup";
+  import { useLocation, useNavigate } from "react-router-dom";
+  import { FaCheck } from "react-icons/fa";
+  import { useDispatch, useSelector } from "react-redux";
+  import { updateSelfInformation } from "../../redux/formSlice";
 
-const SelfInformations = () => {
-  const steps = [
-    "Self Information",
-    "Member 1",
-    "Member 2",
-    "Member 3",
-    "Payment",
-  ];
-  const stepPaths = ["/self", "/member1", "/member2", "/member3", "/payment"];
-  const location = useLocation();
-  const navigate = useNavigate();
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-  const currentStepIndex = stepPaths.indexOf(location.pathname);
-  
-  const formik = useFormik({
-    initialValues: {
-      selfName: "",
-      fatherHusbandName: "",
-      email: "",
-      phone: "",
-      dob: "",
-      gender: "",
-      panCard: "",
-      aadharCard: "",
-      address1: "",
-      address2: "",
-      city: "",
-      state: "",
-      pincode: "",
-      country: "india",
-    },
-    validationSchema: Yup.object({
-      selfName: Yup.string().required("This field is required"),
-      fatherHusbandName: Yup.string().required("This field is required"),
-      email: Yup.string()
-        .email("Invalid email")
-        .required("This field is required"),
-      phone: Yup.string()
-        .matches(/^[6-9]\d{9}$/, "Enter a valid 10-digit mobile number")
-        .required("This field is required"),
-      dob: Yup.string().required("This field is required"),
-      gender: Yup.string().required("This field is required"),
-      panCard: Yup.string()
-        .matches(
-          /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/,
-          "Enter a valid PAN (e.g., ABCDE1234F)"
-        )
-        .required("This field is required"),
-      aadharCard: Yup.string()
-        .matches(/^[0-9]{12}$/, "Enter a valid 12-digit Aadhar Card Number")
-        .required("This field is required"),
-      address1: Yup.string().required("This field is required"),
-      address2: Yup.string().required("This field is required"),
-      city: Yup.string().required("This field is required"),
-      state: Yup.string().required("This field is required"),
-      pincode: Yup.string()
-        .matches(/^[1-9][0-9]{5}$/, "Enter a valid 6-digit PIN code")
-        .required("This field is required"),
-      country: Yup.string().required("This field is required"),
-    }),
-    validateOnBlur: true, // ✅ enable validation on blur
-    validateOnChange: true, // ✅ enable validation on change
+  const SelfInformations = () => {
+    const steps = [
+      "Self Information",
+      "Member 1",
+      "Member 2",
+      "Member 3",
+      "Payment",
+    ];
+    const stepPaths = ["/self", "/member1", "/member2", "/member3", "/payment"];
+    const location = useLocation();
+    const navigate = useNavigate();
+    useEffect(() => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
+    const currentStepIndex = stepPaths.indexOf(location.pathname);
 
-    onSubmit: async (values) => {
-      console.log("Self Info Submitted:", JSON.stringify(values, null, 2));
-      localStorage.setItem("Self Info", JSON.stringify(values));
-      navigate("/member1");
-    },
-  });
+    const dispatch = useDispatch();
+    const selfData = useSelector((state) => state.form?.selfInformation) || {};
+
+    // const formik = useFormik({
+    // initialValues: {
+    //   selfName: "",
+    //   fatherHusbandName: "",
+    //   email: "",
+    //   phone: "",
+    //   dob: "",
+    //   gender: "",
+    //   panCard: "",
+    //   aadharCard: "",
+    //   address1: "",
+    //   address2: "",
+    //   city: "",
+    //   state: "",
+    //   pincode: "",
+    //   country: "india",
+    // },
+    const formik = useFormik({
+      initialValues: {
+        selfName: selfData.selfName || "",
+        fatherHusbandName: selfData.fatherHusbandName || "",
+        email: selfData.email || "",
+        phone: selfData.phone || "",
+        dob: selfData.dob || "",
+        gender: selfData.gender || "",
+        panCard: selfData.panCard || "",
+        aadharCard: selfData.aadharCard || "",
+        address1: selfData.address1 || "",
+        address2: selfData.address2 || "",
+        city: selfData.city || "",
+        state: selfData.state || "",
+        pincode: selfData.pincode || "",
+        country: selfData.country || "india",
+      },
+      validationSchema: Yup.object({
+        selfName: Yup.string().required("This field is required"),
+        fatherHusbandName: Yup.string().required("This field is required"),
+        email: Yup.string()
+          .email("Invalid email")
+          .required("This field is required"),
+        phone: Yup.string()
+          .matches(/^[6-9]\d{9}$/, "Enter a valid 10-digit mobile number")
+          .required("This field is required"),
+        dob: Yup.string().required("This field is required"),
+        gender: Yup.string().required("This field is required"),
+        panCard: Yup.string()
+          .matches(
+            /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/,
+            "Enter a valid PAN (e.g., ABCDE1234F)"
+          )
+          .required("This field is required"),
+        aadharCard: Yup.string()
+          .matches(/^[0-9]{12}$/, "Enter a valid 12-digit Aadhar Card Number")
+          .required("This field is required"),
+        address1: Yup.string().required("This field is required"),
+        address2: Yup.string().required("This field is required"),
+        city: Yup.string().required("This field is required"),
+        state: Yup.string().required("This field is required"),
+        pincode: Yup.string()
+          .matches(/^[1-9][0-9]{5}$/, "Enter a valid 6-digit PIN code")
+          .required("This field is required"),
+        country: Yup.string().required("This field is required"),
+      }),
+      validateOnBlur: true, // ✅ enable validation on blur
+      validateOnChange: true, // ✅ enable validation on change
+
+      onSubmit: async (values) => {
+        dispatch(updateSelfInformation(values));
+        console.log("Self Info Submitted:", JSON.stringify(values, null, 2));
+        localStorage.setItem("Self Info", JSON.stringify(values));
+        navigate("/member1");
+      },
+    });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-100 via-violet-500 to-slate-600 flex items-center justify-center p-4 font-inter ">

@@ -8,6 +8,8 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
+  const [msg, setMsg] = useState("");
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -32,9 +34,20 @@ const Navbar = () => {
       plan: Yup.string().required("Please select a plan"),
     }),
     onSubmit: (values, { resetForm }) => {
+      const hasError = Object.values(formik.errors).length > 0;
+        if (hasError) {
+        setErrorMsg('Please fix the errors before submitting.')
+        return;
+      }
+
       console.log("Form Data", values);
       resetForm();
-      setShowModal(false);
+      setErrorMsg("");
+      setMsg("Thank you! Your message has been submitted successfully.");
+      setTimeout(() => {
+    setShowModal(false);
+    setMsg("");
+  }, 5000);
     },
   });
 
@@ -241,7 +254,17 @@ const Navbar = () => {
                     >
                       Submit
                     </button>
+                    {errorMsg && (
+              <div className="mt-4 border border-yellow-400 text-yellow-800 bg-yellow-100 px-4 py-2 rounded text-sm">
+                {errorMsg}
+              </div>
+            )}
                   </form>
+                  {msg && (
+            <div className="mt-4 border border-green-400 text-green-800 bg-green-100 px-4 py-2 rounded text-sm">
+              {msg}
+            </div>
+          )}
                 </div>
               </div>
             )}
