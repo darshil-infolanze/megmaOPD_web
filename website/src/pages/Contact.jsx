@@ -6,6 +6,7 @@ import { IoMail } from "react-icons/io5";
 
 const Contact = () => {
   const [errorMsg, setErrorMsg] = useState("");
+  const [msg, setMsg] = useState("");
 ;
   const formik = useFormik({
     initialValues: {
@@ -27,8 +28,7 @@ const Contact = () => {
     onSubmit: (values, { resetForm }) => {
       const hasError = Object.values(formik.errors).length > 0;
       if (hasError) {
-        setErrorMsg('')
-        alert(" Please fix the errors before submitting.")
+        setErrorMsg('Please fix the errors before submitting.')
         return;
       }
 
@@ -38,9 +38,8 @@ const Contact = () => {
       // reset form
       resetForm();
       setErrorMsg("");
-  
-      alert("Thank you! Your message has been submitted successfully.");
-
+      setMsg("Thank you! Your message has been submitted successfully.");
+      setMsg("");
     },
   });
 
@@ -182,6 +181,11 @@ const Contact = () => {
             )}
         
           </form>
+          {msg && (
+            <div className="mt-4 border border-green-400 text-green-800 bg-green-100 px-4 py-2 rounded text-sm">
+              {msg}
+            </div>
+          )}
         </div>
       </div>
 

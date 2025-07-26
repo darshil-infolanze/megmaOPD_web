@@ -262,13 +262,13 @@ function App() {
         </div>
 
         {/* Why Choose Us Section */}
-        <div className="min-h-screen py-20 bg-gradient-to-br from-slate-100 to-violet-100 flex flex-col items-center  px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen py-10 bg-gradient-to-br from-slate-100 to-violet-100 flex flex-col items-center  px-4 sm:px-6 lg:px-8">
           <div className="max-w-6xl w-full">
-            <h1 className="text-5xl mb-2 font-bold text-violet-500 relative ">
+            <h1 className="text-5xl mb-2 font-bold text-violet-500 relative">
               Why Choose Us
             </h1>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 ">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-10">
               {features.map((feature, index) => (
                 <FeatureCard
                   key={index}
