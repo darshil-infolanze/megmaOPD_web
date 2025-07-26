@@ -39,7 +39,7 @@ const Contact = () => {
       resetForm();
       setErrorMsg("");
       setMsg("Thank you! Your message has been submitted successfully.");
-      setMsg("");
+      // setMsg("");
     },
   });
 
