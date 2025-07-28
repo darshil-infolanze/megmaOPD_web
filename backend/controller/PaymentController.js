@@ -7,9 +7,6 @@ import crypto from 'crypto'
 import { sendInvoiceEmail } from '../utils/email.js';
 import { generateInvoiceHtml } from '../utils/invoiceHtml.js';
 import puppeteer from 'puppeteer';
-import { request } from "http";
-import { response } from "express";
-import { error } from "console";
 import axios from "axios";
 
 // import { generateInvoicePDF } from '../utils/invoice.js';
@@ -80,7 +77,7 @@ export const handleRazorpayWebhook = async (req, res) => {
   try {
     digest = crypto
       .createHmac("sha256", secret)
-      .update(req.body)
+      .update(req.body.toString()) // <-- convert Buffer to string for correct signature
       .digest("hex");
     console.log("[Webhook] Calculated digest:", digest);
   } catch (err) {
@@ -122,6 +119,7 @@ export const handleRazorpayWebhook = async (req, res) => {
       if (form) {
         if (form.paymentStatus !== 'paid') {
           form.paymentStatus = "paid";
+          // form.paymentMode = 'razorpay'; // Set paymentMode for Razorpay
           await form.save();
           console.log("✅ Payment status updated for ID:", form._id);
 
@@ -326,6 +324,13 @@ export const getPhonePePaymentStatus = async (req, res) => {
       !paymentRecord.receiptSent
     ) {
       try {
+        // Update SelfInfo paymentStatus and paymentMode
+        const selfInfo = await SelfInfo.findOne({ phone: paymentRecord.userInfo?.contact, email: paymentRecord.userInfo?.email });
+        if (selfInfo) {
+          selfInfo.paymentStatus = 'paid';
+          selfInfo.paymentMode = 'phonepe';
+          await selfInfo.save();
+        }
         const invoiceData = {
           name: paymentRecord.userInfo?.name || '',
           email: paymentRecord.userInfo?.email || '',
