@@ -66,12 +66,15 @@ const PaymentSuccess = () => {
 
   const { state } = location || {};
   const { plan, payment } = state || {};
+  console.log("plan",plan);
+  console.log("payment",payment);
 
   const [status, setStatus] = useState(
     paymentLinkId || phonepeTxnId ? "Verifying payment..." : "success"
   );
   const [error, setError] = useState("");
   const [paymentData, setPaymentData] = useState(null);
+  console.log("paymentdata",paymentData)
 
   useEffect(() => {
     const verifyPayment = async () => {
