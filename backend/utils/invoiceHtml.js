@@ -102,7 +102,6 @@ const baseAmount = amount / 1.18;
     <div class="invoice-box">
       <div class="header">
          <h1>Magma OPD Smart Health</h1>
-        <p>Basement, 5B-16, Tilak Nagar, New Delhi 110018</p>
         <p>Email: support@magmaopd.in </p>
       </div>
       <table class="info-table">
