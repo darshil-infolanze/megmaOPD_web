@@ -5,6 +5,7 @@ import SelfInfrormation from "../components/agent/SelfInformation"
 
 const Agent = () => {
   const [showForm, setShowForm] = useState(false);
+  
   return (
     <div className="bg-[#f9fafb] p-4 md:p-6 min-h-screen">
       <div className="mb-6 bg-white shadow-xl rounded-lg p-3 px-5 flex items-center justify-between flex-wrap gap-4">
