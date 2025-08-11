@@ -16,7 +16,7 @@ const Submit = () => {
   // const sgst = Math.round(storedPlan.price * 0.09);
   // const cgst = Math.round(storedPlan.price * 0.09);
   // const total = storedPlan.price;
-  const total= 1;
+  const total= 100;
 
   const handlePayment = async () => {
     if (selected === "razorpay") {
@@ -305,18 +305,13 @@ const Submit = () => {
             img: "https://cdn.razorpay.com/static/assets/logo/rzp_payment_icon.svg",
             note: "Pay securely by Credit or Debit card or Internet Banking through Razorpay.",
           },
-          {
-            id: "cashfree",
-            label: "Cashfree Payments",
-            img: "https://cashfreelogo.cashfree.com/cashfreepayments/logopng1x/Cashfree_Payments_Logo.png",
-            note: "Pay securely via Card/Net Banking/Wallet via Cashfree.",
-          },
-          {
-            id: "phonepe",
-            label: "PhonePe Payment Solutions",
-            img: "https://imgstatic.phonepe.com/images/online-merchant-assets/plugins/woocommerce/2529/405/payment_gateway_logo.png",
-            note: "All UPI apps, Debit and Credit Cards, and NetBanking accepted | Powered by PhonePe",
-          },
+          // {
+          //   id: "phonepe",
+          //   label: "PhonePe Payment Solutions",
+          //   img: "https://imgstatic.phonepe.com/images/online-merchant-assets/plugins/woocommerce/2529/405/payment_gateway_logo.png",
+          //   note: "All UPI apps, Debit and Credit Cards, and NetBanking accepted | Powered by PhonePe",
+          //   upcoming: true,
+          // },
         ].map((method) => (
           <label
             key={method.id}
