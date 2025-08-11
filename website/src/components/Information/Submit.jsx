@@ -16,7 +16,7 @@ const Submit = () => {
   // const sgst = Math.round(storedPlan.price * 0.09);
   // const cgst = Math.round(storedPlan.price * 0.09);
   // const total = storedPlan.price;
-  const total= 5;
+  const total= 1;
 
   const handlePayment = async () => {
     if (selected === "razorpay") {
