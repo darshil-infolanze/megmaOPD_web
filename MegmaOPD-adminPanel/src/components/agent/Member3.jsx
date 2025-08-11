@@ -35,7 +35,7 @@ const Member3 = () => {
       members: [member1, member2, member3],
       plan: self.plan,
       // amountPaid: self.amountPaid,
-      amountPaid: 5,
+      amountPaid: 1,
     };
     setFormData(combined);
     window.scrollTo({ top: 0, behavior: "smooth" });
