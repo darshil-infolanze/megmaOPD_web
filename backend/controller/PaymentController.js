@@ -65,13 +65,21 @@ export const PaymentVerification = async (req, res) => {
     res.status(500).json({ success: false, message: "Server error", err });
   }
 };
+// Helper: detect if in live mode
+const isLiveMode = process.env.RAZORPAY_API_KEY && !process.env.RAZORPAY_API_KEY.includes("test")
 
 
 export const handleRazorpayWebhook = async (req, res) => {
+    console.log(`\n====== Razorpay Webhook (${isLiveMode ? "LIVE" : "TEST"}) ======\n`);
   console.log("[Webhook] Incoming request headers:", req.headers);
   console.log("[Webhook] Incoming request body:", req.body);
   const secret = process.env.RAZORPAY_WEBHOOK_SECRET;
   const signature = req.headers["x-razorpay-signature"];
+    if (!secret) {
+    console.error("❌ RAZORPAY_WEBHOOK_SECRET is missing in environment variables!");
+    return res.status(500).json({ message: "Webhook secret not configured" });
+  }
+
 
   let digest;
   try {
@@ -79,7 +87,9 @@ export const handleRazorpayWebhook = async (req, res) => {
       .createHmac("sha256", secret)
       .update(req.body.toString()) // <-- convert Buffer to string for correct signature
       .digest("hex");
+  console.log("[Webhook] Signature from Razorpay:", signature);
     console.log("[Webhook] Calculated digest:", digest);
+    console.log("[Webhook] Signature match:", digest === signature);
   } catch (err) {
     console.error("[Webhook] Error calculating digest:", err);
     return res.status(500).json({ message: "Digest calculation error" });
@@ -87,6 +97,9 @@ export const handleRazorpayWebhook = async (req, res) => {
 
   if (digest !== signature) {
     console.error("[Webhook] Invalid signature!", { digest, signature });
+      console.error("❌ Invalid signature! Webhook will be ignored.");
+    console.error("💡 Possible causes: wrong secret, body modified by middleware/proxy, or wrong environment.");
+    console.log("[Webhook] Raw body (string):", req.body.toString("utf8"));
     return res.status(400).json({ message: "Invalid signature" });
   }
 
@@ -94,6 +107,7 @@ export const handleRazorpayWebhook = async (req, res) => {
   try {
     event = JSON.parse(req.body.toString());
     console.log("[Webhook] Parsed event:", event);
+        console.log("[Webhook] Parsed event:", JSON.stringify(event, null, 2));
   } catch (err) {
     console.error("[Webhook] Error parsing event body:", err);
     return res.status(400).json({ message: "Invalid event body" });
@@ -114,6 +128,10 @@ export const handleRazorpayWebhook = async (req, res) => {
         console.log("[Webhook] order.paid for order_id:", orderId);
         form = await SelfInfo.findOne({ razorpayOrderId: orderId });
         console.log("[Webhook] SelfInfo found:", form);
+      }
+       if (!form) {
+        console.error("❌ No matching SelfInfo document found!");
+        return res.status(200).json({ success: false, message: "Form not found" });
       }
 
       if (form) {
@@ -205,15 +223,7 @@ export const handleRazorpayWebhook = async (req, res) => {
 
   res.status(200).json({ success: true });
 };
-const MERCHANT_KEY = process.env.MERCHANT_KEY
-console.log("Merchant Key:", MERCHANT_KEY);
 
-const MERCHANT_ID = process.env.MERCHANT_ID
-console.log("Merchant ID:", MERCHANT_ID);
-const MERCHANT_BASE_URL = process.env.MERCHANT_BASE_URL
-console.log("Merchant Base URL:", MERCHANT_BASE_URL);
-const MERCHANT_STATUS_URL = process.env.MERCHANT_STATUS_URL
-console.log("Merchant Status URL:", MERCHANT_STATUS_URL);
 
 // Use your actual frontend URL here:
 const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
