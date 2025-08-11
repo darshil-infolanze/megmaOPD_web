@@ -123,6 +123,7 @@ export const agentSubmit = async (req, res) => {
             submittedBy: 'agent',
             paymentStatus: 'pending',
             members,
+            paymentMode: 'razorpay', // Always razorpay for agent
         });
         // Step 2: Create Razorpay Payment Link
         const initialReferenceId = `${newForm._id.toString()}_${Date.now()}`;

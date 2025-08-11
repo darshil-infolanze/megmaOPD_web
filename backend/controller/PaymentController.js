@@ -7,9 +7,6 @@ import crypto from 'crypto'
 import { sendInvoiceEmail } from '../utils/email.js';
 import { generateInvoiceHtml } from '../utils/invoiceHtml.js';
 import puppeteer from 'puppeteer';
-import { request } from "http";
-import { response } from "express";
-import { error } from "console";
 import axios from "axios";
 
 // import { generateInvoicePDF } from '../utils/invoice.js';
@@ -80,7 +77,7 @@ export const handleRazorpayWebhook = async (req, res) => {
   try {
     digest = crypto
       .createHmac("sha256", secret)
-      .update(req.body)
+      .update(req.body.toString()) // <-- convert Buffer to string for correct signature
       .digest("hex");
     console.log("[Webhook] Calculated digest:", digest);
   } catch (err) {
@@ -122,6 +119,7 @@ export const handleRazorpayWebhook = async (req, res) => {
       if (form) {
         if (form.paymentStatus !== 'paid') {
           form.paymentStatus = "paid";
+          // form.paymentMode = 'razorpay'; // Set paymentMode for Razorpay
           await form.save();
           console.log("✅ Payment status updated for ID:", form._id);
 
@@ -207,10 +205,15 @@ export const handleRazorpayWebhook = async (req, res) => {
 
   res.status(200).json({ success: true });
 };
-const MERCHANT_KEY = "96434309-7796-489d-8924-ab56988a6076"
-const MERCHANT_ID = "PGTESTPAYUAT86"
-const MERCHANT_BASE_URL = "https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/pay"
-const MERCHANT_STATUS_URL = "https://api-preprod.phonepe.com/apis/pg-sandbox/pg/v1/status"
+const MERCHANT_KEY = process.env.MERCHANT_KEY
+console.log("Merchant Key:", MERCHANT_KEY);
+
+const MERCHANT_ID = process.env.MERCHANT_ID
+console.log("Merchant ID:", MERCHANT_ID);
+const MERCHANT_BASE_URL = process.env.MERCHANT_BASE_URL
+console.log("Merchant Base URL:", MERCHANT_BASE_URL);
+const MERCHANT_STATUS_URL = process.env.MERCHANT_STATUS_URL
+console.log("Merchant Status URL:", MERCHANT_STATUS_URL);
 
 // Use your actual frontend URL here:
 const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:5173";
@@ -321,6 +324,8 @@ export const getPhonePePaymentStatus = async (req, res) => {
       !paymentRecord.receiptSent
     ) {
       try {
+        // Update SelfInfo paymentStatus and paymentMode
+       
         const invoiceData = {
           name: paymentRecord.userInfo?.name || '',
           email: paymentRecord.userInfo?.email || '',

@@ -4,48 +4,55 @@ import * as Yup from "yup";
 import { FaCheck } from "react-icons/fa";
 import axiosConfig from "../../redux/axiosConfig";
 import { useLocation, useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { updateMembers3 } from "../../redux/features/formSlice";
 
 const Member3 = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
+
   const [paymentLink, setPaymentLink] = useState("");
   const [loading, setLoading] = useState(false);
-
   const [formData, setFormData] = useState({});
 
+  const agentData = useSelector((state) => state.form?.member3 || {});
+
+  // Load full formData on mount
   useEffect(() => {
     const self = JSON.parse(localStorage.getItem("selfInfo") || "{}");
     const member1 = JSON.parse(localStorage.getItem("member1") || "{}");
     const member2 = JSON.parse(localStorage.getItem("member2") || "{}");
     const member3 = JSON.parse(localStorage.getItem("member3") || "{}");
-    window.scrollTo({ top: 0, behavior: "smooth" });
+
+    // Sync Redux if it's empty
+    if (!agentData || Object.keys(agentData).length === 0) {
+      dispatch(updateMembers3(member3));
+    }
+
     const combined = {
       ...self,
       members: [member1, member2, member3],
       plan: self.plan,
-      amountPaid: self.amountPaid,
+      // amountPaid: self.amountPaid,
+      amountPaid: 5,
     };
-    console.log(combined);
     setFormData(combined);
-  }, []);
-  const steps = [
-    "Self Information",
-    "Member 1",
-    "Member 2",
-    "Member 3",
-    // "Payment",
-  ];
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [dispatch]);
+
+  const steps = ["Self Information", "Member 1", "Member 2", "Member 3"];
   const stepPaths = ["/self", "/member1", "/member2", "/member3"];
   const currentStepIndex = stepPaths.indexOf(location.pathname);
 
   const formik = useFormik({
     initialValues: {
-      name: "",
-      relation: "",
-      email: "",
-      phone: "",
-      dob: "",
-      gender: "",
+      name: agentData.name || "",
+      relation: agentData.relation || "",
+      email: agentData.email || "",
+      phone: agentData.phone || "",
+      dob: agentData.dob || "",
+      gender: agentData.gender || "",
     },
     validationSchema: Yup.object({
       name: Yup.string().required("Name is required"),
@@ -62,17 +69,12 @@ const Member3 = () => {
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: async (values) => {
-      console.log("Member 3 Data:", JSON.stringify(values, null, 2));
-      // Save to localStorage
+      dispatch(updateMembers3(values));
       localStorage.setItem("member3", JSON.stringify(values));
-      // Optional loading state
       setLoading(true);
 
       try {
-        // Submit to backend
         const { data } = await axiosConfig.post("/submit-agent", formData);
-
-        // If payment link received, set it
         if (data.paymentLink) {
           setPaymentLink(data.paymentLink);
         } else {
@@ -87,7 +89,7 @@ const Member3 = () => {
     },
   });
 
-  const today = new Date().toISOString().split("T")[0]; // 👈 for max DOB
+  const today = new Date().toISOString().split("T")[0];
 
   return (
     <div className="flex items-center justify-center min-h-screen p-4 bg-gradient-to-br from-slate-100 via-violet-500 to-slate-600 font-inter">
@@ -137,6 +139,7 @@ const Member3 = () => {
             })}
           </div>
         </div>
+
         {/* Form */}
         <form onSubmit={formik.handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
@@ -234,7 +237,7 @@ const Member3 = () => {
               <input
                 type="date"
                 name="dob"
-                max={today} // ❗ Restrict future dates
+                max={today}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.dob}
@@ -285,7 +288,11 @@ const Member3 = () => {
           <div className="flex justify-between pt-4">
             <button
               type="button"
-              onClick={() => navigate("/member2")}
+              onClick={() => {
+                dispatch(updateMembers3(formik.values));
+                localStorage.setItem("member3", JSON.stringify(formik.values));
+                navigate("/member2");
+              }}
               className="px-6 py-2 font-bold text-white transition transform bg-gray-600 rounded-lg shadow-md hover:bg-gray-700 hover:scale-105"
             >
               Previous
@@ -299,6 +306,7 @@ const Member3 = () => {
             </button>
           </div>
         </form>
+
         {paymentLink && (
           <div className="p-4 mt-6 text-green-800 bg-green-100 border rounded">
             <p className="mb-1 font-medium">

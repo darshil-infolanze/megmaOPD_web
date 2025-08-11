@@ -28,6 +28,11 @@ const selfInfoSchema = new mongoose.Schema({
   paymentLinkId: { type: String },  // For Razorpay Payment Link tracking
   paymentLinkUrl: { type: String },
   paymentLinkRefId: { type: String },
+  paymentMode: {
+    type: String,
+    enum: ['razorpay', 'phonepe', 'other'],
+    default: 'razorpay'
+  },
   submittedBy: {
     type: String,
     enum: ['user', 'agent'],

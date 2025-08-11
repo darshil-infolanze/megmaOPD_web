@@ -18,6 +18,7 @@ export const submitUserInfo = async (req, res) => {
             razorpayPaymentId,
             razorpayOrderId,
             razorpaySignature,
+            // paymentMode
         } = req.body;
         const {
             selfName,
@@ -58,7 +59,7 @@ export const submitUserInfo = async (req, res) => {
             razorpaySignature,
             paymentStatus: 'paid',
             members,
-
+            // paymentMode: paymentMode || 'razorpay',
         });
 // --- Generate Invoice PDF ---
         const invoiceData = {
