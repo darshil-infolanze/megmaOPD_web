@@ -16,9 +16,7 @@ export const instance=new Razorpay({
     key_id:process.env.RAZORPAY_API_KEY,
     key_secret:process.env.RAZORPAY_API_SECRET,
 })
-mongoose.connect(process.env.MONGODB_URL, {
-    dbName: "artwork"
-}).then(() => console.log('database connected '))
+mongoose.connect(process.env.MONGODB_URL).then(() => console.log('database connected '))
     .catch((err) => console.error("mongodb error", err));
 app.listen(process.env.PORT,()=>
     console.log(`server is running on port${process.env.PORT}`)

@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 
 // dotenv.config({ path: './config/config.env' });
 dotenv.config({ path: path.resolve('./config/config.env') });
+console.log(process.env.EMAIL_USER, process.env.EMAIL_PASS);
+
 
 export const transporter = nodemailer.createTransport({
   service: 'gmail',

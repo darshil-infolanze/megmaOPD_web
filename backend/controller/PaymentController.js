@@ -325,12 +325,7 @@ export const getPhonePePaymentStatus = async (req, res) => {
     ) {
       try {
         // Update SelfInfo paymentStatus and paymentMode
-        const selfInfo = await SelfInfo.findOne({ phone: paymentRecord.userInfo?.contact, email: paymentRecord.userInfo?.email });
-        if (selfInfo) {
-          selfInfo.paymentStatus = 'paid';
-          selfInfo.paymentMode = 'phonepe';
-          await selfInfo.save();
-        }
+       
         const invoiceData = {
           name: paymentRecord.userInfo?.name || '',
           email: paymentRecord.userInfo?.email || '',
