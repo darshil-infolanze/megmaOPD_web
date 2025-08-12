@@ -7,12 +7,11 @@ import { IoMail } from "react-icons/io5";
 const Contact = () => {
   const [errorMsg, setErrorMsg] = useState("");
   const [msg, setMsg] = useState("");
-;
   const formik = useFormik({
     initialValues: {
       name: "",
       email: "",
-      mobile: "",
+      mobileNo: "",
       plan: "",
     },
     validationSchema: Yup.object({
@@ -20,26 +19,45 @@ const Contact = () => {
       email: Yup.string()
         .email("Invalid email address")
         .required("Please fill out this field."),
-      mobile: Yup.string()
+      mobileNo: Yup.string()
         .matches(/^\d{10}$/, "Enter a valid 10-digit number")
         .required("Please fill out this field."),
       plan: Yup.string().required("Please fill out this field."),
     }),
-    onSubmit: (values, { resetForm }) => {
-      const hasError = Object.values(formik.errors).length > 0;
-      if (hasError) {
-        setErrorMsg('Please fix the errors before submitting.')
-        return;
+    onSubmit: async (values, { resetForm }) => {
+      try {
+        setErrorMsg("");
+        setMsg("");
+
+        const res = await fetch(
+          `${import.meta.env.VITE_SERVER_URL}/api/contact`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: values.name,
+              email: values.email,
+              mobileNo: values.mobileNo, // match backend field name
+              chooseYourPlan: values.plan,
+            }),
+          }
+        );
+
+        const data = await res.json();
+
+        if (!res.ok) {
+          setErrorMsg(data.message || "Something went wrong!");
+          return;
+        }
+
+        setMsg("Thank you! Your message has been submitted successfully.");
+        resetForm();
+      } catch (error) {
+        console.error(error);
+        setErrorMsg("Server error. Please try again later.");
       }
-
-      // simulate form submission
-      console.log("Form Submitted:", values);
-
-      // reset form
-      resetForm();
-      setErrorMsg("");
-      setMsg("Thank you! Your message has been submitted successfully.");
-      // setMsg("");
     },
   });
 
@@ -132,15 +150,15 @@ const Contact = () => {
               </label>
               <input
                 type="text"
-                name="mobile"
+                name="mobileNo"
                 className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
-                value={formik.values.mobile}
+                value={formik.values.mobileNo}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              {formik.touched.mobile && formik.errors.mobile && (
+              {formik.touched.mobileNo && formik.errors.mobileNo && (
                 <p className="text-red-500 text-sm mt-1">
-                  {formik.errors.mobile}
+                  {formik.errors.mobileNo}
                 </p>
               )}
             </div>
@@ -151,14 +169,14 @@ const Contact = () => {
               </label>
               <select
                 name="plan"
-                className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
                 value={formik.values.plan}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                className="w-full h-11 px-3 py-2 border border-gray-300 rounded-lg text-sm text-slate-700 bg-white focus:outline-none focus:ring-2 focus:ring-violet-600 focus:border-transparent"
               >
                 <option value="">Select a Package</option>
-                <option value="premium">Magma Premium Care</option>
-                <option value="shield">Magma Health Shield</option>
+                <option value="Magma Premium Care">Magma Premium Care</option>
+                <option value="Magma Health Shield">Magma Health Shield</option>
               </select>
               {formik.touched.plan && formik.errors.plan && (
                 <p className="text-red-500 text-sm mt-1">
@@ -179,7 +197,6 @@ const Contact = () => {
                 {errorMsg}
               </div>
             )}
-        
           </form>
           {msg && (
             <div className="mt-4 border border-green-400 text-green-800 bg-green-100 px-4 py-2 rounded text-sm">

@@ -6,6 +6,7 @@ import userRoutes from './routes/UserRoutes.js';
 import AdminRoutes from './routes/AdminRoutes.js';
 import paymentStatusRoutes from './routes/paymentStatus.js';
 import { handleRazorpayWebhook } from './controller/PaymentController.js';
+import contactUsRoutes from "./routes/ContactRoutes.js";
 
 config({path:'./config/config.env' })
 export const app=express(); 
@@ -23,6 +24,7 @@ app.use(express.urlencoded({extended:true}));
 
 app.use('/api',PaymentRoute);
 app.use("/api/admin", AdminRoutes);
+app.use("/api", contactUsRoutes);
 app.use("/api/user", userRoutes);
 // app.use('/api/agent', agentSubmit);
 app.use('/api', paymentStatusRoutes);

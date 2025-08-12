@@ -25,7 +25,7 @@ const Member2 = () => {
   const stepPaths = ["/self", "/member1", "/member2", "/member3"];
   const currentStepIndex = stepPaths.indexOf(location.pathname);
 
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const agentData = useSelector((state) => state.form?.member2) || {};
   // const formik = useFormik({
   //   initialValues: {
@@ -47,21 +47,41 @@ const Member2 = () => {
     },
 
     validationSchema: Yup.object({
-      name: Yup.string().required("Name is required"),
-      relation: Yup.string().required("Relation is required"),
-      email: Yup.string().email("Invalid email").required("Email is required"),
+      name: Yup.string().nullable().notRequired(),
+
+      relation: Yup.string().nullable().notRequired(),
+
+      email: Yup.string()
+        .nullable()
+        .notRequired()
+        .test("email-format", "Invalid email", function (value) {
+          if (!value) return true; // allow empty
+          return Yup.string().email().isValidSync(value);
+        }),
+
       phone: Yup.string()
-        .matches(/^[6-9]\d{9}$/, "Enter a valid 10-digit number")
-        .required("Phone is required"),
+        .nullable()
+        .notRequired()
+        .test(
+          "phone-format",
+          "Enter a valid 10-digit number",
+          function (value) {
+            if (!value) return true; // allow empty
+            return /^[6-9]\d{9}$/.test(value);
+          }
+        ),
+
       dob: Yup.date()
-        .max(new Date(), "Future dates are not allowed")
-        .required("Date of birth is required"),
-      gender: Yup.string().required("Gender is required"),
+        .nullable()
+        .notRequired()
+        .max(new Date(), "Future dates are not allowed"),
+
+      gender: Yup.string().nullable().notRequired(),
     }),
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: (values) => {
-      dispatch(updateMembers2(values))
+      dispatch(updateMembers2(values));
       console.log("Member 2 Data:", JSON.stringify(values, null, 2));
       localStorage.setItem("member2", JSON.stringify(values));
       navigate("/member3");

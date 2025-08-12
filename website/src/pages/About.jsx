@@ -93,10 +93,10 @@ function App() {
             {/* Director 1 */}
             <div className="bg-gradient-to-tr from-violet-50 to-fuchsia-50 p-6 rounded-2xl border border-violet-200 shadow-md hover:shadow-lg transition duration-300">
               <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-tr from-violet-200 to-fuchsia-100 flex items-center justify-center text-3xl text-violet-700 font-bold">
-                B
+                R
               </div>
               <h4 className="text-xl font-semibold text-slate-800 text-center">
-                Bahadur Singh
+                Ravi Kumar
               </h4>
               <p className="text-slate-600 mt-3 text-center">
                 Co-Founder & Director focused on building scalable, tech-enabled
@@ -111,7 +111,7 @@ function App() {
                 R
               </div>
               <h4 className="text-xl font-semibold text-slate-800 text-center">
-                Rajan
+                Ritu Jain
               </h4>
               <p className="text-slate-600 mt-3 text-center">
                 Director & Strategic Head, leading innovation and growth in

@@ -51,3 +51,39 @@ export const sendInvoiceEmail = async (to, pdfBuffer) => {
 
   await transporter.sendMail(mailOptions);
 };
+
+// ✅ 3. Send Contact Us confirmation to user
+export const sendContactConfirmationEmail = async (to, name) => {
+  const mailOptions = {
+    from: `"Magma HealthOPD" <${process.env.EMAIL_USER}>`,
+    to,
+    subject: 'We have received your enquiry - Magma Health',
+    html: `
+      <h2>Hello ${name},</h2>
+      <p>Thank you for contacting Magma HealthOPD. We have received your details and our team will contact you shortly.</p>
+      <p>If you have any urgent queries, please call us at <a href="tel:8851766923">8851766923</a> or email us at <a href="mailto:preventivepulsehealth@gmail.com">preventivepulsehealth@gmail.com</a>.</p>
+      <br/>
+      <p>Best Regards,<br/>Magma HealthOPD Team</p>
+    `,
+  };
+
+  await transporter.sendMail(mailOptions);
+};
+
+// ✅ 4. Send Contact Us details to admin
+export const sendContactDetailsToAdmin = async (name, email, mobileNo, plan) => {
+  const mailOptions = {
+    from: `"Magma HealthOPD" <${process.env.EMAIL_USER}>`,
+    to: process.env.EMAIL_USER, // Set in config.env
+    subject: 'New Contact Us Submission',
+    html: `
+      <h2>New Contact Form Submission</h2>
+      <p><strong>Name:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Mobile No:</strong> ${mobileNo}</p>
+      <p><strong>Plan:</strong> ${plan}</p>
+    `,
+  };
+
+  await transporter.sendMail(mailOptions);
+};
