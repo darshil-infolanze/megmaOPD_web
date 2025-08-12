@@ -19,11 +19,12 @@ const Submit = () => {
   // const total= 100;
 
   const handlePayment = async () => {
+    setLoading(true);
     if (selected === "razorpay") {
       const res = await loadRazorpayScript();
-      const { key } = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/getkey`).then(
-        (res) => res.json()
-      );
+      const { key } = await fetch(
+        `${import.meta.env.VITE_SERVER_URL}/api/getkey`
+      ).then((res) => res.json());
 
       if (!res) {
         alert("Razorpay SDK failed to load. Are you online?");
@@ -31,11 +32,14 @@ const Submit = () => {
       }
 
       try {
-        const orderRes = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/checkout`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ amount: total }),
-        });
+        const orderRes = await fetch(
+          `${import.meta.env.VITE_SERVER_URL}/api/checkout`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ amount: total }),
+          }
+        );
 
         const orderData = await orderRes.json();
         console.log("Order created:", orderData);
@@ -135,6 +139,12 @@ const Submit = () => {
           theme: {
             color: "#9b51e0",
           },
+          modal: {
+            ondismiss: function () {
+              console.log("Payment popup closed by user.");
+              setLoading(false); // ✅ stop loader if payment was canceled
+            },
+          },
         };
 
         const razorpay = new window.Razorpay(options);
@@ -148,23 +158,26 @@ const Submit = () => {
       try {
         const userInfo = JSON.parse(localStorage.getItem("Self Info"));
         const merchantTransactionId = "txn_" + Date.now();
-        const MUID = userInfo?.email || ("user_" + Date.now());
+        const MUID = userInfo?.email || "user_" + Date.now();
         // Save txnId in sessionStorage (just in case PhonePe strips query param)
         sessionStorage.setItem("phonepe_txn_id", merchantTransactionId);
 
-        const res = await fetch(`${import.meta.env.VITE_SERVER_URL}/api/payment`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            merchantTransactionId,
-            amount: total,
-            MUID,
-            name: userInfo?.selfName,
-            number: userInfo?.phone,
-            email: userInfo?.email,
-            planName: storedPlan.name,
-          }),
-        });
+        const res = await fetch(
+          `${import.meta.env.VITE_SERVER_URL}/api/payment`,
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              merchantTransactionId,
+              amount: total,
+              MUID,
+              name: userInfo?.selfName,
+              number: userInfo?.phone,
+              email: userInfo?.email,
+              planName: storedPlan.name,
+            }),
+          }
+        );
         const data = await res.json();
         setLoading(false);
         if (data.url) {
@@ -174,6 +187,7 @@ const Submit = () => {
         } else {
           alert("Failed to initiate PhonePe payment");
         }
+        setLoading(false);
       } catch (err) {
         setLoading(false);
         alert("Failed to initiate PhonePe payment");
@@ -315,10 +329,11 @@ const Submit = () => {
         ].map((method) => (
           <label
             key={method.id}
-            className={`flex items-start space-x-3 p-4 rounded  transition-all cursor-pointer ${selected === method.id
+            className={`flex items-start space-x-3 p-4 rounded  transition-all cursor-pointer ${
+              selected === method.id
                 ? "bg-purple-100 border-purple-400"
                 : "border-gray-300 hover:bg-purple-50"
-              }`}
+            }`}
           >
             <input
               type="radio"
@@ -359,9 +374,38 @@ const Submit = () => {
         <div className="flex justify-end">
           <button
             onClick={handlePayment}
-            className="bg-[#9b51e0] hover:bg-purple-700 text-white px-6 py-3 rounded font-semibold text-lg"
+            disabled={loading}
+            className={`flex items-center justify-center bg-[#9b51e0] hover:bg-purple-700 text-white px-6 py-3 rounded font-semibold text-lg ${
+              loading ? "opacity-70 cursor-not-allowed" : ""
+            }`}
           >
-            Pay for order
+            {loading ? (
+              <>
+                <svg
+                  className="animate-spin h-5 w-5 mr-2 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    className="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    strokeWidth="4"
+                  ></circle>
+                  <path
+                    className="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                  ></path>
+                </svg>
+                Processing...
+              </>
+            ) : (
+              "Pay for order"
+            )}
           </button>
         </div>
       </div>
