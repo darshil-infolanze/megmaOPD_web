@@ -1,9 +1,9 @@
 import mongoose from "mongoose";
 const memberSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: { type: String, required: false },
   relation: { type: String },
-  phone: { type: Number, required: true },
-  email: { type: String, required: true },
+  phone: { type: Number, required: false },
+  email: { type: String, required: false },
   gender: { type: String },
 }, { _id: false });
 
@@ -40,6 +40,25 @@ const selfInfoSchema = new mongoose.Schema({
   },
   members: [memberSchema],
   createdAt: { type: Date, default: Date.now },
+});
+
+// Pre-save hook to validate first member & clean empty members
+selfInfoSchema.pre("save", function (next) {
+  // Remove empty optional members
+  this.members = this.members.filter(m =>
+    m.name || m.phone || m.email
+  );
+
+  // Ensure first member has required fields
+  if (!this.members.length ||
+      !this.members[0].name ||
+      !this.members[0].phone ||
+      !this.members[0].email) {
+    return next(new Error("First member must have name, phone, and email."));
+  }
+
+  next();
+
 });
 
 export const SelfInfo = mongoose.model("SelfInfo", selfInfoSchema);

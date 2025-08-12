@@ -38,7 +38,7 @@ const Member3 = () => {
       // amountPaid: 1,
     };
     setFormData(combined);
-    
+
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [dispatch]);
 
@@ -55,18 +55,41 @@ const Member3 = () => {
       dob: agentData.dob || "",
       gender: agentData.gender || "",
     },
-    validationSchema: Yup.object({
-      name: Yup.string().required("Name is required"),
-      relation: Yup.string().required("Relation is required"),
-      email: Yup.string().email("Invalid email").required("Email is required"),
-      phone: Yup.string()
-        .matches(/^[6-9]\d{9}$/, "Enter a valid 10-digit number")
-        .required("Phone is required"),
-      dob: Yup.date()
-        .max(new Date(), "Future dates are not allowed")
-        .required("Date of birth is required"),
-      gender: Yup.string().required("Gender is required"),
+   validationSchema: Yup.object({
+  name: Yup.string()
+    .nullable()
+    .notRequired(),
+
+  relation: Yup.string()
+    .nullable()
+    .notRequired(),
+
+  email: Yup.string()
+    .nullable()
+    .notRequired()
+    .test("email-format", "Invalid email", function (value) {
+      if (!value) return true; // allow empty
+      return Yup.string().email().isValidSync(value);
     }),
+
+  phone: Yup.string()
+    .nullable()
+    .notRequired()
+    .test("phone-format", "Enter a valid 10-digit number", function (value) {
+      if (!value) return true; // allow empty
+      return /^[6-9]\d{9}$/.test(value);
+    }),
+
+  dob: Yup.date()
+    .nullable()
+    .notRequired()
+    .max(new Date(), "Future dates are not allowed"),
+
+  gender: Yup.string()
+    .nullable()
+    .notRequired()
+})
+,
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: async (values) => {

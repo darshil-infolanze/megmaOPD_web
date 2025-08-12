@@ -519,10 +519,10 @@ const Privacy = () => {
             us at:
           </p>
            <ul className="list-disc list-inside space-y-2 text-slate-700">
-              <li><strong>Email :</strong>support@magmaopd.in</li>
+              <li><strong>Email :</strong>preventivepulsehealth@gmail.com</li>
               <li><strong>Phone:</strong> 8851766923</li>
               <li><strong>Support Hours:</strong> Mon – Sat, 10:00 am to 6:00 pm</li>
-              <strong>Website</strong>www.magmaopd.in
+              <strong>Website:</strong>www.magmaopd.in
               <p>We’re here to help you every step of the way.</p>
             </ul>
         </div>

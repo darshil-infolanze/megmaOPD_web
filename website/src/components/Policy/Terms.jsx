@@ -592,7 +592,7 @@ const Terms = () => {
           </h3>
           <p>
             Customers are encouraged to first reach out to our Grievance
-            Redressal Team by writing to us at support@magmaopd.in with the
+            Redressal Team by writing to us at preventivepulsehealth@gmail.com with the
             subject line: “Dispute Resolution – [Order ID]”.
           </p>
           <p>
@@ -604,7 +604,7 @@ const Terms = () => {
           <p>
             If the issue remains unresolved after Step 1, the customer may
             escalate the matter by sending a formal written complaint to the
-            Magma OPD Compliance Officer at hello@Magma OPD.in. We shall attempt
+            Magma OPD Compliance Officer at preventivepulsehealth@gmail.com We shall attempt
             a good-faith resolution through mediation within 15 business days.
           </p>
           <h3 className="text-lg text-[#64748B] font-semibold mt-6">
@@ -738,7 +738,7 @@ const Terms = () => {
           support team:
           <ul className="list-disc list-inside space-y-2 text-slate-700">
             <li>
-              <strong>Email :</strong>support@magmaopd.in
+              <strong>Email :</strong>preventivepulsehealth@gmail.com
             </li>
             <li>
               <strong>Phone:</strong> 8851766923
@@ -772,7 +772,7 @@ const Terms = () => {
             OPD after any payment is made. Customers may also verify any
             transaction within <strong> fifteen (15) days </strong> of payment
             by contacting customer service at 011-43658206 or via email at{" "}
-            <strong>hello@Magma OPD.in.</strong> No agreement may be challenged
+            <strong>preventivepulsehealth@gmail.com</strong> No agreement may be challenged
             after fifteen (15) days from the date of issuance or commencement of
             risk coverage.
           </p>
