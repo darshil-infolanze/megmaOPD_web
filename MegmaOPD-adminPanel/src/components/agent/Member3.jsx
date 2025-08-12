@@ -38,6 +38,7 @@ const Member3 = () => {
       // amountPaid: 1,
     };
     setFormData(combined);
+    
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [dispatch]);
 
