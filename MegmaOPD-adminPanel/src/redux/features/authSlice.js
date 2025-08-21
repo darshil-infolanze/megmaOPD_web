@@ -13,7 +13,7 @@ export const login = createAsyncThunk("auth/login", async (loginData) => {
   }
 });
 
-const token = localStorage.getItem("token");
+const token = sessionStorage.getItem("token");
 const initialState = {
   user: null,
   token: token || null,
@@ -31,7 +31,7 @@ const authSlice = createSlice({
       state.user = null;
       state.token = null;
       state.isAuthenticated = false;
-      localStorage.removeItem("token");
+      sessionStorage.removeItem("token");
     },
   },
   extraReducers: (builder) => {
@@ -46,7 +46,7 @@ const authSlice = createSlice({
         state.token = token;
         state.isAuthenticated = !!token;
         state.message = message || (success ? "Login successful" : "");
-        if (token) localStorage.setItem("token", token);
+        if (token) sessionStorage.setItem("token", token);
         toast.success(state.message);
       })
       .addCase(login.rejected, (state, action) => {

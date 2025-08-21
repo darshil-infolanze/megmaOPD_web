@@ -9,8 +9,8 @@ import { updateSelfInformations } from "../../redux/features/formSlice";
 
 const SelfInformation = () => {
   const steps = [
-    "Self Information",
-    "Member 1",
+    "Self Information *",
+    "Member 1 *",
     "Member 2",
     "Member 3",
     // "Payment",
@@ -99,7 +99,7 @@ const SelfInformation = () => {
 
     onSubmit: async (values) => {
       dispatch(updateSelfInformations(values));
-      console.log("Self Info Submitted:", JSON.stringify(values, null, 2));
+      // console.log("Self Info Submitted:", JSON.stringify(values, null, 2));
       localStorage.setItem("selfInfo", JSON.stringify(values));
       navigate("/member1");
     },

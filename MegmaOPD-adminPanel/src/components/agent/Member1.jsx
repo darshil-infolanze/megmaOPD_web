@@ -15,8 +15,8 @@ const Member1 = () => {
   }, []);
 
   const steps = [
-    "Self Information",
-    "Member 1",
+    "Self Information*",
+    "Member 1 *",
     "Member 2",
     "Member 3",
     // "Payment",
@@ -61,7 +61,7 @@ const Member1 = () => {
     validateOnChange: true,
     onSubmit: (values) => {
       dispatch(updateMembers1(values))
-      console.log("Member 1 Data:", JSON.stringify(values, null, 2));
+      // console.log("Member 1 Data:", JSON.stringify(values, null, 2));
       localStorage.setItem("member1", JSON.stringify(values));
       navigate("/member2");
     },

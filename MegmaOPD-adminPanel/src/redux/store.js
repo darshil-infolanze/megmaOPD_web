@@ -8,7 +8,7 @@ import formReducer from "./features/formSlice"
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['auth']
+    blacklist: ['auth']
 };
 
 const rootReducer = combineReducers({
