@@ -153,7 +153,7 @@ export const agentSubmit = async (req, res) => {
         newForm.paymentLinkUrl = paymentLink.short_url;
         newForm.paymentLinkRefId = initialReferenceId;
         await newForm.save();
-        await sendPaymentLinkEmail(email, paymentLink.short_url);
+        await sendPaymentLinkEmail(email, paymentLink.short_url,selfName);
 
         // Step 4: Send response with link
         res.status(200).json({
@@ -201,7 +201,7 @@ export const regeneratePaymentLink = async (req, res) => {
     await form.save();
 
     // Optionally, email the new link
-    await sendPaymentLinkEmail(form.email, paymentLink.short_url);
+    await sendPaymentLinkEmail(form.email, paymentLink.short_url,form.selfName);
 
     res.status(200).json({
       message: "Payment link regenerated",

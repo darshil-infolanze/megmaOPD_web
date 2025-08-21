@@ -6,16 +6,26 @@ import { Typography } from "@material-tailwind/react";
 import { IoLogOutOutline } from "react-icons/io5";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/features/authSlice";
+import { clearForm } from "../redux/features/formSlice";
 
 const navItems = [
   { name: "Dashboard", to: "/dashboard", icon: <FaTachometerAlt /> },
   { name: "Users", to: "/users", icon: <FaUsers /> },
-  { name: "Agent", to: "/agent", icon: <FaUsers /> }, // Use FaUsers for Agent for now
+  { name: "Agent", to: "/agent", icon: <FaUsers /> },
 ];
 
 function Sidebar({ isOpen, onClose }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  // Clear form data from Redux and localStorage
+  const clearFormData = () => {
+    dispatch(clearForm());
+    localStorage.removeItem("selfInfo");
+    localStorage.removeItem("member1");
+    localStorage.removeItem("member2");
+    localStorage.removeItem("member3");
+  };
 
   const handleLogout = () => {
     dispatch(logout());
@@ -36,6 +46,7 @@ function Sidebar({ isOpen, onClose }) {
         className={`fixed z-40 top-0 left-0 h-screen w-60 bg-[#f9fafb] border-r border-gray-200 shadow-md transform transition-transform duration-300
         ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:static md:z-auto`}
       >
+        {/* Logo for mobile */}
         <div className="flex items-center md:hidden justify-between px-4 py-4 border-b">
           <div className="flex items-center gap-2">
             <img src={logo} alt="Magma OPD" className="w-10 h-10 rounded-full" />
@@ -45,17 +56,22 @@ function Sidebar({ isOpen, onClose }) {
           </div>
         </div>
 
+        {/* Navigation links */}
         <nav className="flex-1 px-4 space-y-1 mt-5">
           {navItems.map((item) => (
             <NavLink
               key={item.name}
-              to={item.to}
-              onClick={onClose}
+              to={item.to} // FIXED: Added back "to"
+              onClick={() => {
+                clearFormData();
+                if (onClose) onClose();
+              }}
               className={({ isActive }) =>
-                `flex items-center gap-3 px-4 py-2 rounded-md transition-all duration-150 text-sm font-medium
-                ${isActive
-                  ? "bg-blue-500 text-white shadow"
-                  : "text-gray-700 hover:bg-blue-50 hover:text-blue-400"
+                `flex items-center gap-3 px-4 py-2 rounded-md transition-all duration-150 text-sm font-medium w-full
+                ${
+                  isActive
+                    ? "bg-blue-500 text-white shadow"
+                    : "text-gray-700 hover:bg-blue-50 hover:text-blue-400"
                 }`
               }
             >
@@ -64,7 +80,7 @@ function Sidebar({ isOpen, onClose }) {
             </NavLink>
           ))}
 
-          {/* Logout Item */}
+          {/* Logout button */}
           <button
             onClick={handleLogout}
             className="flex items-center gap-3 px-4 py-2 rounded-md transition-all duration-150 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-red-500 w-full"
@@ -76,6 +92,7 @@ function Sidebar({ isOpen, onClose }) {
           </button>
         </nav>
 
+        {/* Footer */}
         <div className="p-4 text-xs text-gray-400 border-t border-gray-100">
           © {new Date().getFullYear()} Admin Dashboard
         </div>

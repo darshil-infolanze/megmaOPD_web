@@ -42,7 +42,7 @@ const Member3 = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, [dispatch]);
 
-  const steps = ["Self Information", "Member 1", "Member 2", "Member 3"];
+  const steps = ["Self Information *", "Member 1 *", "Member 2", "Member 3"];
   const stepPaths = ["/self", "/member1", "/member2", "/member3"];
   const currentStepIndex = stepPaths.indexOf(location.pathname);
 
