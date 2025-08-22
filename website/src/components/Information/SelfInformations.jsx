@@ -9,8 +9,8 @@
 
   const SelfInformations = () => {
     const steps = [
-      "Self Information",
-      "Member 1",
+      "Self Information *",
+      "Member 1 *",
       "Member 2",
       "Member 3",
       "Payment",

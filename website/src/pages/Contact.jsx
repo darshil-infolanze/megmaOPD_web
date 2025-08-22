@@ -95,10 +95,10 @@ const Contact = () => {
           <div className="flex items-center text-slate-700">
             <FaPhone className="text-violet-600 mr-2" />
             <a
-              href="tel:8851766923"
+              href="tel:9899761818"
               className="text-fuchsia-600 hover:underline"
             >
-              8851766923
+              9899761818
             </a>
           </div>
         </div>

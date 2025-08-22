@@ -85,13 +85,13 @@ function App() {
           </p>
 
           {/* Directors Section */}
-          <h3 className="text-2xl sm:text-3xl font-bold text-violet-500 mb-10">
+          {/* <h3 className="text-2xl sm:text-3xl font-bold text-violet-500 mb-10">
             Meet Our Directors
-          </h3>
+          </h3> */}
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 text-left">
+          {/* <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 text-left"> */}
             {/* Director 1 */}
-            <div className="bg-gradient-to-tr from-violet-50 to-fuchsia-50 p-6 rounded-2xl border border-violet-200 shadow-md hover:shadow-lg transition duration-300">
+            {/* <div className="bg-gradient-to-tr from-violet-50 to-fuchsia-50 p-6 rounded-2xl border border-violet-200 shadow-md hover:shadow-lg transition duration-300">
               <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-tr from-violet-200 to-fuchsia-100 flex items-center justify-center text-3xl text-violet-700 font-bold">
                 R
               </div>
@@ -103,10 +103,10 @@ function App() {
                 healthcare systems that improve lives through proactive wellness
                 and OPD services.
               </p>
-            </div>
+            </div> */}
 
             {/* Director 2 */}
-            <div className="bg-gradient-to-tr from-violet-50 to-fuchsia-50 p-6 rounded-2xl border border-violet-200 shadow-md hover:shadow-lg transition duration-300">
+            {/* <div className="bg-gradient-to-tr from-violet-50 to-fuchsia-50 p-6 rounded-2xl border border-violet-200 shadow-md hover:shadow-lg transition duration-300">
               <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-gradient-to-tr from-violet-200 to-fuchsia-100 flex items-center justify-center text-3xl text-violet-700 font-bold">
                 R
               </div>
@@ -118,8 +118,8 @@ function App() {
                 digital healthcare services to deliver affordable preventive
                 care at scale.
               </p>
-            </div>
-          </div>
+            </div> */}
+          {/* </div> */}
         </div>
       </div>
 
