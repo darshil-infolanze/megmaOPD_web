@@ -127,8 +127,8 @@ const Footer = () => {
             </div>
             <div className="flex items-center gap-2">
               <FaPhone className="text-violet-400" />
-              <a href="tel:8851766923" className="hover:text-violet-400">
-                8851766923
+              <a href="tel:9899761818" className="hover:text-violet-400">
+                9899761818
               </a>
             </div>
           </div>

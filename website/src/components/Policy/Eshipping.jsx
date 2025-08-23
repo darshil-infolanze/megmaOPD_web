@@ -275,7 +275,7 @@ const Eshipping = () => {
                 <strong>Email :</strong>support@magmaopd.in
               </li>
               <li>
-                <strong>Phone:</strong> 8851766923
+                <strong>Phone:</strong> 9899761818
               </li>
               <li>
                 <strong>Support Hours:</strong> Mon – Sat, 10:00 am to 6:00 pm
